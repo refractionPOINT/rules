@@ -1,0 +1,15 @@
+{
+    "rules": [
+        {
+            "event": "NEW_PROCESS", 
+            "op": "is windows"
+        }, 
+        {
+            "path": "event/COMMAND_LINE", 
+            "case sensitive": false, 
+            "re": ".*(?:\\xE2\\x80\\x8F).*", 
+            "op": "matches"
+        }
+    ], 
+    "op": "and"
+}

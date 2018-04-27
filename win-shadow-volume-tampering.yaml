@@ -1,0 +1,26 @@
+op: and
+rules:
+- event: NEW_PROCESS
+  op: is windows
+- op: or
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: vssadmin.exe
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      re: .*(?:(?:delete shadows)|(?:resize shadowstorage)).*
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: wmic.exe
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: shadowcopy delete

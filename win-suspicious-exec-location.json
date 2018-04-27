@@ -1,0 +1,18 @@
+{
+    "rules": [
+        {
+            "events": [
+                "NEW_PROCESS", 
+                "CODE_IDENTITY"
+            ], 
+            "op": "is windows"
+        }, 
+        {
+            "path": "event/FILE_PATH", 
+            "case sensitive": false, 
+            "re": ".*(?:(?:windows\\\\(?:(?:system32)|(?:syswow64))\\\\tasks\\\\)|(?:recycle)|(?:\\\\windows\\\\fonts\\\\)|(?:\\\\windows\\\\help\\\\)|(?:\\\\windows\\\\wbem\\\\)|(?:\\\\windows\\\\addins\\\\)|(?:\\\\windows\\\\debug\\\\)|(?:\\\\perflogs\\\\)).*", 
+            "op": "matches"
+        }
+    ], 
+    "op": "and"
+}

@@ -1,0 +1,48 @@
+{
+    "rules": [
+        {
+            "event": "NEW_PROCESS", 
+            "op": "is windows"
+        }, 
+        {
+            "rules": [
+                {
+                    "rules": [
+                        {
+                            "path": "event/FILE_PATH", 
+                            "case sensitive": false, 
+                            "value": "vssadmin.exe", 
+                            "op": "ends with"
+                        }, 
+                        {
+                            "path": "event/COMMAND_LINE", 
+                            "case sensitive": false, 
+                            "re": ".*(?:(?:delete shadows)|(?:resize shadowstorage)).*", 
+                            "op": "matches"
+                        }
+                    ], 
+                    "op": "and"
+                }, 
+                {
+                    "rules": [
+                        {
+                            "path": "event/FILE_PATH", 
+                            "case sensitive": false, 
+                            "value": "wmic.exe", 
+                            "op": "ends with"
+                        }, 
+                        {
+                            "path": "event/COMMAND_LINE", 
+                            "case sensitive": false, 
+                            "value": "shadowcopy delete", 
+                            "op": "contains"
+                        }
+                    ], 
+                    "op": "and"
+                }
+            ], 
+            "op": "or"
+        }
+    ], 
+    "op": "and"
+}
