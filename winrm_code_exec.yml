@@ -1,0 +1,52 @@
+# These two rules detect the Application Whitelisting 
+# Bypass and Arbitrary Unsigned Code Execution Technique 
+# in winrm.vbs documented by Matt Graeber here:
+# https://posts.specterops.io/application-whitelisting-bypass-and-arbitrary-unsigned-code-execution-technique-in-winrm-vbs-c8c24fb40404
+
+# RULE 1
+# In this first part of the rule, we find what looks
+# like a process executing with the expected command
+# line parameter that would trigger the XSL load.
+# If we detect it, we task the agent to send us
+# all the events in recent history, which will include
+# all file creation.
+# Then we set a tag for two minutes essentially
+# saying "be on the lookup for the relevant XSL files
+# being created".
+# ===============================================
+# DETECTION
+rules:
+  - event: NEW_PROCESS
+    op: is windows
+  - path: event/COMMAND_LINE
+    case sensitive: false
+    op: matches
+    re: '.*(\-|/)format\:"?(text|pretty)"?.*'
+op: and
+
+# RESPONSE
+- action: add tag
+  tag: possible_winrm
+  ttl: 120
+- action: task
+  command: history_dump
+
+# RULE 2
+# In the second part, we wait to see a sensor with
+# the "lookout" tag enabled and a file getting created
+# with the relevant names. If we see it we report.
+# ===============================================
+# DETECTION
+rules:
+  - tag: possible_winrm
+    event: FILE_CREATE
+    op: is tagged
+  - path: event/FILE_PATH
+    case sensitive: false
+    re: .*(WsmTxt\.xsl|WsmPty\.xsl)\s*$
+    op: matches
+op: and
+
+# RESPONSE
+- action: report
+  name: possible_winrm_code_exec
