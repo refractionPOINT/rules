@@ -1,0 +1,23 @@
+# https://attack.mitre.org/wiki/Technique/T1053
+# This is not a complete detection, it is a pointer on how to
+# detect new scheduled tasks for further analysis.
+op: and
+rules:
+  - op: is windows
+    event: NEW_DOCUMENT
+  - op: or
+    rules:
+    - op: contains
+      path: event/FILE_PATH
+      value: System32\Tasks
+      case sensitive: false
+
+# The following is an example of a Response component
+# that fetches the content of the cached scheduled job
+# file whose format is described here:
+# https://www.forensicswiki.org/wiki/Windows_Job_File_Format
+- action: task
+  command:
+    - doc_cache_get
+    - -s
+    - <<event/HASH>>
