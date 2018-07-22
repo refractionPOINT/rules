@@ -1,0 +1,13 @@
+# https://attack.mitre.org/wiki/Technique/T1015
+# Detects changes to the accessibility components and
+# execution of those components.
+op: and
+rules:
+  - op: is windows
+    events: 
+      - NEW_DOCUMENT
+      - NEW_PROCESS
+  - op: matches
+    path: event/FILE_PATH
+    re: .*\\Windows\\System32\\(sethc|utilman|osk|magnify|narrator|DisplaySwitch|AtBroker)\.exe$
+    case sensitive: false

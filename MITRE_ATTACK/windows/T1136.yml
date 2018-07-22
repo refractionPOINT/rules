@@ -1,0 +1,14 @@
+# https://attack.mitre.org/wiki/Technique/T1136
+# Detects the creation of users from the command line.
+op: and
+rules:
+  - op: is windows
+    event: NEW_PROCESS
+  - op: ends with
+    path: event/FILE_PATH
+    value: net.exe
+    case sensitive: false
+  - op: matches
+    path: event/COMMAND_LINE
+    re: \s*user\s+\S+\s+\S+.*
+    case sensitive: false

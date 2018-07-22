@@ -1,0 +1,14 @@
+# https://attack.mitre.org/wiki/Technique/T1158
+# Detects making a file hidden from the command line.
+op: and
+rules:
+  - op: is windows
+    event: NEW_PROCESS
+  - op: ends with
+    path: event/FILE_PATH
+    value: attrib.exe
+    case sensitive: false
+  - op: contains
+    path: event/COMMAND_LINE
+    value: +h
+    case sensitive: false
