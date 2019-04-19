@@ -1,0 +1,12 @@
+op: and
+rules:
+- event: NEW_PROCESS
+  op: is windows
+- case sensitive: false
+  op: ends with
+  path: event/FILE_PATH
+  value: powershell.exe
+- case sensitive: false
+  op: matches
+  path: event/COMMAND_LINE
+  re: .*(?:(?:\\-ec)|(?:\\-e)|(?:\\-enc)|(?:\\-enco)|(?:\\-encod)|(?:\\-encode)|(?:\\-encoded)|(?:\\-encodedc)|(?:\\-encodedco)|(?:\\-encodedcom)|(?:\\-encodedcomm)|(?:\\-encodedcomma)|(?:\\-encodedcomman)|(?:\\-encodedcomman)|(?:\\-encodedcommand)).*
