@@ -9,4 +9,4 @@ rules:
 - case sensitive: false
   op: matches
   path: event/COMMAND_LINE
-  re: .*(?:(?:\\-ec)|(?:\\-e)|(?:\\-enc)|(?:\\-enco)|(?:\\-encod)|(?:\\-encode)|(?:\\-encoded)|(?:\\-encodedc)|(?:\\-encodedco)|(?:\\-encodedcom)|(?:\\-encodedcomm)|(?:\\-encodedcomma)|(?:\\-encodedcomman)|(?:\\-encodedcomman)|(?:\\-encodedcommand)).*
+  re: .*(?:(?:\\-ec)|(?:\\-e)|(?:\\-enc)|(?:\\-enco)|(?:\\-encod)|(?:\\-encode)|(?:\\-encoded)|(?:\\-encodedc)|(?:\\-encodedco)|(?:\\-encodedcom)|(?:\\-encodedcomm)|(?:\\-encodedcomma)|(?:\\-encodedcomman)|(?:\\-encodedcomman)|(?:\\-encodedcommand))\\W.*
