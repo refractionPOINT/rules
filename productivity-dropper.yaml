@@ -1,0 +1,27 @@
+# Matches any productivity executable leading to
+# a descendant that is either a shell process of some kind
+# or that drops an executable file or script.
+
+op: and
+rules:
+  - op: is windows
+  - op: matches
+    events:
+      - NEW_PROCESS
+      - EXISTING_PROCESS
+    path: event/FILE_PATH
+    re: .*(winword|outlook|excel|powerpnt|iexplore|firefox|chrome|acrord32)\.exe$
+    case sensitive: false
+    with descendant:
+      op: or
+      rules:
+        - op: matches
+          event: NEW_PROCESS
+          path: event/FILE_PATH
+          re: .*(cmd|powershell|conhost)\.exe
+          case sensitive: false
+        - op: matches
+          event: NEW_DOCUMENT
+          path: event/FILE_PATH
+          re: .*\.(dll|exe|bat|ps1)$
+          case sensitive: false
