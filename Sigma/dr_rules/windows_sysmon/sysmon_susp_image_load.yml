@@ -1,0 +1,37 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '7'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/Image
+    value: \notepad.exe
+  - op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ImageLoaded
+      value: \samlib.dll
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ImageLoaded
+      value: \WinSCard.dll
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Detects Loading of samlib.dll, WinSCard.dll from untypical process
+      e.g. through process hollowing by Mimikatz
+    level: high
+    references:
+    - https://cyberwardog.blogspot.com/2017/03/chronicles-of-threat-hunter-hunting-for.html
+    tags:
+    - attack.defense_evasion
+    - attack.t1073
+  name: Possible Process Hollowing Image Loading
+

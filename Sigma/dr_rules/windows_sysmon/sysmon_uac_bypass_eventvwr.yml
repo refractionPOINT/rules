@@ -1,0 +1,48 @@
+detect:
+  log type: wel
+  op: or
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '13'
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/TargetObject
+      value: HKEY_USERS\\\.*\\mscfile\\shell\\open\\command
+  - op: and
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '1'
+      - case sensitive: false
+        op: ends with
+        path: Event/EventData/ParentImage
+        value: \eventvwr.exe
+    - case sensitive: false
+      not: true
+      op: ends with
+      path: Event/EventData/Image
+      value: \mmc.exe
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects UAC bypass method using Windows event viewer
+    level: critical
+    references:
+    - https://enigma0x3.net/2016/08/15/fileless-uac-bypass-using-eventvwr-exe-and-registry-hijacking/
+    - https://www.hybrid-analysis.com/sample/e122bc8bf291f15cab182a5d2d27b8db1e7019e4e96bb5cdbd1dfe7446f3f51f?environmentId=100
+    tags:
+    - attack.defense_evasion
+    - attack.privilege_escalation
+    - attack.t1088
+    - car.2019-04-001
+  name: UAC Bypass via Event Viewer
+

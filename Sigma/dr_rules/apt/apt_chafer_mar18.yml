@@ -1,0 +1,186 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '7045'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/ServiceName
+      value: SC Scheduled Scan
+    - case sensitive: false
+      op: is
+      path: Event/EventData/ServiceName
+      value: UpdatMachine
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Markus Neis
+    description: Detects Chafer activity attributed to OilRig as reported in Nyotron
+      report in March 2018
+    level: critical
+    references:
+    - https://nyotron.com/nyotron-discovers-next-generation-oilrig-attacks/
+    tags:
+    - attack.persistence
+    - attack.g0049
+    - attack.t1053
+    - attack.s0111
+    - attack.defense_evasion
+    - attack.t1112
+  name: Chafer Activity
+
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '4698'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/TaskName
+      value: SC Scheduled Scan
+    - case sensitive: false
+      op: is
+      path: Event/EventData/TaskName
+      value: UpdatMachine
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Markus Neis
+    description: Detects Chafer activity attributed to OilRig as reported in Nyotron
+      report in March 2018
+    level: critical
+    references:
+    - https://nyotron.com/nyotron-discovers-next-generation-oilrig-attacks/
+    tags:
+    - attack.persistence
+    - attack.g0049
+    - attack.t1053
+    - attack.s0111
+    - attack.defense_evasion
+    - attack.t1112
+  name: Chafer Activity
+
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/EventType
+    value: SetValue
+  - op: or
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: Event/EventData/TargetObject
+        value: SOFTWARE\Microsoft\Windows\CurrentVersion\UMe
+      - case sensitive: false
+        op: ends with
+        path: Event/EventData/TargetObject
+        value: SOFTWARE\Microsoft\Windows\CurrentVersion\UT
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: Event/EventData/TargetObject
+        value: \Control\SecurityProviders\WDigest\UseLogonCredential
+      - case sensitive: false
+        op: is
+        path: Event/EventData/Details
+        value: DWORD (0x00000001)
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Markus Neis
+    description: Detects Chafer activity attributed to OilRig as reported in Nyotron
+      report in March 2018
+    level: critical
+    references:
+    - https://nyotron.com/nyotron-discovers-next-generation-oilrig-attacks/
+    tags:
+    - attack.persistence
+    - attack.g0049
+    - attack.t1053
+    - attack.s0111
+    - attack.defense_evasion
+    - attack.t1112
+  name: Chafer Activity
+
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: \Service.exe i
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: \Service.exe u
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: \microsoft\Taskbar\autoit3.exe
+      - case sensitive: false
+        op: starts with
+        path: event/COMMAND_LINE
+        value: C:\wsc.exe
+    - case sensitive: false
+      op: matches
+      path: event/FILE_PATH
+      value: .*\\Windows\\Temp\\DB\\\.*\.exe
+    - op: and
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: \nslookup.exe -q=TXT
+      - case sensitive: false
+        op: contains
+        path: event/PARENT/FILE_PATH
+        value: \Autoit
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Markus Neis
+    description: Detects Chafer activity attributed to OilRig as reported in Nyotron
+      report in March 2018
+    level: critical
+    references:
+    - https://nyotron.com/nyotron-discovers-next-generation-oilrig-attacks/
+    tags:
+    - attack.persistence
+    - attack.g0049
+    - attack.t1053
+    - attack.s0111
+    - attack.defense_evasion
+    - attack.t1112
+  name: Chafer Activity
+

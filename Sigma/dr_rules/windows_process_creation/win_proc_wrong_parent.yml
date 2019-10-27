@@ -1,0 +1,79 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: and
+      rules:
+      - op: or
+        rules:
+        - case sensitive: false
+          op: ends with
+          path: event/FILE_PATH
+          value: \svchost.exe
+        - case sensitive: false
+          op: ends with
+          path: event/FILE_PATH
+          value: \taskhost.exe
+        - case sensitive: false
+          op: ends with
+          path: event/FILE_PATH
+          value: \lsm.exe
+        - case sensitive: false
+          op: ends with
+          path: event/FILE_PATH
+          value: \lsass.exe
+        - case sensitive: false
+          op: ends with
+          path: event/FILE_PATH
+          value: \services.exe
+        - case sensitive: false
+          op: ends with
+          path: event/FILE_PATH
+          value: \lsaiso.exe
+        - case sensitive: false
+          op: ends with
+          path: event/FILE_PATH
+          value: \csrss.exe
+        - case sensitive: false
+          op: ends with
+          path: event/FILE_PATH
+          value: \wininit.exe
+        - case sensitive: false
+          op: ends with
+          path: event/FILE_PATH
+          value: \winlogon.exe
+      - not: true
+        op: or
+        rules:
+        - case sensitive: false
+          op: contains
+          path: event/PARENT/FILE_PATH
+          value: \System32\\
+        - case sensitive: false
+          op: contains
+          path: event/PARENT/FILE_PATH
+          value: \SysWOW64\\
+    - not: true
+      op: exists
+      path: event/PARENT/FILE_PATH
+respond:
+- action: report
+  metatdata:
+    author: vburov
+    description: Detect suspicious parent processes of well-known Windows processes
+    level: low
+    references:
+    - https://securitybytes.io/blue-team-fundamentals-part-two-windows-processes-759fe15965e2
+    - https://www.carbonblack.com/2014/06/10/screenshot-demo-hunt-evil-faster-than-ever-with-carbon-black/
+    - https://www.13cubed.com/downloads/windows_process_genealogy_v2.pdf
+    - https://attack.mitre.org/techniques/T1036/
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+  name: Windows Processes Suspicious Parent Directory
+

@@ -1,0 +1,29 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/PARENT/FILE_PATH
+      value: \sllauncher.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \svchost.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the execution of DLL side-loading malware used by threat
+      group Emissary Panda aka APT27
+    level: critical
+    references:
+    - https://app.any.run/tasks/579e7587-f09d-4aae-8b07-472833262965
+    - https://twitter.com/cyb3rops/status/1168863899531132929
+  name: Emissary Panda Malware SLLauncher
+

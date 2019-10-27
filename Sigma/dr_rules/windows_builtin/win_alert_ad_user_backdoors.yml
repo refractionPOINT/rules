@@ -1,0 +1,76 @@
+detect:
+  log type: wel
+  op: or
+  rules:
+  - op: or
+    rules:
+    - op: or
+      rules:
+      - op: and
+        rules:
+        - case sensitive: false
+          op: is
+          path: Event/System/EventID
+          value: '4738'
+        - not: true
+          op: or
+          rules:
+          - not: true
+            op: exists
+            path: Event/EventData/AllowedToDelegateTo
+          - case sensitive: false
+            op: is
+            path: Event/EventData/AllowedToDelegateTo
+            value: '-'
+      - op: and
+        rules:
+        - case sensitive: false
+          op: is
+          path: Event/System/EventID
+          value: '5136'
+        - case sensitive: false
+          op: is
+          path: Event/EventData/AttributeLDAPDisplayName
+          value: msDS-AllowedToDelegateTo
+    - op: and
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '5136'
+      - case sensitive: false
+        op: is
+        path: Event/EventData/ObjectClass
+        value: user
+      - case sensitive: false
+        op: is
+        path: Event/EventData/AttributeLDAPDisplayName
+        value: servicePrincipalName
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '5136'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/AttributeLDAPDisplayName
+      value: msDS-AllowedToActOnBehalfOfOtherIdentity
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: '@neu5ron'
+    description: Detects scenarios where one can control another users or computers
+      account without having to use their credentials.
+    level: high
+    references:
+    - https://msdn.microsoft.com/en-us/library/cc220234.aspx
+    - https://adsecurity.org/?p=3466
+    - https://www.harmj0y.net/blog/redteaming/another-word-on-delegation/
+    tags:
+    - attack.t1098
+    - attack.credential_access
+    - attack.persistence
+  name: Active Directory User Backdoors
+

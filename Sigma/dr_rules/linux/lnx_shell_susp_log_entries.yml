@@ -1,0 +1,29 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: is
+      path: event/COMMAND_LINE
+      value: entered promiscuous mode
+    - op: is
+      path: event/COMMAND_LINE
+      value: Deactivating service
+    - op: is
+      path: event/COMMAND_LINE
+      value: Oversized packet received from
+    - op: is
+      path: event/COMMAND_LINE
+      value: imuxsock begins to drop messages
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious log entries in Linux log files
+    level: medium
+  name: Suspicious Log Entries
+

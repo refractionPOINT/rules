@@ -1,0 +1,55 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: \msdt.exe
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: \installutil.exe
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: \regsvcs.exe
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: \regasm.exe
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: \msbuild.exe
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: \ieexec.exe
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: \mshta.exe
+respond:
+- action: report
+  metatdata:
+    author: juju4
+    description: Detects execution of executables that can be used to bypass Applocker
+      whitelisting
+    level: low
+    references:
+    - https://github.com/subTee/ApplicationWhitelistBypassTechniques/blob/master/TheList.txt
+    - https://room362.com/post/2014/2014-01-16-application-whitelist-bypass-using-ieexec-dot-exe/
+    tags:
+    - attack.defense_evasion
+    - attack.t1118
+    - attack.t1121
+    - attack.t1127
+    - attack.t1170
+  name: Possible Applocker Bypass
+

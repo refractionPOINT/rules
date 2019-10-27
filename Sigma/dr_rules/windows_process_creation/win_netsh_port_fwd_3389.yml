@@ -1,0 +1,26 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: matches
+    path: event/COMMAND_LINE
+    value: netsh i.* p.*=3389 c.*
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects netsh commands that configure a port forwarding of port 3389
+      used for RDP
+    level: high
+    references:
+    - https://www.fireeye.com/blog/threat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html
+    tags:
+    - attack.lateral_movement
+    - attack.t1021
+    - car.2013-07-002
+  name: Netsh RDP Port Forwarding
+

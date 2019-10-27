@@ -1,0 +1,29 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '4625'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/AccountName
+    value: AAAAAAA
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth (rule), Adam Bradbury (idea)
+    description: Detects the use of a scanner by zerosum0x0 that discovers targets
+      vulnerable to  CVE-2019-0708 RDP RCE aka BlueKeep
+    level: critical
+    references:
+    - https://twitter.com/AdamTheAnalyst/status/1134394070045003776
+    - https://github.com/zerosum0x0/CVE-2019-0708
+    tags:
+    - attack.lateral_movement
+    - attack.t1210
+    - car.2013-07-002
+  name: Scanner PoC for CVE-2019-0708 RDP RCE vuln
+

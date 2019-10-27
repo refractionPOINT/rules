@@ -1,0 +1,44 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \wevtutil.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' cl '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' clear-log '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' sl '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' set-log '
+respond:
+- action: report
+  metatdata:
+    author: Ecco
+    description: Detects clearing or configuration of eventlogs uwing wevtutil. Might
+      be used by ransomwares during the attack (seen by NotPetya and others)
+    level: high
+    tags:
+    - attack.execution
+    - attack.t1070
+    - car.2016-04-002
+  name: Suspicious eventlog clear or configuration using wevtutil
+

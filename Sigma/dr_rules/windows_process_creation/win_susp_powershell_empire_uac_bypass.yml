@@ -1,0 +1,34 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' -NoP -NonI -w Hidden -c $x=$((gp HKCU:Software\\Microsoft\\Windows
+        Update).Update)'
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' -NoP -NonI -c $x=$((gp HKCU:Software\\Microsoft\\Windows Update).Update);'
+respond:
+- action: report
+  metatdata:
+    author: Ecco
+    description: Detects some Empire PowerShell UAC bypass methods
+    level: critical
+    references:
+    - https://github.com/EmpireProject/Empire/blob/e37fb2eef8ff8f5a0a689f1589f424906fe13055/data/module_source/privesc/Invoke-EventVwrBypass.ps1#L64
+    - https://github.com/EmpireProject/Empire/blob/e37fb2eef8ff8f5a0a689f1589f424906fe13055/data/module_source/privesc/Invoke-FodHelperBypass.ps1#L64
+    tags:
+    - attack.defense_evasion
+    - attack.privilege_escalation
+    - attack.t1088
+    - car.2019-04-001
+  name: Empire PowerShell UAC Bypass
+

@@ -1,0 +1,54 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/TargetObject
+    value: \services\DNS\Parameters\ServerLevelPluginDll
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the installation of a plugin DLL via ServerLevelPluginDll
+      parameter in Registry, which can be used to execute code in context of the DNS
+      server (restart required)
+    level: high
+    references:
+    - https://medium.com/@esnesenon/feature-not-bug-dnsadmin-to-dc-compromise-in-one-line-a0f779b8dc83
+    tags:
+    - attack.defense_evasion
+    - attack.t1073
+  name: DNS ServerLevelPluginDll Install
+
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: starts with
+    path: event/COMMAND_LINE
+    value: 'dnscmd.exe /config /serverlevelplugindll '
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the installation of a plugin DLL via ServerLevelPluginDll
+      parameter in Registry, which can be used to execute code in context of the DNS
+      server (restart required)
+    level: high
+    references:
+    - https://medium.com/@esnesenon/feature-not-bug-dnsadmin-to-dc-compromise-in-one-line-a0f779b8dc83
+    tags:
+    - attack.defense_evasion
+    - attack.t1073
+  name: DNS ServerLevelPluginDll Install
+

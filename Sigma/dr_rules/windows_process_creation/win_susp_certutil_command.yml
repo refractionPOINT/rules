@@ -1,0 +1,89 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' -decode '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /decode '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' -decodehex '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /decodehex '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' -urlcache '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /urlcache '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' -verifyctl '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /verifyctl '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' -encode '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /encode '
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*certutil.* -URL.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*certutil.* /URL.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*certutil.* -ping.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*certutil.* /ping.*
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, juju4, keepwatch
+    description: Detects a suspicious Microsoft certutil execution with sub commands
+      like 'decode' sub command, which is sometimes used to decode malicious code
+      with the built-in certutil utility
+    level: high
+    references:
+    - https://twitter.com/JohnLaTwC/status/835149808817991680
+    - https://twitter.com/subTee/status/888102593838362624
+    - https://twitter.com/subTee/status/888071631528235010
+    - https://blogs.technet.microsoft.com/pki/2006/11/30/basic-crl-checking-with-certutil/
+    - https://www.trustedsec.com/2017/07/new-tool-release-nps_payload/
+    - https://twitter.com/egre55/status/1087685529016193025
+    - https://lolbas-project.github.io/lolbas/Binaries/Certutil/
+    tags:
+    - attack.defense_evasion
+    - attack.t1140
+    - attack.t1105
+    - attack.s0189
+    - attack.g0007
+  name: Suspicious Certutil Command
+

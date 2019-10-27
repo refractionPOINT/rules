@@ -1,0 +1,31 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \cmdkey.exe
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /list '
+respond:
+- action: report
+  metatdata:
+    author: jmallette
+    description: Detects usage of cmdkey to look for cached credentials
+    level: low
+    references:
+    - https://www.peew.pw/blog/2017/11/26/exploring-cmdkey-an-edge-case-for-privilege-escalation
+    - https://technet.microsoft.com/en-us/library/cc754243(v=ws.11).aspx
+    tags:
+    - attack.credential_access
+    - attack.t1003
+  name: Cmdkey Cached Credentials Recon
+

@@ -1,0 +1,61 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '528'
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '529'
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '4624'
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '4625'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/LogonType
+      value: '2'
+    - op: or
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/EventData/ComputerName
+        value: '%ServerSystems%'
+      - case sensitive: false
+        op: is
+        path: Event/EventData/ComputerName
+        value: '%DomainControllers%'
+  - not: true
+    op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/LogonProcessName
+      value: Advapi
+    - case sensitive: false
+      op: is
+      path: Event/EventData/ComputerName
+      value: '%Workstations%'
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects interactive console logons to
+    level: medium
+    tags:
+    - attack.lateral_movement
+    - attack.t1078
+  name: Interactive Logon to Server Systems
+

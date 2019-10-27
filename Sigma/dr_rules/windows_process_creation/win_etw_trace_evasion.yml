@@ -1,0 +1,42 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .* cl .*/Trace.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .* clear-log .*/Trace.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .* sl.* /e:false.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .* set-log.* /e:false.*
+respond:
+- action: report
+  metatdata:
+    author: '@neu5ron, Florian Roth'
+    description: Detects a command that clears or disables any ETW trace log which
+      could indicate a logging evasion.
+    level: high
+    references:
+    - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/wevtutil
+    - https://github.com/Neo23x0/sigma/blob/master/rules/windows/process_creation/win_mal_lockergoga.yml
+    - https://abuse.io/lockergoga.txt
+    tags:
+    - attack.execution
+    - attack.t1070
+    - car.2016-04-002
+  name: Disable of ETW Trace
+

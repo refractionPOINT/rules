@@ -1,0 +1,84 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\PerfLogs\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\$Recycle.bin\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Intel\Logs\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Users\Default\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Users\Public\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Users\NetworkService\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Windows\Fonts\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Windows\Debug\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Windows\Media\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Windows\Help\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Windows\addins\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Windows\repair\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Windows\security\\
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: \RSA\MachineKeys\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Windows\system32\config\systemprofile\\
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects process starts of binaries from a suspicious folder
+    level: high
+    references:
+    - https://github.com/mbevilacqua/appcompatprocessor/blob/master/AppCompatSearch.txt
+    - https://www.secureworks.com/research/bronze-butler-targets-japanese-businesses
+    - https://www.crowdstrike.com/resources/reports/2019-crowdstrike-global-threat-report/
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+  name: Executables Started in Suspicious Folder
+

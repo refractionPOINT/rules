@@ -1,0 +1,27 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: is
+    path: event/COMMAND_LINE
+    value: ps.exe -accepteula
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects renamed SysInternals tool execution with a binary named ps.exe
+      as used by Dragonfly APT group and documented in TA17-293A report
+    level: high
+    references:
+    - https://www.us-cert.gov/ncas/alerts/TA17-293A
+    tags:
+    - attack.defense_evasion
+    - attack.g0035
+    - attack.t1036
+    - car.2013-05-009
+  name: Ps.exe Renamed SysInternals Tool
+

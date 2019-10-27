@@ -1,0 +1,31 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/PARENT/FILE_PATH
+      value: \svchost.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \mshta.exe
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Detects MSHTA.EXE spwaned by SVCHOST described in report
+    level: high
+    references:
+    - https://codewhitesec.blogspot.com/2018/07/lethalhta.html
+    tags:
+    - attack.defense_evasion
+    - attack.execution
+    - attack.t1170
+  name: MSHTA spwaned by SVCHOST as seen in LethalHTA
+

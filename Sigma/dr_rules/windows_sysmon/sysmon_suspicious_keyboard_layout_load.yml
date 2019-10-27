@@ -1,0 +1,46 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \Keyboard Layout\Preload\
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \Keyboard Layout\Substitutes\
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Details
+      value: 00000429
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Details
+      value: 00050429
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Details
+      value: 0000042a
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the keyboard preload installation with a suspicious keyboard
+      layout, e.g. Chinese, Iranian or Vietnamese layout load in user session on systems
+      maintained by US staff only
+    level: medium
+    references:
+    - https://renenyffenegger.ch/notes/Windows/registry/tree/HKEY_CURRENT_USER/Keyboard-Layout/Preload/index
+    - https://github.com/SwiftOnSecurity/sysmon-config/pull/92/files
+  name: Suspicious Keyboard Layout Load
+

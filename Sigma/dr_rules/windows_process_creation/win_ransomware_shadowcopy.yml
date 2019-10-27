@@ -1,0 +1,29 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: vssadmin delete shadows
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: wmic SHADOWCOPY DELETE
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects commands that delete all local volume shadow copies as used
+      by different Ransomware families
+    level: critical
+    references:
+    - https://www.bleepingcomputer.com/news/security/why-everyone-should-disable-vssadmin-exe-now/
+    - https://www.hybrid-analysis.com/sample/ed01ebfbc9eb5bbea545af4d01bf5f1071661840480439c6e5babe8e080e41aa?environmentId=100
+  name: Ransomware Deletes Volume Shadow Copies
+

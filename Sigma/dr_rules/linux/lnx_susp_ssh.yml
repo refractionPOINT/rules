@@ -1,0 +1,54 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: contains
+      path: event/COMMAND_LINE
+      value: unexpected internal error
+    - op: contains
+      path: event/COMMAND_LINE
+      value: unknown or unsupported key type
+    - op: contains
+      path: event/COMMAND_LINE
+      value: invalid certificate signing key
+    - op: contains
+      path: event/COMMAND_LINE
+      value: invalid elliptic curve value
+    - op: contains
+      path: event/COMMAND_LINE
+      value: incorrect signature
+    - op: contains
+      path: event/COMMAND_LINE
+      value: error in libcrypto
+    - op: contains
+      path: event/COMMAND_LINE
+      value: unexpected bytes remain after decoding
+    - op: contains
+      path: event/COMMAND_LINE
+      value: 'fatal: buffer_get_string: bad string'
+    - op: contains
+      path: event/COMMAND_LINE
+      value: 'Local: crc32 compensation attack'
+    - op: contains
+      path: event/COMMAND_LINE
+      value: bad client public DH value
+    - op: contains
+      path: event/COMMAND_LINE
+      value: Corrupted MAC on input
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious SSH / SSHD error messages that indicate a fatal
+      or suspicious error that could be caused by exploiting attempts
+    level: medium
+    references:
+    - https://github.com/openssh/openssh-portable/blob/master/ssherr.c
+    - https://github.com/ossec/ossec-hids/blob/master/etc/rules/sshd_rules.xml
+  name: Suspicious SSHD Error
+

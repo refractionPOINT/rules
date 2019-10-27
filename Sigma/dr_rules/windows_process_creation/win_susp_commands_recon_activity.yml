@@ -1,0 +1,95 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: tasklist
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: net time
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: systeminfo
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: whoami
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: nbtstat
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: net start
+    - case sensitive: false
+      op: ends with
+      path: event/COMMAND_LINE
+      value: \net1 start
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: qprocess
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: nslookup
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: hostname.exe
+    - case sensitive: false
+      op: ends with
+      path: event/COMMAND_LINE
+      value: \net1 user /domain
+    - case sensitive: false
+      op: ends with
+      path: event/COMMAND_LINE
+      value: \net1 group /domain
+    - case sensitive: false
+      op: ends with
+      path: event/COMMAND_LINE
+      value: \net1 group "domain admins" /domain
+    - case sensitive: false
+      op: ends with
+      path: event/COMMAND_LINE
+      value: \net1 group "Exchange Trusted Subsystem" /domain
+    - case sensitive: false
+      op: ends with
+      path: event/COMMAND_LINE
+      value: \net1 accounts /domain
+    - case sensitive: false
+      op: ends with
+      path: event/COMMAND_LINE
+      value: \net1 user net localgroup administrators
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: netstat -an
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Markus Neis
+    description: Detects a set of commands often used in recon stages by different
+      attack groups
+    level: medium
+    references:
+    - https://twitter.com/haroonmeer/status/939099379834658817
+    - https://twitter.com/c_APT_ure/status/939475433711722497
+    - https://www.fireeye.com/blog/threat-research/2016/05/targeted_attacksaga.html
+    tags:
+    - attack.discovery
+    - attack.t1087
+    - attack.t1082
+    - car.2016-03-001
+  name: Reconnaissance Activity with Net Command
+

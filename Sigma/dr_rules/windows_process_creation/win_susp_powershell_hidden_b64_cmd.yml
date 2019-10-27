@@ -1,0 +1,225 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \powershell.exe
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' hidden '
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: AGkAdABzAGEAZABtAGkAbgAgAC8AdAByAGEAbgBzAGYAZQByA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: aXRzYWRtaW4gL3RyYW5zZmVy
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: IAaQB0AHMAYQBkAG0AaQBuACAALwB0AHIAYQBuAHMAZgBlAHIA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: JpdHNhZG1pbiAvdHJhbnNmZX
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: YgBpAHQAcwBhAGQAbQBpAG4AIAAvAHQAcgBhAG4AcwBmAGUAcg
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: Yml0c2FkbWluIC90cmFuc2Zlc
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: AGMAaAB1AG4AawBfAHMAaQB6AGUA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: JABjAGgAdQBuAGsAXwBzAGkAegBlA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: JGNodW5rX3Npem
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: QAYwBoAHUAbgBrAF8AcwBpAHoAZQ
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: RjaHVua19zaXpl
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: Y2h1bmtfc2l6Z
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: AE8ALgBDAG8AbQBwAHIAZQBzAHMAaQBvAG4A
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: kATwAuAEMAbwBtAHAAcgBlAHMAcwBpAG8Abg
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: lPLkNvbXByZXNzaW9u
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: SQBPAC4AQwBvAG0AcAByAGUAcwBzAGkAbwBuA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: SU8uQ29tcHJlc3Npb2
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: Ty5Db21wcmVzc2lvb
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: AE8ALgBNAGUAbQBvAHIAeQBTAHQAcgBlAGEAbQ
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: kATwAuAE0AZQBtAG8AcgB5AFMAdAByAGUAYQBtA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: lPLk1lbW9yeVN0cmVhb
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: SQBPAC4ATQBlAG0AbwByAHkAUwB0AHIAZQBhAG0A
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: SU8uTWVtb3J5U3RyZWFt
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: Ty5NZW1vcnlTdHJlYW
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 4ARwBlAHQAQwBoAHUAbgBrA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 5HZXRDaHVua
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: AEcAZQB0AEMAaAB1AG4Aaw
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: LgBHAGUAdABDAGgAdQBuAGsA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: LkdldENodW5r
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: R2V0Q2h1bm
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: AEgAUgBFAEEARABfAEkATgBGAE8ANgA0A
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: QASABSAEUAQQBEAF8ASQBOAEYATwA2ADQA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: RIUkVBRF9JTkZPNj
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: SFJFQURfSU5GTzY0
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: VABIAFIARQBBAEQAXwBJAE4ARgBPADYANA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: VEhSRUFEX0lORk82N
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: AHIAZQBhAHQAZQBSAGUAbQBvAHQAZQBUAGgAcgBlAGEAZA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: cmVhdGVSZW1vdGVUaHJlYW
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: MAcgBlAGEAdABlAFIAZQBtAG8AdABlAFQAaAByAGUAYQBkA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: NyZWF0ZVJlbW90ZVRocmVhZ
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: Q3JlYXRlUmVtb3RlVGhyZWFk
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: QwByAGUAYQB0AGUAUgBlAG0AbwB0AGUAVABoAHIAZQBhAGQA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 0AZQBtAG0AbwB2AGUA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 1lbW1vdm
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: AGUAbQBtAG8AdgBlA
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: bQBlAG0AbQBvAHYAZQ
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: bWVtbW92Z
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ZW1tb3Zl
+respond:
+- action: report
+  metatdata:
+    author: John Lambert (rule)
+    description: Detects base64 encoded strings used in hidden malicious PowerShell
+      command lines
+    level: high
+    references:
+    - http://www.leeholmes.com/blog/2017/09/21/searching-for-content-in-base-64-strings/
+    tags:
+    - attack.execution
+    - attack.t1086
+  name: Malicious Base64 encoded PowerShell Keywords in command lines
+

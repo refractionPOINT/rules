@@ -1,0 +1,55 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -p'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -ta'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -tb'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -sdel'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -dw'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -hp'
+    - case sensitive: false
+      not: true
+      op: starts with
+      path: event/PARENT/FILE_PATH
+      value: C:\Program
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Samir Bousseaden
+    description: Detects suspicious command line arguments of common data compression
+      tools
+    level: high
+    references:
+    - https://twitter.com/SBousseaden/status/1184067445612535811
+    tags:
+    - attack.exfiltration
+    - attack.t1020
+    - attack.t1002
+  name: Suspicious Compression Tool Parameters
+

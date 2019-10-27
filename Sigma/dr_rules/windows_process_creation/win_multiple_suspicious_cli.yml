@@ -1,0 +1,173 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: arp.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: at.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: attrib.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: cscript.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: dsquery.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: hostname.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: ipconfig.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: mimikatz.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: nbtstat.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: net.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: netsh.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: nslookup.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: ping.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: quser.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: qwinsta.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: reg.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: runas.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: sc.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: schtasks.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: ssh.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: systeminfo.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: taskkill.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: telnet.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: tracert.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: wscript.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: xcopy.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: pscp.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: copy.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: robocopy.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: certutil.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: vssadmin.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: powershell.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: wevtutil.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: psexec.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: bcedit.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: wbadmin.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: icacls.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: diskpart.exe
+respond:
+- action: report
+  metatdata:
+    author: juju4
+    description: Detects multiple suspicious process in a limited timeframe
+    level: low
+    references:
+    - https://car.mitre.org/wiki/CAR-2013-04-002
+    tags:
+    - car.2013-04-002
+  name: Quick Execution of a Series of Suspicious Commands
+

@@ -1,0 +1,31 @@
+detect:
+  log type: wel
+  op: or
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '2003'
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '2100'
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '2102'
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects plugged USB devices
+    level: low
+    references:
+    - https://df-stream.com/2014/01/the-windows-7-event-log-and-usb-device/
+    - https://www.techrepublic.com/article/how-to-track-down-usb-flash-drive-usage-in-windows-10s-event-viewer/
+    tags:
+    - attack.initial_access
+    - attack.t1200
+  name: USB Device Plugged
+

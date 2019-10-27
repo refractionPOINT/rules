@@ -1,0 +1,21 @@
+detect:
+  case sensitive: false
+  log type: wel
+  op: is
+  path: Event/System/EventID
+  target: log
+  value: '106'
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: This rule detects rare scheduled task creations. Typically software
+      gets installed on multiple systems and not only on a few. The aggregation and
+      count function selects tasks with rare names.
+    level: low
+    tags:
+    - attack.persistence
+    - attack.t1053
+    - attack.s0111
+  name: Rare Scheduled Task Creations
+

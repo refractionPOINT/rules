@@ -1,0 +1,26 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '11'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/TargetFilename
+    value: \Temp\debug.bin
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Detects possible SafetyKatz Behaviour
+    level: high
+    references:
+    - https://github.com/GhostPack/SafetyKatz
+    tags:
+    - attack.credential_access
+    - attack.t1003
+  name: Detection of SafetyKatz
+

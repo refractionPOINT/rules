@@ -1,0 +1,67 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \net.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \net1.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' group'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' localgroup'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' user'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' view'
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: ' share'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' accounts'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' use'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' stop '
+respond:
+- action: report
+  metatdata:
+    author: Michael Haag, Mark Woan (improvements)
+    description: Detects execution of Net.exe, whether suspicious or benign.
+    level: low
+    references:
+    - https://pentest.blog/windows-privilege-escalation-methods-for-pentesters/
+    tags:
+    - attack.s0039
+    - attack.lateral_movement
+    - attack.discovery
+  name: Net.exe Execution
+

@@ -1,0 +1,23 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: matches
+    path: event/COMMAND_LINE
+    value: .* msiexec.*:\\/\\/.*
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious msiexec process starts with web addreses as parameter
+    level: medium
+    references:
+    - https://blog.trendmicro.com/trendlabs-security-intelligence/attack-using-windows-installer-msiexec-exe-leads-lokibot/
+    tags:
+    - attack.defense_evasion
+  name: MsiExec Web Install
+

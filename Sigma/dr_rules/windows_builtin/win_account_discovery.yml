@@ -1,0 +1,75 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '4661'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/ObjectType
+      value: SAM_USER
+    - case sensitive: false
+      op: is
+      path: Event/EventData/ObjectType
+      value: SAM_GROUP
+  - op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: '-512'
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: '-502'
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: '-500'
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: '-505'
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: '-519'
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: '-520'
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: '-544'
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: '-551'
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: '-555'
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/ObjectName
+      value: admin
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: Detect priv users or groups recon based on 4661 eventid and known
+      privileged users or groups SIDs
+    level: high
+    references:
+    - https://blog.menasec.net/2019/02/threat-hunting-5-detecting-enumeration.html
+    tags:
+    - attack.discovery
+    - attack.t1087
+  name: AD Privileged Users or Groups Reconnaissance
+

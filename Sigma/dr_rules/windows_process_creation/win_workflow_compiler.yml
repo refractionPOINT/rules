@@ -1,0 +1,26 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: ends with
+    path: event/FILE_PATH
+    value: \Microsoft.Workflow.Compiler.exe
+respond:
+- action: report
+  metatdata:
+    author: Nik Seetharaman
+    description: Detects invocation of Microsoft Workflow Compiler, which may permit
+      the execution of arbitrary unsigned code.
+    level: high
+    references:
+    - https://posts.specterops.io/arbitrary-unsigned-code-execution-vector-in-microsoft-workflow-compiler-exe-3d9294bc5efb
+    tags:
+    - attack.defense_evasion
+    - attack.execution
+    - attack.t1127
+  name: Microsoft Workflow Compiler
+

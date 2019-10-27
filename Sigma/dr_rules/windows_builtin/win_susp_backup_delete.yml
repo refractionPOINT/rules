@@ -1,0 +1,27 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '524'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/Source
+    value: Backup
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth (rule), Tom U. @c_APT_ure (collection)
+    description: Detects backup catalog deletions
+    level: medium
+    references:
+    - https://technet.microsoft.com/en-us/library/cc742154(v=ws.11).aspx
+    - https://www.hybrid-analysis.com/sample/ed01ebfbc9eb5bbea545af4d01bf5f1071661840480439c6e5babe8e080e41aa?environmentId=100
+    tags:
+    - attack.defense_evasion
+    - attack.t1107
+  name: Backup Catalog Deleted
+

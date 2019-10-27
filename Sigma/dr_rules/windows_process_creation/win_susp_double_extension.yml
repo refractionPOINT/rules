@@ -1,0 +1,69 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: .doc.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: .docx.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: .xls.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: .xlsx.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: .ppt.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: .pptx.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: .rtf.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: .pdf.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: .txt.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: '      .exe'
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: ______.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth (rule), @blu3_team (idea)
+    description: Detects suspicious use of an .exe extension after a non-executable
+      file extension like .pdf.exe, a set of spaces or underlines to cloak the executable
+      file in spear phishing campaigns
+    level: critical
+    references:
+    - https://blu3-team.blogspot.com/2019/06/misleading-extensions-xlsexe-docexe.html
+    - https://twitter.com/blackorbird/status/1140519090961825792
+    tags:
+    - attack.initial_access
+    - attack.t1193
+  name: Suspicious Double Extension
+

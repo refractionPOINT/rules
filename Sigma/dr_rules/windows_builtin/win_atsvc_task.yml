@@ -1,0 +1,38 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '5145'
+  - case sensitive: false
+    op: matches
+    path: Event/EventData/ShareName
+    value: \\\.*\\IPC\$
+  - case sensitive: false
+    op: is
+    path: Event/EventData/RelativeTargetName
+    value: atsvc
+  - case sensitive: false
+    op: contains
+    path: Event/EventData/Accesses
+    value: WriteData
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: Detects remote task creation via at.exe or API interacting with ATSVC
+      namedpipe
+    level: medium
+    references:
+    - https://blog.menasec.net/2019/03/threat-hunting-25-scheduled-tasks-for.html
+    tags:
+    - attack.lateral_movement
+    - attack.persistence
+    - attack.t1053
+    - car.2013-05-004
+    - car.2015-04-001
+  name: Remote Task Creation via ATSVC named pipe
+

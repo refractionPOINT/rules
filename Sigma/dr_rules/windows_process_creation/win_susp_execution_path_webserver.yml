@@ -1,0 +1,56 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/FILE_PATH
+        value: \wwwroot\\
+      - case sensitive: false
+        op: contains
+        path: event/FILE_PATH
+        value: \wmpub\\
+      - case sensitive: false
+        op: contains
+        path: event/FILE_PATH
+        value: \htdocs\\
+    - not: true
+      op: and
+      rules:
+      - op: or
+        rules:
+        - case sensitive: false
+          op: contains
+          path: event/FILE_PATH
+          value: bin\\
+        - case sensitive: false
+          op: contains
+          path: event/FILE_PATH
+          value: \Tools\\
+        - case sensitive: false
+          op: contains
+          path: event/FILE_PATH
+          value: \SMSComponent\\
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \services.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a suspicious program execution in a web service root folder
+      (filter out false positives)
+    level: medium
+    tags:
+    - attack.persistence
+    - attack.t1100
+  name: Execution in Webserver Root Folder
+

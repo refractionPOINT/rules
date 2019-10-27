@@ -1,0 +1,35 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \fsutil.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' deletejournal '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' createjournal '
+respond:
+- action: report
+  metatdata:
+    author: Ecco
+    description: Detects suspicious parameters of fsutil (deleting USN journal, configuring
+      it with small size..). Might be used by ransomwares during the attack (seen
+      by NotPetya and others)
+    level: high
+    references:
+    - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-usn
+  name: Fsutil suspicious invocation
+

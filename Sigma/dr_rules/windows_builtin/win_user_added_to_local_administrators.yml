@@ -1,0 +1,39 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4732'
+    - op: or
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/EventData/GroupName
+        value: Administrators
+      - case sensitive: false
+        op: is
+        path: Event/EventData/GroupSid
+        value: S-1-5-32-544
+  - case sensitive: false
+    not: true
+    op: ends with
+    path: Event/EventData/SubjectUserName
+    value: $
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: This rule triggers on user accounts that are added to the local Administrators
+      group, which could be legitimate activity or a sign of privilege escalation
+      activity
+    level: medium
+    tags:
+    - attack.privilege_escalation
+    - attack.t1078
+  name: User Added to Local Administrators
+

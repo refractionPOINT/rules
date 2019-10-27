@@ -1,0 +1,68 @@
+detect:
+  log type: wel
+  op: or
+  rules:
+  - op: and
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '1'
+      - case sensitive: false
+        op: ends with
+        path: Event/EventData/ParentImage
+        value: \userinit.exe
+    - not: true
+      op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: Event/EventData/Image
+        value: \explorer.exe
+      - case sensitive: false
+        op: ends with
+        path: Event/EventData/CommandLine
+        value: \netlogon.bat
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '1'
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '11'
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '12'
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '13'
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '14'
+    - UserInitMprLogonScript
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Tom Ueltschi (@c_APT_ure)
+    description: Detects creation or execution of UserInitMprLogonScript persistence
+      method
+    level: high
+    references:
+    - https://attack.mitre.org/techniques/T1037/
+    tags:
+    - attack.t1037
+    - attack.persistence
+    - attack.lateral_movement
+  name: Logon Scripts (UserInitMprLogonScript)
+

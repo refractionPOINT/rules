@@ -1,0 +1,26 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '11'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/Image
+    value: C:\WINDOWS\system32\wbem\scrcons.exe
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Thomas Patzke
+    description: Detects file writes of WMI script event consumer
+    level: high
+    references:
+    - https://www.eideon.com/2018-03-02-THL03-WMIBackdoors/
+    tags:
+    - attack.t1084
+    - attack.persistence
+  name: WMI Persistence - Script Event Consumer File Write
+

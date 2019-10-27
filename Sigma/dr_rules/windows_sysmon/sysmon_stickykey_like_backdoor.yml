@@ -1,0 +1,114 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/TargetObject
+      value: \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe\Debugger
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/TargetObject
+      value: \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\utilman.exe\Debugger
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/TargetObject
+      value: \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\osk.exe\Debugger
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/TargetObject
+      value: \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\Magnify.exe\Debugger
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/TargetObject
+      value: \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\Narrator.exe\Debugger
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/TargetObject
+      value: \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\DisplaySwitch.exe\Debugger
+  - case sensitive: false
+    op: is
+    path: Event/EventData/EventType
+    value: SetValue
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, @twjackomo
+    description: Detects the usage and installation of a backdoor that uses an option
+      to register a malicious debugger for built-in tools that are accessible in the
+      login screen
+    level: critical
+    references:
+    - https://blogs.technet.microsoft.com/jonathantrull/2016/10/03/detecting-sticky-key-backdoors/
+    tags:
+    - attack.privilege_escalation
+    - attack.persistence
+    - attack.t1015
+    - car.2014-11-003
+    - car.2014-11-008
+  name: Sticky Key Like Backdoor Usage
+
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/PARENT/FILE_PATH
+      value: \winlogon.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 'cmd.exe sethc.exe '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 'cmd.exe utilman.exe '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 'cmd.exe osk.exe '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 'cmd.exe Magnify.exe '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 'cmd.exe Narrator.exe '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 'cmd.exe DisplaySwitch.exe '
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, @twjackomo
+    description: Detects the usage and installation of a backdoor that uses an option
+      to register a malicious debugger for built-in tools that are accessible in the
+      login screen
+    level: critical
+    references:
+    - https://blogs.technet.microsoft.com/jonathantrull/2016/10/03/detecting-sticky-key-backdoors/
+    tags:
+    - attack.privilege_escalation
+    - attack.persistence
+    - attack.t1015
+    - car.2014-11-003
+    - car.2014-11-008
+  name: Sticky Key Like Backdoor Usage
+

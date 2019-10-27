@@ -1,0 +1,23 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: is
+    path: event/COMMAND_LINE
+    value: C:\Windows\PSEXESVC.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a PsExec service start
+    level: low
+    tags:
+    - attack.execution
+    - attack.t1035
+    - attack.s0029
+  name: PsExec Service Start
+

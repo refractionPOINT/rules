@@ -1,0 +1,54 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: matches
+    path: event/COMMAND_LINE
+    value: .*schtasks.* /delete .*Defrag\\ScheduledDefrag.*
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the deactivation of the Scheduled defragmentation task as
+      seen by Slingshot APT group
+    level: medium
+    references:
+    - https://securelist.com/apt-slingshot/84312/
+    tags:
+    - attack.persistence
+    - attack.t1053
+    - attack.s0111
+  name: Defrag Deactivation
+
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '4701'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/TaskName
+    value: \Microsoft\Windows\Defrag\ScheduledDefrag
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the deactivation of the Scheduled defragmentation task as
+      seen by Slingshot APT group
+    level: medium
+    references:
+    - https://securelist.com/apt-slingshot/84312/
+    tags:
+    - attack.persistence
+    - attack.t1053
+    - attack.s0111
+  name: Defrag Deactivation
+

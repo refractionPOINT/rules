@@ -1,0 +1,53 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '8'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/SourceImage
+      value: \System32\cscript.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/SourceImage
+      value: \System32\wscript.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/SourceImage
+      value: \System32\mshta.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/SourceImage
+      value: \winword.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/SourceImage
+      value: \excel.exe
+  - case sensitive: false
+    op: contains
+    path: Event/EventData/TargetImage
+    value: \SysWOW64\\
+  - not: true
+    op: exists
+    path: Event/EventData/StartModule
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: '@SBousseaden (detection), Thomas Patzke (rule)'
+    description: Detects remote thread creation from CACTUSTORCH as described in references.
+    level: high
+    references:
+    - https://twitter.com/SBousseaden/status/1090588499517079552
+    - https://github.com/mdsecactivebreach/CACTUSTORCH
+    tags:
+    - attack.execution
+    - attack.t1055
+    - attack.t1064
+  name: CACTUSTORCH Remote Thread Creation
+

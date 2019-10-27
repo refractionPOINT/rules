@@ -1,0 +1,24 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '6'
+  - case sensitive: false
+    op: contains
+    path: Event/EventData/ImageLoaded
+    value: \Temp\\
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a driver load from a temporary directory
+    level: medium
+    tags:
+    - attack.persistence
+    - attack.t1050
+  name: Suspicious Driver Load from Temp
+

@@ -1,0 +1,52 @@
+detect:
+  log type: wel
+  op: or
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4776'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Workstation
+      value: RULER
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '4624'
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '4625'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/WorkstationName
+      value: RULER
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: This events that are generated when using the hacktool Ruler by Sensepost
+    level: high
+    references:
+    - https://github.com/sensepost/ruler
+    - https://github.com/sensepost/ruler/issues/47
+    - https://github.com/staaldraad/go-ntlm/blob/master/ntlm/ntlmv1.go#L427
+    - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4776
+    - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4624
+    tags:
+    - attack.discovery
+    - attack.execution
+    - attack.t1087
+    - attack.t1075
+    - attack.t1114
+    - attack.t1059
+  name: Hacktool Ruler
+

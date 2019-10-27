@@ -1,0 +1,102 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -e JAB'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -e  JAB'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -e   JAB'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -e    JAB'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -e     JAB'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -e      JAB'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -enc JAB'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -enco JAB'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -encodedcommand JAB'
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: ' BA^J e-'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -e SUVYI'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -e aWV4I'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -e SQBFAFgA'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -e aQBlAHgA'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -enc SUVYI'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -enc aWV4I'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -enc SQBFAFgA'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -enc aQBlAHgA'
+    - case sensitive: false
+      not: true
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' -ExecutionPolicy remotesigned '
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Markus Neis
+    description: Detects suspicious powershell process starts with base64 encoded
+      commands
+    level: high
+    references:
+    - https://app.any.run/tasks/6217d77d-3189-4db2-a957-8ab239f3e01e
+    tags:
+    - attack.execution
+    - attack.t1086
+  name: Suspicious Encoded PowerShell Command Line
+

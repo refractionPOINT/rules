@@ -1,0 +1,42 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \bcdedit.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: delete
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: deletevalue
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: import
+respond:
+- action: report
+  metatdata:
+    author: '@neu5ron'
+    description: Detects, possibly, malicious unauthorized usage of bcdedit.exe
+    level: medium
+    references:
+    - https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/bcdedit--set
+    tags:
+    - attack.defense_evasion
+    - attack.t1070
+    - attack.persistence
+    - attack.t1067
+  name: Possible Ransomware or unauthorized MBR modifications
+

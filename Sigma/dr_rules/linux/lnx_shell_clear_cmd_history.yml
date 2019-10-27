@@ -1,0 +1,51 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: matches
+      path: event/COMMAND_LINE
+      value: rm .*bash_history
+    - op: matches
+      path: event/COMMAND_LINE
+      value: echo \"\" > .*bash_history
+    - op: matches
+      path: event/COMMAND_LINE
+      value: cat /dev/null > .*bash_history
+    - op: matches
+      path: event/COMMAND_LINE
+      value: ln -sf /dev/null .*bash_history
+    - op: matches
+      path: event/COMMAND_LINE
+      value: truncate -s0 .*bash_history
+    - op: is
+      path: event/COMMAND_LINE
+      value: export HISTFILESIZE=0
+    - op: is
+      path: event/COMMAND_LINE
+      value: history -c
+    - op: is
+      path: event/COMMAND_LINE
+      value: history -w
+    - op: matches
+      path: event/COMMAND_LINE
+      value: shred .*bash_history
+respond:
+- action: report
+  metatdata:
+    author: Patrick Bareiss
+    description: Clear command history in linux which is used for defense evasion.
+    level: high
+    references:
+    - https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1146/T1146.yaml
+    - https://attack.mitre.org/techniques/T1146/
+    - https://www.hackers-arise.com/single-post/2016/06/20/Covering-your-BASH-Shell-Tracks-AntiForensics
+    tags:
+    - attack.defense_evasion
+    - attack.t1146
+  name: Clear Command History
+

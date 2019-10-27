@@ -1,0 +1,62 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4624'
+    - op: or
+      rules:
+      - op: and
+        rules:
+        - case sensitive: false
+          op: is
+          path: Event/EventData/SubjectUserSid
+          value: S-1-0-0
+        - case sensitive: false
+          op: is
+          path: Event/EventData/LogonType
+          value: '3'
+        - case sensitive: false
+          op: is
+          path: Event/EventData/LogonProcessName
+          value: NtLmSsp
+        - case sensitive: false
+          op: is
+          path: Event/EventData/KeyLength
+          value: '0'
+      - op: and
+        rules:
+        - case sensitive: false
+          op: is
+          path: Event/EventData/LogonType
+          value: '9'
+        - case sensitive: false
+          op: is
+          path: Event/EventData/LogonProcessName
+          value: seclogo
+  - case sensitive: false
+    not: true
+    op: is
+    path: Event/EventData/AccountName
+    value: ANONYMOUS LOGON
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Dave Kennedy, Jeff Warren (method) / David Vassallo (rule)
+    description: Detects the attack technique pass the hash which is used to move
+      laterally inside the network
+    level: medium
+    references:
+    - https://github.com/iadgov/Event-Forwarding-Guidance/tree/master/Events
+    - https://blog.binarydefense.com/reliably-detecting-pass-the-hash-through-event-log-analysis
+    - https://blog.stealthbits.com/how-to-detect-pass-the-hash-attacks/
+    tags:
+    - attack.lateral_movement
+    - attack.t1075
+  name: Pass the Hash Activity
+

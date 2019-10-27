@@ -1,0 +1,41 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Image
+      value: \Downloads\\
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Image
+      value: \Temporary Internet Files\Content.Outlook\\
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Image
+      value: \Local Settings\Temporary Internet Files\\
+  - case sensitive: false
+    op: contains
+    path: Event/EventData/TargetObject
+    value: \SOFTWARE\Microsoft\Windows\CurrentVersion\Run\\
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the suspicious RUN keys created by software located in Download
+      or temporary Outlook/Internet Explorer directories
+    level: high
+    references:
+    - https://app.any.run/tasks/c5bef5b7-f484-4c43-9cf3-d5c5c7839def/
+    tags:
+    - attack.persistence
+    - attack.t1060
+  name: Suspicious RUN Key from Download
+

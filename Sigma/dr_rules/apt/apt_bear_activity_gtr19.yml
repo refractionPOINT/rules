@@ -1,0 +1,44 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \xcopy.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' /S /E /C /Q /H \\'
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \adexplorer.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -snapshot "" c:\users\\'
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects Russian group activity as described in Global Threat Report
+      2019 by Crowdstrike
+    level: critical
+    references:
+    - https://www.crowdstrike.com/resources/reports/2019-crowdstrike-global-threat-report/
+    tags:
+    - attack.credential_access
+    - attack.t1081
+    - attack.t1003
+  name: Judgement Panda Exfil Activity
+

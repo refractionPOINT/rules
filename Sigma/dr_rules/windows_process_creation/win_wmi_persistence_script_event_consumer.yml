@@ -1,0 +1,31 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: event/FILE_PATH
+      value: C:\WINDOWS\system32\wbem\scrcons.exe
+    - case sensitive: false
+      op: is
+      path: event/PARENT/FILE_PATH
+      value: C:\Windows\System32\svchost.exe
+respond:
+- action: report
+  metatdata:
+    author: Thomas Patzke
+    description: Detects WMI script event consumers
+    level: high
+    references:
+    - https://www.eideon.com/2018-03-02-THL03-WMIBackdoors/
+    tags:
+    - attack.execution
+    - attack.persistence
+    - attack.t1047
+  name: WMI Persistence - Script Event Consumer
+

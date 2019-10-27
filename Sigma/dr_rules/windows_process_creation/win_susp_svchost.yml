@@ -1,0 +1,48 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \svchost.exe
+      - not: true
+        op: or
+        rules:
+        - case sensitive: false
+          op: ends with
+          path: event/PARENT/FILE_PATH
+          value: \services.exe
+        - case sensitive: false
+          op: ends with
+          path: event/PARENT/FILE_PATH
+          value: \MsMpEng.exe
+        - case sensitive: false
+          op: ends with
+          path: event/PARENT/FILE_PATH
+          value: \Mrt.exe
+        - case sensitive: false
+          op: ends with
+          path: event/PARENT/FILE_PATH
+          value: \rpcnet.exe
+    - not: true
+      op: exists
+      path: event/PARENT/FILE_PATH
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a suspicious svchost process start
+    level: high
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+  name: Suspicious Svchost Process
+

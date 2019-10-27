@@ -1,0 +1,76 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/TargetObject
+      value: .*SYSTEM\\\.*ControlSet.*\\Control\\Lsa\\lmcompatibilitylevel
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/TargetObject
+      value: .*SYSTEM\\\.*ControlSet.*\\Control\\Lsa\\NtlmMinClientSec
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/TargetObject
+      value: .*SYSTEM\\\.*ControlSet.*\\Control\\Lsa\\RestrictSendingNTLMTraffic
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects post exploitation using NetNTLM downgrade attacks
+    level: critical
+    references:
+    - https://www.optiv.com/blog/post-exploitation-using-netntlm-downgrade-attacks
+    tags:
+    - attack.credential_access
+    - attack.t1212
+  name: NetNTLM Downgrade Attack
+
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '4657'
+  - case sensitive: false
+    op: matches
+    path: Event/EventData/ObjectName
+    value: \\REGISTRY\\MACHINE\\SYSTEM\\\.*ControlSet.*\\Control\\Lsa
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/ObjectValueName
+      value: LmCompatibilityLevel
+    - case sensitive: false
+      op: is
+      path: Event/EventData/ObjectValueName
+      value: NtlmMinClientSec
+    - case sensitive: false
+      op: is
+      path: Event/EventData/ObjectValueName
+      value: RestrictSendingNTLMTraffic
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects post exploitation using NetNTLM downgrade attacks
+    level: critical
+    references:
+    - https://www.optiv.com/blog/post-exploitation-using-netntlm-downgrade-attacks
+    tags:
+    - attack.credential_access
+    - attack.t1212
+  name: NetNTLM Downgrade Attack
+

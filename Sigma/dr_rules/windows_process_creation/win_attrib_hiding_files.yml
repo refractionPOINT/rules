@@ -1,0 +1,52 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \attrib.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' +h '
+    - not: true
+      op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: '\desktop.ini '
+      - op: and
+        rules:
+        - case sensitive: false
+          op: ends with
+          path: event/PARENT/FILE_PATH
+          value: \cmd.exe
+        - case sensitive: false
+          op: matches
+          path: event/COMMAND_LINE
+          value: +R +H +S +A \\\.*\.cui
+        - case sensitive: false
+          op: matches
+          path: event/PARENT/COMMAND_LINE
+          value: C:\\WINDOWS\\system32\\\.*\.bat
+respond:
+- action: report
+  metatdata:
+    author: Sami Ruohonen
+    description: Detects usage of attrib.exe to hide files from users.
+    level: low
+    tags:
+    - attack.defense_evasion
+    - attack.persistence
+    - attack.t1158
+  name: Hiding files with attrib.exe
+

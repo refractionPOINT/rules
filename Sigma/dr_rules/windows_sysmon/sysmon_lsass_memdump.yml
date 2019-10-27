@@ -1,0 +1,42 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '10'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/TargetImage
+    value: C:\windows\system32\lsass.exe
+  - case sensitive: false
+    op: is
+    path: Event/EventData/GrantedAccess
+    value: '0x1fffff'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/CallTrace
+      value: dbghelp.dll
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/CallTrace
+      value: dbgcore.dll
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: Detects process LSASS memory dump using procdump or taskmgr based
+      on the CallTrace pointing to dbghelp.dll or dbgcore.dll for win10
+    level: high
+    references:
+    - https://blog.menasec.net/2019/02/threat-hunting-21-procdump-or-taskmgr.html
+    tags:
+    - attack.t1003
+    - attack.s0002
+    - attack.credential_access
+  name: LSASS Memory Dump
+

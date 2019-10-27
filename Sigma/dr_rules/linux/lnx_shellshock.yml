@@ -1,0 +1,17 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - /\(\)\s*\t*\{.*;\s*\}\s*;/
+respond:
+- action: report
+  metatdata:
+    description: Detects shellshock expressions in log files
+    level: high
+    references:
+    - http://rubular.com/r/zxBfjWfFYs
+  name: Shellshock Expression
+

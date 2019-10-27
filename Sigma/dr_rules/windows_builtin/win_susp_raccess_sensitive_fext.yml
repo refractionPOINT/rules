@@ -1,0 +1,73 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '5145'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .pst
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .ost
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .msg
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .nst
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .oab
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .edb
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .nsf
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .bak
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .dmp
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .kirbi
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: \ntds.dit
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: \groups.xml
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/RelativeTargetName
+      value: .rdp
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: Detects known sensitive file extensions
+    level: high
+    tags:
+    - attack.collection
+  name: Suspicious access to sensitive file extensions
+

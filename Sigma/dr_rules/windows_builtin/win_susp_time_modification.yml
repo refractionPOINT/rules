@@ -1,0 +1,47 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '4616'
+  - not: true
+    op: or
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/EventData/ProcessName
+        value: C:\Program Files\VMware\VMware Tools\vmtoolsd.exe
+      - case sensitive: false
+        op: is
+        path: Event/EventData/ProcessName
+        value: C:\Windows\System32\VBoxService.exe
+    - op: and
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/EventData/ProcessName
+        value: C:\Windows\System32\svchost.exe
+      - case sensitive: false
+        op: is
+        path: Event/EventData/SubjectUserSid
+        value: S-1-5-19
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: '@neu5ron'
+    description: Detect scenarios where a potentially unauthorized application or
+      user is modifying the system time.
+    level: high
+    references:
+    - Private Cuckoo Sandbox (from many years ago, no longer have hash, NDA as well)
+    - Live environment caused by malware
+    tags:
+    - attack.defense_evasion
+    - attack.t1099
+  name: Unauthorized System Time Modification
+

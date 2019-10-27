@@ -1,0 +1,31 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\regsvr32.*\\AppData\\Local\\\.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\AppData\\Local\\\.*,DllEntry.*
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a suspicious DLL loading from AppData Local path as described
+      in BlueMashroom report
+    level: critical
+    references:
+    - https://www.virusbulletin.com/conference/vb2019/abstracts/apt-cases-exploiting-vulnerabilities-region-specific-software
+    tags:
+    - attack.defense_evasion
+    - attack.t1117
+  name: BlueMashroom DLL Load
+

@@ -1,0 +1,39 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Description
+      value: Execute processes remotely
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Product
+      value: Sysinternals PsExec
+  - not: true
+    op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \PsExec.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \PsExec64.exe
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the execution of a renamed PsExec often used by attackers
+      or malware
+    level: high
+    references:
+    - https://www.trendmicro.com/vinfo/hk-en/security/news/cybercrime-and-digital-threats/megacortex-ransomware-spotted-attacking-enterprise-networks
+    tags:
+    - car.2013-05-009
+  name: Renamed PsExec
+

@@ -1,0 +1,39 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Description
+      value: Windows PowerShell
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Company
+      value: Microsoft Corporation
+  - not: true
+    op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \powershell.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \powershell_ise.exe
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the execution of a renamed PowerShell often used by attackers
+      or malware
+    level: critical
+    references:
+    - https://twitter.com/christophetd/status/1164506034720952320
+    tags:
+    - car.2013-05-009
+  name: Renamed PowerShell
+

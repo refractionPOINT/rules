@@ -1,0 +1,29 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '15'
+  - case sensitive: false
+    not: true
+    op: is
+    path: Event/EventData/Imphash
+    value: '00000000000000000000000000000000'
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, @0xrawsec
+    description: Detects the creation of an ADS data stream that contains an executable
+      (non-empty imphash)
+    level: critical
+    references:
+    - https://twitter.com/0xrawsec/status/1002478725605273600?s=21
+    tags:
+    - attack.defense_evasion
+    - attack.t1027
+    - attack.s0139
+  name: Executable in ADS
+

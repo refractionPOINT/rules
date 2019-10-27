@@ -1,0 +1,32 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '8'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/SourceImage
+    value: \powershell.exe
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/TargetImage
+    value: \rundll32.exe
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects PowerShell remote thread creation in Rundll32.exe
+    level: high
+    references:
+    - https://www.fireeye.com/blog/threat-research/2018/06/bring-your-own-land-novel-red-teaming-technique.html
+    tags:
+    - attack.defense_evasion
+    - attack.execution
+    - attack.t1085
+    - attack.t1086
+  name: PowerShell Rundll32 Remote Thread Creation
+

@@ -1,0 +1,31 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '5140'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/ShareName
+      value: Admin$
+  - case sensitive: false
+    not: true
+    op: ends with
+    path: Event/EventData/SubjectUserName
+    value: $
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects access to $ADMIN share
+    level: low
+    tags:
+    - attack.lateral_movement
+    - attack.t1077
+  name: Access to ADMIN$ Share
+

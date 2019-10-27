@@ -1,0 +1,79 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \SOFTWARE\Microsoft\Windows\CurrentVersion\Run\\
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\\
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Details
+      value: C:\Windows\Temp\\
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Details
+      value: \AppData\\
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/Details
+      value: '%AppData%\\'
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Details
+      value: C:\$Recycle.bin\\
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Details
+      value: C:\Temp\\
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Details
+      value: C:\Users\Public\\
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/Details
+      value: '%Public%\\'
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Details
+      value: C:\Users\Default\\
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Details
+      value: C:\Users\Desktop\\
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/Details
+      value: wscript
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/Details
+      value: cscript
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Markus Neis
+    description: Detects suspicious new RUN key element pointing to an executable
+      in a suspicious folder
+    level: high
+    references:
+    - https://www.fireeye.com/blog/threat-research/2018/08/fin7-pursuing-an-enigmatic-and-evasive-global-criminal-operation.html
+    tags:
+    - attack.persistence
+    - attack.t1060
+  name: New RUN Key Pointing to Suspicious Folder
+

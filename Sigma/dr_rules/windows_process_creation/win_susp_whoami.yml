@@ -1,0 +1,27 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: ends with
+    path: event/FILE_PATH
+    value: \whoami.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the execution of whoami, which is often used by attackers
+      after exloitation / privilege escalation but rarely used by administrators
+    level: high
+    references:
+    - https://brica.de/alerts/alert/public/1247926/agent-tesla-keylogger-delivered-inside-a-power-iso-daa-archive/
+    - https://app.any.run/tasks/7eaba74e-c1ea-400f-9c17-5e30eee89906/
+    tags:
+    - attack.discovery
+    - attack.t1033
+    - car.2016-03-001
+  name: Whoami Execution
+

@@ -1,0 +1,33 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: System.Management.Automation.AmsiUtils
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: amsiInitFailed
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Detects Request to amsiInitFailed that can be used to disable AMSI
+      Scanning
+    level: high
+    references:
+    - https://twitter.com/mattifestation/status/735261176745988096
+    - https://www.hybrid-analysis.com/sample/0ced17419e01663a0cd836c9c2eb925e3031ffb5b18ccf35f4dea5d586d0203e?environmentId=120
+    tags:
+    - attack.execution
+    - attack.defense_evasion
+    - attack.t1086
+  name: Powershell AMSI Bypass via .NET Reflection
+

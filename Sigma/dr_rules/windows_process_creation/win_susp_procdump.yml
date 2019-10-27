@@ -1,0 +1,42 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' -ma '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' lsass'
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' -ma ls'
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious uses of the SysInternals Procdump utility by using
+      a special command line parameter in combination with the lsass.exe process.
+      This way we're also able to catch cases in which the attacker has renamed the
+      procdump executable.
+    level: medium
+    references:
+    - Internal Research
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+    - attack.credential_access
+    - attack.t1003
+    - car.2013-05-009
+  name: Suspicious Use of Procdump
+

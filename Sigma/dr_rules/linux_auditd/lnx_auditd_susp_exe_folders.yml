@@ -1,0 +1,84 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /tmp/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /var/www/
+    - case sensitive: false
+      op: matches
+      path: event/FILE_PATH
+      value: /home/.*/public_html/.*
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /usr/local/apache2/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /usr/local/httpd/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /var/apache/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /srv/www/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /home/httpd/html/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /srv/http/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /usr/share/nginx/html/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /var/lib/pgsql/data/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /usr/local/mysql/data/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /var/lib/mysql/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /var/vsftpd/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /etc/bind/
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: /var/named/
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects program executions in suspicious non-program folders related
+      to malware or hacking activity
+    level: medium
+    references:
+    - Internal Research
+  name: Program Executions in Suspicious Folders
+

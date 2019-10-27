@@ -1,0 +1,69 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '7045'
+  - op: or
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/EventData/ServiceName
+        value: WCESERVICE
+      - case sensitive: false
+        op: is
+        path: Event/EventData/ServiceName
+        value: WCE SERVICE
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/ServiceFileName
+      value: \PAExec
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/ServiceFileName
+      value: winexesvc.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ServiceFileName
+      value: \DumpSvc.exe
+    - case sensitive: false
+      op: is
+      path: Event/EventData/ServiceName
+      value: mssecsvc2.0
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/ServiceFileName
+      value: ' net user '
+    - op: or
+      rules:
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/ServiceName
+        value: pwdump
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/ServiceName
+        value: gsecdump
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/ServiceName
+        value: cachedump
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects known malicious service installs that only appear in cases
+      of lateral movement, credential dumping and other suspicious activity
+    level: critical
+    tags:
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1050
+    - car.2013-09-005
+  name: Malicious Service Installations
+

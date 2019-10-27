@@ -1,0 +1,58 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/TargetObject
+    value: \Microsoft\Windows\CurrentVersion\Policies\Explorer\Run
+  - op: or
+    rules:
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/Details
+      value: C:\Windows\Temp\\
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/Details
+      value: C:\ProgramData\\
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Details
+      value: \AppData\\
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/Details
+      value: C:\$Recycle.bin\\
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/Details
+      value: C:\Temp\\
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/Details
+      value: C:\Users\Public\\
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/Details
+      value: C:\Users\Default\\
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a possible persistence mechanism using RUN key for Windows
+      Explorer and poiting to a suspicious folder
+    level: high
+    references:
+    - https://researchcenter.paloaltonetworks.com/2018/07/unit42-upatre-continues-evolve-new-anti-analysis-techniques/
+    tags:
+    - attack.persistence
+    - attack.t1060
+    - capec.270
+  name: Registry Persistence via Explorer Run Key
+

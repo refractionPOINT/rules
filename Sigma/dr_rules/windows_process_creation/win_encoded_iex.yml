@@ -1,0 +1,70 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: SUVYIChb
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: lFWCAoW
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: JRVggKF
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: aWV4IChb
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: lleCAoW
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: pZXggKF
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: aWV4IChOZX
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: lleCAoTmV3
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: pZXggKE5ld
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: SUVYIChOZX
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: lFWCAoTmV3
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: JRVggKE5ld
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a base64 encoded IEX command string in a process command
+      line
+    level: critical
+    tags:
+    - attack.t1086
+    - attack.t1140
+    - attack.execution
+  name: Encoded IEX
+

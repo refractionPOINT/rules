@@ -1,0 +1,25 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: is
+    path: event/COMMAND_LINE
+    value: rasdial
+respond:
+- action: report
+  metatdata:
+    author: juju4
+    description: Detects suspicious process related to rasdial.exe
+    level: medium
+    references:
+    - https://twitter.com/subTee/status/891298217907830785
+    tags:
+    - attack.defense_evasion
+    - attack.execution
+    - attack.t1064
+  name: Suspicious RASdial Activity
+

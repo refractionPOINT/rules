@@ -1,0 +1,26 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '11'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/Image
+    value: \mstsc.exe
+  - case sensitive: false
+    op: contains
+    path: Event/EventData/TargetFileName
+    value: \Microsoft\Windows\Start Menu\Programs\Startup\\
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: Detects the usage of tsclient share to place a backdoor on the RDP
+      source machine's startup folder
+    level: high
+  name: Hijack legit RDP session to move laterally
+

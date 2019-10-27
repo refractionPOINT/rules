@@ -1,0 +1,62 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/TargetObject
+      value: \REGISTRY\MACHINE\SYSTEM\CurrentControlSet\services\null\Instance
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/TargetObject
+      value: \REGISTRY\MACHINE\SYSTEM\ControlSet001\services\null\Instance
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/TargetObject
+      value: \REGISTRY\MACHINE\SYSTEM\ControlSet002\services\null\Instance
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects Pandemic Windows Implant
+    level: critical
+    references:
+    - https://wikileaks.org/vault7/#Pandemic
+    - https://twitter.com/MalwareJake/status/870349480356454401
+    tags:
+    - attack.lateral_movement
+    - attack.t1105
+  name: Pandemic Registry Key
+
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: starts with
+    path: event/COMMAND_LINE
+    value: 'loaddll -a '
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects Pandemic Windows Implant
+    level: critical
+    references:
+    - https://wikileaks.org/vault7/#Pandemic
+    - https://twitter.com/MalwareJake/status/870349480356454401
+    tags:
+    - attack.lateral_movement
+    - attack.t1105
+  name: Pandemic Registry Key
+

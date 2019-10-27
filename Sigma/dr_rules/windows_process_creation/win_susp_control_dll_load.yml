@@ -1,0 +1,40 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \System32\control.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: '\rundll32.exe '
+    - case sensitive: false
+      not: true
+      op: contains
+      path: event/COMMAND_LINE
+      value: Shell32.dll
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious Rundll32 execution from control.exe as used by
+      Equation Group and Exploit Kits
+    level: high
+    references:
+    - https://twitter.com/rikvduijn/status/853251879320662017
+    tags:
+    - attack.defense_evasion
+    - attack.t1073
+    - attack.t1085
+    - car.2013-10-002
+  name: Suspicious Control Panel DLL Load
+

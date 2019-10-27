@@ -1,0 +1,119 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: matches
+      path: event/COMMAND_LINE
+      value: wget .* - http.* | perl
+    - op: matches
+      path: event/COMMAND_LINE
+      value: wget .* - http.* | sh
+    - op: matches
+      path: event/COMMAND_LINE
+      value: wget .* - http.* | bash
+    - op: is
+      path: event/COMMAND_LINE
+      value: python -m SimpleHTTPServer
+    - op: is
+      path: event/COMMAND_LINE
+      value: -m http.server
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: import pty; pty.spawn
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: 'socat exec:'
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: socat -O /tmp/
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: socat tcp-connect
+    - op: contains
+      path: event/COMMAND_LINE
+      value: echo binary >>
+    - op: matches
+      path: event/COMMAND_LINE
+      value: .*wget .*; chmod +x.*
+    - op: matches
+      path: event/COMMAND_LINE
+      value: .*wget .*; chmod 777 .*
+    - op: contains
+      path: event/COMMAND_LINE
+      value: cd /tmp || cd /var/run || cd /mnt
+    - op: contains
+      path: event/COMMAND_LINE
+      value: stop;service iptables stop;
+    - op: contains
+      path: event/COMMAND_LINE
+      value: stop;SuSEfirewall2 stop;
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: chmod 777 2020
+    - op: ends with
+      path: event/COMMAND_LINE
+      value: '>>/etc/rc.local'
+    - op: contains
+      path: event/COMMAND_LINE
+      value: base64 -d /tmp/
+    - op: contains
+      path: event/COMMAND_LINE
+      value: ' | base64 -d '
+    - op: contains
+      path: event/COMMAND_LINE
+      value: '/chmod u+s '
+    - op: contains
+      path: event/COMMAND_LINE
+      value: chmod +s /tmp/
+    - op: contains
+      path: event/COMMAND_LINE
+      value: chmod u+s /tmp/
+    - op: contains
+      path: event/COMMAND_LINE
+      value: ' /tmp/haxhax'
+    - op: contains
+      path: event/COMMAND_LINE
+      value: ' /tmp/ns_sploit'
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: 'nc -l -p '
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: 'cp /bin/ksh '
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: 'cp /bin/sh '
+    - op: matches
+      path: event/COMMAND_LINE
+      value: .* /tmp/.*\.b64 .*
+    - op: contains
+      path: event/COMMAND_LINE
+      value: /tmp/ysocereal.jar
+    - op: contains
+      path: event/COMMAND_LINE
+      value: '/tmp/x '
+    - op: contains
+      path: event/COMMAND_LINE
+      value: ; chmod +x /tmp/
+    - op: contains
+      path: event/COMMAND_LINE
+      value: ;chmod +x /tmp/
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious shell commands used in various exploit codes (see
+      references)
+    level: high
+    references:
+    - http://www.threatgeek.com/2017/03/widespread-exploitation-attempts-using-cve-2017-5638.html
+    - https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/multi/http/struts_code_exec_exception_delegator.rb#L121
+    - http://pastebin.com/FtygZ1cg
+    - https://artkond.com/2017/03/23/pivoting-guide/
+  name: Suspicious Activity in Shell Commands
+

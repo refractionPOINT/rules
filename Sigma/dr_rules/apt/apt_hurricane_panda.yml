@@ -1,0 +1,31 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/COMMAND_LINE
+      value: ' localgroup administrators admin /add'
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: \Win64.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects Hurricane Panda Activity
+    level: high
+    references:
+    - https://www.crowdstrike.com/blog/crowdstrike-discovers-use-64-bit-zero-day-privilege-escalation-exploit-cve-2014-4113-hurricane-panda/
+    tags:
+    - attack.privilege_escalation
+    - attack.g0009
+    - attack.t1068
+  name: Hurricane Panda Activity
+

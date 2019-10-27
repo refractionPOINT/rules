@@ -1,0 +1,29 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: contains
+      path: event/COMMAND_LINE
+      value: ' dropping source port zero packet from '
+    - op: contains
+      path: event/COMMAND_LINE
+      value: ' denied AXFR from '
+    - op: contains
+      path: event/COMMAND_LINE
+      value: ' exiting (due to fatal error)'
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious DNS error messages that indicate a fatal or suspicious
+      error that could be caused by exploiting attempts
+    level: high
+    references:
+    - https://github.com/ossec/ossec-hids/blob/master/etc/rules/named_rules.xml
+  name: Suspicious Named Error
+

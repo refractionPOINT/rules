@@ -1,0 +1,18 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - 'error: buffer_get_ret: trying to get more bytes 1907 than in buffer 308 [preauth]'
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects exploitation attempt using public exploit code for CVE-2018-15473
+    level: medium
+    references:
+    - https://github.com/Rhynorater/CVE-2018-15473-Exploit
+  name: SSHD Error Message CVE-2018-15473
+

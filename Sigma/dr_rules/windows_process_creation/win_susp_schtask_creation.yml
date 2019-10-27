@@ -1,0 +1,39 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \schtasks.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' /create '
+    - case sensitive: false
+      not: true
+      op: is
+      path: event/USER_NAME
+      value: NT AUTHORITY\SYSTEM
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the creation of scheduled tasks in user session
+    level: low
+    tags:
+    - attack.execution
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1053
+    - attack.s0111
+    - car.2013-08-001
+  name: Scheduled Task Creation
+

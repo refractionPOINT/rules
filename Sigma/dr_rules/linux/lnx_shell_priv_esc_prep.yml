@@ -1,0 +1,147 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/issue
+    - op: matches
+      path: event/COMMAND_LINE
+      value: cat /etc/.*-release
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /proc/version
+    - op: is
+      path: event/COMMAND_LINE
+      value: uname -a
+    - op: is
+      path: event/COMMAND_LINE
+      value: uname -mrs
+    - op: is
+      path: event/COMMAND_LINE
+      value: rpm -q kernel
+    - op: is
+      path: event/COMMAND_LINE
+      value: dmesg | grep Linux
+    - op: is
+      path: event/COMMAND_LINE
+      value: ls /boot | grep vmlinuz-
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/profile
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/bashrc
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat ~/.bash_profile
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat ~/.bashrc
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat ~/.bash_logout
+    - op: is
+      path: event/COMMAND_LINE
+      value: ps -aux | grep root
+    - op: is
+      path: event/COMMAND_LINE
+      value: ps -ef | grep root
+    - op: is
+      path: event/COMMAND_LINE
+      value: crontab -l
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: cat /etc/cron
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/cron.allow
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/cron.deny
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/crontab
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: 'grep -i user '
+    - op: starts with
+      path: event/COMMAND_LINE
+      value: 'grep -i pass '
+    - op: is
+      path: event/COMMAND_LINE
+      value: ifconfig
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/network/interfaces
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/sysconfig/network
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/resolv.conf
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/networks
+    - op: is
+      path: event/COMMAND_LINE
+      value: iptables -L
+    - op: is
+      path: event/COMMAND_LINE
+      value: lsof -i
+    - op: is
+      path: event/COMMAND_LINE
+      value: netstat -antup
+    - op: is
+      path: event/COMMAND_LINE
+      value: netstat -antpx
+    - op: is
+      path: event/COMMAND_LINE
+      value: netstat -tulpn
+    - op: is
+      path: event/COMMAND_LINE
+      value: arp -e
+    - op: is
+      path: event/COMMAND_LINE
+      value: route
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/passwd
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/group
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat /etc/shadow
+    - op: is
+      path: event/COMMAND_LINE
+      value: find / -perm -u=s
+    - op: is
+      path: event/COMMAND_LINE
+      value: find / -perm -g=s
+    - op: is
+      path: event/COMMAND_LINE
+      value: find / -perm -4000
+    - op: is
+      path: event/COMMAND_LINE
+      value: find / -perm -2000
+respond:
+- action: report
+  metatdata:
+    author: Patrick Bareiss
+    description: Detects suspicious shell commands indicating the information gathering
+      phase as preparation for the Privilege Escalation.
+    level: medium
+    references:
+    - https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
+    - https://patrick-bareiss.com/detect-privilege-escalation-preparation-in-linux-with-sigma/
+    tags:
+    - attack.privilege_escalation
+    - attack.t1068
+  name: Privilege Escalation Preparation
+

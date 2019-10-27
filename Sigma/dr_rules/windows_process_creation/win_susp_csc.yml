@@ -1,0 +1,41 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: \csc.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \wscript.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \cscript.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \mshta.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a suspicious parent of csc.exe, which could by a sign of
+      payload delivery
+    level: high
+    references:
+    - https://twitter.com/SBousseaden/status/1094924091256176641
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+  name: Suspicious Parent of Csc.exe
+

@@ -1,0 +1,56 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \$Recycle.bin
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: \Users\All Users\\
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: \Users\Default\\
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: \Users\Public\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\Perflogs\\
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: \config\systemprofile\\
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: \Windows\Fonts\\
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: \Windows\IME\\
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: \Windows\addins\\
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a suspicious exection from an uncommon folder
+    level: high
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+  name: Execution in Non-Executable Folder
+

@@ -1,0 +1,65 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: '\ldifde.exe -f -n '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: '\7za.exe a 1.7z '
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: ' eprod.ldf'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: \aaaa\procdump64.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: \aaaa\netsess.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: \aaaa\7za.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: copy .\1.7z \\
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: copy \\client\c$\aaaa\\
+    - case sensitive: false
+      op: is
+      path: event/FILE_PATH
+      value: C:\Users\Public\7za.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects Judgement Panda activity as described in Global Threat Report
+      2019 by Crowdstrike
+    level: critical
+    references:
+    - https://www.crowdstrike.com/resources/reports/2019-crowdstrike-global-threat-report/
+    tags:
+    - attack.lateral_movement
+    - attack.g0010
+    - attack.credential_access
+    - attack.t1098
+    - attack.exfiltration
+    - attack.t1002
+  name: Judgement Panda Exfil Activity
+

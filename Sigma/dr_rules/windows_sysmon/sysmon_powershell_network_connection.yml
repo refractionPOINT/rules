@@ -1,0 +1,123 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '3'
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \powershell.exe
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Initiated
+      value: 'true'
+  - not: true
+    op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: '10.'
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 192.168.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.16.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.17.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.18.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.19.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.20.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.21.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.22.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.23.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.24.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.25.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.26.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.27.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.28.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.29.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.30.
+      - case sensitive: false
+        op: starts with
+        path: Event/EventData/DestinationIp
+        value: 172.31.
+      - case sensitive: false
+        op: is
+        path: Event/EventData/DestinationIp
+        value: 127.0.0.1
+    - case sensitive: false
+      op: is
+      path: Event/EventData/DestinationIsIpv6
+      value: 'false'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/User
+      value: NT AUTHORITY\SYSTEM
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a Powershell process that opens network connections - check
+      for suspicious target ports and target systems - adjust to your environment
+      (e.g. extend filters with company's ip range')
+    level: low
+    references:
+    - https://www.youtube.com/watch?v=DLtJTxMWZ2o
+    tags:
+    - attack.execution
+    - attack.t1086
+  name: PowerShell Network Connections
+

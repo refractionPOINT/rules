@@ -1,0 +1,49 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '17'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '18'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \atctl
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \userpipe
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \iehelper
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \sdlrpc
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \comnap
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Detects a named pipe used by Turla group samples
+    level: critical
+    references:
+    - Internal Research
+    tags:
+    - attack.g0010
+  name: Turla Group Named Pipes
+

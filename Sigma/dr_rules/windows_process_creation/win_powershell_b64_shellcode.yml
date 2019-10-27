@@ -1,0 +1,36 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: AAAAYInlM
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: OiCAAAAYInlM
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: OiJAAAAYInlM
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects Base64 encoded Shellcode
+    level: critical
+    references:
+    - https://twitter.com/cyb3rops/status/1063072865992523776
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+  name: PowerShell Base64 Encoded Shellcode
+

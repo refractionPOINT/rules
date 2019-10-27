@@ -1,0 +1,46 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '3'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/Initiated
+    value: 'true'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/DestinationHostname
+      value: dl.dropboxusercontent.com
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/DestinationHostname
+      value: .pastebin.com
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/DestinationHostname
+      value: .githubusercontent.com
+  - case sensitive: false
+    op: starts with
+    path: Event/EventData/Image
+    value: C:\Windows\\
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects an executable in the Windows folder accessing suspicious
+      domains
+    level: high
+    references:
+    - https://twitter.com/M_haggis/status/900741347035889665
+    - https://twitter.com/M_haggis/status/1032799638213066752
+    tags:
+    - attack.lateral_movement
+    - attack.t1105
+  name: Microsoft Binary Suspicious Communication Endpoint
+

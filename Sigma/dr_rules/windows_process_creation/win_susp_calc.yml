@@ -1,0 +1,38 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: '\calc.exe '
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \calc.exe
+      - case sensitive: false
+        not: true
+        op: contains
+        path: event/FILE_PATH
+        value: \Windows\Sys
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious use of calc.exe with command line parameters or
+      in a suspicious directory, which is likely caused by some PoC or detection evasion
+    level: high
+    references:
+    - https://twitter.com/ItsReallyNick/status/1094080242686312448
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+  name: Suspicious Calculator Usage
+

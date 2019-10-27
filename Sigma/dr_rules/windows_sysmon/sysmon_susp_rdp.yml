@@ -1,0 +1,113 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '3'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/DestinationPort
+      value: '3389'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Initiated
+      value: 'true'
+  - not: true
+    op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \mstsc.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \RTSApp.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \RTS2App.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \RDCMan.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \ws_TunnelService.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \RSSensor.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \RemoteDesktopManagerFree.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \RemoteDesktopManager.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \RemoteDesktopManager64.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \mRemoteNG.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \mRemote.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \Terminals.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \spiceworks-finder.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \FSDiscovery.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \FSAssessment.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \MobaRTE.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \chrome.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \thor.exe
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \thor64.exe
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis - Swisscom
+    description: Detects Non-Standard Tools Connecting to TCP port 3389 indicating
+      possible lateral movement
+    level: high
+    references:
+    - https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2019-0708
+    tags:
+    - attack.lateral_movement
+    - attack.t1210
+    - car.2013-07-002
+  name: Suspicious Outbound RDP Connections
+

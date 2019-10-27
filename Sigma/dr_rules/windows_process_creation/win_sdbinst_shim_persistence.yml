@@ -1,0 +1,31 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \sdbinst.exe
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: .sdb
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Detects installation of a new shim using sdbinst.exe. A shim can
+      be used to load malicious DLLs into applications.
+    level: high
+    references:
+    - https://www.fireeye.com/blog/threat-research/2017/05/fin7-shim-databases-persistence.html
+    tags:
+    - attack.persistence
+    - attack.t1138
+  name: Possible Shim Database Persistence via sdbinst.exe
+

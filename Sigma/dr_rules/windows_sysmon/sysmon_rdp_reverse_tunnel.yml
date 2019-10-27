@@ -1,0 +1,47 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '3'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/Image
+    value: \svchost.exe
+  - case sensitive: false
+    op: is
+    path: Event/EventData/Initiated
+    value: 'true'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/SourcePort
+    value: '3389'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: '127.'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/DestinationIp
+      value: ::1
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: Detects svchost hosting RDP termsvcs communicating with the loopback
+      address and on TCP port 3389
+    level: high
+    references:
+    - https://twitter.com/SBousseaden/status/1096148422984384514
+    tags:
+    - attack.defense_evasion
+    - attack.command_and_control
+    - attack.t1076
+    - car.2013-07-002
+  name: RDP over Reverse SSH Tunnel
+

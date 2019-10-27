@@ -1,0 +1,65 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '20'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Destination
+      value: new-object system.net.webclient).downloadstring(
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Destination
+      value: new-object system.net.webclient).downloadfile(
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Destination
+      value: new-object net.webclient).downloadstring(
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Destination
+      value: new-object net.webclient).downloadfile(
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Destination
+      value: ' iex('
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Destination
+      value: WScript.shell
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Destination
+      value: ' -nop '
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Destination
+      value: ' -noprofile '
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Destination
+      value: ' -decode '
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Destination
+      value: ' -enc '
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious scripting in WMI Event Consumers
+    level: high
+    references:
+    - https://in.security/an-intro-into-abusing-and-identifying-wmi-event-subscriptions-for-persistence/
+    - https://github.com/Neo23x0/signature-base/blob/master/yara/gen_susp_lnk_files.yar#L19
+    tags:
+    - attack.t1086
+    - attack.execution
+  name: Suspicious Scripting in a WMI Consumer
+

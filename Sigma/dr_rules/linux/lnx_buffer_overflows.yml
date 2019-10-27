@@ -1,0 +1,30 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: is
+      path: event/COMMAND_LINE
+      value: attempt to execute code on stack by
+    - op: matches
+      path: event/COMMAND_LINE
+      value: FTP LOGIN FROM \..* 0bin0sh
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'rpc.statd[\d+]: gethostbyname error for'
+    - op: is
+      path: event/COMMAND_LINE
+      value: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+respond:
+- action: report
+  metatdata:
+    description: Detects buffer overflow attempts in Unix system log files
+    level: high
+    references:
+    - https://github.com/ossec/ossec-hids/blob/master/etc/rules/attack_rules.xml
+  name: Buffer Overflow Attempts
+

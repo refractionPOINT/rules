@@ -1,0 +1,26 @@
+detect:
+  log type: wel
+  op: or
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '517'
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '1102'
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Some threat groups tend to delete the local 'Security' Eventlog using
+      certain utitlities
+    level: high
+    tags:
+    - attack.defense_evasion
+    - attack.t1070
+    - car.2016-04-002
+  name: Security Eventlog Cleared
+

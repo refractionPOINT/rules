@@ -1,0 +1,28 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: event/USER_NAME
+      value: NT AUTHORITY\SYSTEM
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \taskmgr.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the creation of taskmgr.exe process in context of LOCAL_SYSTEM
+    level: high
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+  name: Taskmgr as LOCAL_SYSTEM
+

@@ -1,0 +1,21 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: and
+    rules:
+    - bash -c /bin/bash
+    - '&/dev/tcp/'
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious command sequence that JexBoss
+    level: high
+    references:
+    - https://www.us-cert.gov/ncas/analysis-reports/AR18-312A
+  name: JexBoss Command Sequence
+

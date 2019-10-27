@@ -1,0 +1,83 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '5145'
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/ShareName
+      value: \\\.*\\IPC\$
+  - not: true
+    op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '5145'
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/ShareName
+      value: \\\.*\\IPC\$
+    - op: or
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/EventData/RelativeTargetName
+        value: atsvc
+      - case sensitive: false
+        op: is
+        path: Event/EventData/RelativeTargetName
+        value: samr
+      - case sensitive: false
+        op: is
+        path: Event/EventData/RelativeTargetName
+        value: lsarpc
+      - case sensitive: false
+        op: is
+        path: Event/EventData/RelativeTargetName
+        value: winreg
+      - case sensitive: false
+        op: is
+        path: Event/EventData/RelativeTargetName
+        value: netlogon
+      - case sensitive: false
+        op: is
+        path: Event/EventData/RelativeTargetName
+        value: srvsvc
+      - case sensitive: false
+        op: is
+        path: Event/EventData/RelativeTargetName
+        value: protected_storage
+      - case sensitive: false
+        op: is
+        path: Event/EventData/RelativeTargetName
+        value: wkssvc
+      - case sensitive: false
+        op: is
+        path: Event/EventData/RelativeTargetName
+        value: browser
+      - case sensitive: false
+        op: is
+        path: Event/EventData/RelativeTargetName
+        value: netdfs
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: This detection excludes known namped pipes accessible remotely and
+      notify on newly observed ones, may help to detect lateral movement and remote
+      exec using named pipes
+    level: high
+    references:
+    - https://twitter.com/menasec1/status/1104489274387451904
+    tags:
+    - attack.lateral_movement
+    - attack.t1077
+  name: First time seen remote named pipe
+

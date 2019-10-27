@@ -1,0 +1,33 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '7045'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/ServiceName
+    value: NtsSrv
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/ServiceFileName
+    value: ' LocalService'
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: This method detects a service install of the malicious Microsoft
+      Network Realtime Inspection Service service described in StoneDrill report by
+      Kaspersky
+    level: high
+    references:
+    - https://securelist.com/blog/research/77725/from-shamoon-to-stonedrill/
+    tags:
+    - attack.persistence
+    - attack.g0064
+    - attack.t1050
+  name: StoneDrill Service Install
+

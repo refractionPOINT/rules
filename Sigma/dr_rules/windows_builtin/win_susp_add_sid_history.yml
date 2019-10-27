@@ -1,0 +1,47 @@
+detect:
+  log type: wel
+  op: or
+  rules:
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4765'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4766'
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4738'
+    - not: true
+      op: or
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/EventData/SidHistory
+        value: '-'
+      - case sensitive: false
+        op: is
+        path: Event/EventData/SidHistory
+        value: '%%1793'
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Thomas Patzke, @atc_project (improvements)
+    description: An attacker can use the SID history attribute to gain additional
+      privileges.
+    level: medium
+    references:
+    - https://adsecurity.org/?p=1772
+    tags:
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1178
+  name: Addition of SID History to Active Directory Object
+

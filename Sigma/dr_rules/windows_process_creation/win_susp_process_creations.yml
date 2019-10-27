@@ -1,0 +1,219 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: starts with
+      path: event/COMMAND_LINE
+      value: vssadmin.exe delete shadows
+    - case sensitive: false
+      op: starts with
+      path: event/COMMAND_LINE
+      value: vssadmin delete shadows
+    - case sensitive: false
+      op: starts with
+      path: event/COMMAND_LINE
+      value: 'vssadmin create shadow /for=C:'
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: copy \\\.\\GLOBALROOT\\Device\\\.*\\windows\\ntds\\ntds\.dit.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: copy \\\.\\GLOBALROOT\\Device\\\.*\\config\\SAM.*
+    - case sensitive: false
+      op: starts with
+      path: event/COMMAND_LINE
+      value: 'reg SAVE HKLM\SYSTEM '
+    - case sensitive: false
+      op: starts with
+      path: event/COMMAND_LINE
+      value: 'reg SAVE HKLM\SAM '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' sekurlsa:'
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: net localgroup administrators .* /add
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: net group \"Domain Admins\" .* /ADD /DOMAIN
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: certutil\.exe .*-urlcache.* http.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: certutil\.exe .*-urlcache.* ftp.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: netsh advfirewall firewall .*\\AppData\\\.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: attrib +S +H +R .*\\AppData\\\.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: schtasks.* /create .*\\AppData\\\.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: schtasks.* /sc minute.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\Regasm\.exe .*\\AppData\\\.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\Regasm .*\\AppData\\\.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\bitsadmin.* /transfer.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\certutil\.exe .* -decode .*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\certutil\.exe .* -decodehex .*
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: '\certutil.exe -ping '
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: icacls .* /grant Everyone:F /T /C /Q
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' wmic shadowcopy delete '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' wbadmin.exe delete catalog -quiet'
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\wscript\.exe .*\.jse
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\wscript\.exe .*\.js
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\wscript\.exe .*\.vba
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\wscript\.exe .*\.vbe
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\cscript\.exe .*\.jse
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\cscript\.exe .*\.js
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\cscript\.exe .*\.vba
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\cscript\.exe .*\.vbe
+    - case sensitive: false
+      op: ends with
+      path: event/COMMAND_LINE
+      value: \fodhelper.exe
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*waitfor.*/s.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*waitfor.*/si persist.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*remote.*/s.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*remote.*/c.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*remote.*/q.*
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: AddInProcess
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /stext '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /scomma '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /stab '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /stabular '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /shtml '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /sverhtml '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /sxml '
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious process starts on Windows systems based on keywords
+    level: medium
+    references:
+    - https://www.swordshield.com/2015/07/getting-hashes-from-ntds-dit-file/
+    - https://www.youtube.com/watch?v=H3t_kHQG1Js&feature=youtu.be&t=15m35s
+    - https://winscripting.blog/2017/05/12/first-entry-welcome-and-uac-bypass/
+    - https://twitter.com/subTee/status/872244674609676288
+    - https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/remote-tool-examples
+    - https://tyranidslair.blogspot.ca/2017/07/dg-on-windows-10-s-executing-arbitrary.html
+    - https://www.trustedsec.com/2017/07/new-tool-release-nps_payload/
+    - https://subt0x10.blogspot.ca/2017/04/bypassing-application-whitelisting.html
+    - https://gist.github.com/subTee/7937a8ef07409715f15b84781e180c46#file-rat-bat
+    - https://twitter.com/vector_sec/status/896049052642533376
+    - http://security-research.dyndns.org/pub/slides/FIRST-TC-2018/FIRST-TC-2018_Tom-Ueltschi_Sysmon_PUBLIC.pdf
+    tags:
+    - car.2013-07-001
+  name: Suspicious Process Creation
+

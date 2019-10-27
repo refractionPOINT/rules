@@ -1,0 +1,37 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \rundll32.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        value: .*comsvcs.*MiniDump.*full.*
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        value: .*comsvcs.*MiniDumpW.*full.*
+respond:
+- action: report
+  metatdata:
+    author: Modexp (idea)
+    description: Detects process memory dump via comsvcs.dll and rundll32
+    level: medium
+    references:
+    - https://modexp.wordpress.com/2019/08/30/minidumpwritedump-via-com-services-dll/
+    - https://twitter.com/SBousseaden/status/1167417096374050817
+    tags:
+    - attack.credential_access
+    - attack.t1003
+  name: Process dump via comsvcs DLL
+

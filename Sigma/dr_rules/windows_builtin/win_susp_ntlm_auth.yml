@@ -1,0 +1,28 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '8002'
+  - case sensitive: false
+    op: contains
+    path: Event/EventData/CallingProcessName
+    value: ''
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects logons using NTLM, which could be caused by a legacy source
+      or attackers
+    level: low
+    references:
+    - https://twitter.com/JohnLaTwC/status/1004895028995477505
+    - https://goo.gl/PsqrhT
+    tags:
+    - attack.lateral_movement
+    - attack.t1075
+  name: NTLM Logon
+

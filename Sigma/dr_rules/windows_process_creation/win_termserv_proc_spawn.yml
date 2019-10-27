@@ -1,0 +1,31 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: matches
+      path: event/PARENT/COMMAND_LINE
+      value: .*\\svchost\.exe.*termsvcs
+    - case sensitive: false
+      not: true
+      op: ends with
+      path: event/FILE_PATH
+      value: \rdpclip.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a process spawned by the terminal service server process
+      (this could be an indicator for an exploitation of CVE-2019-0708)
+    level: high
+    references:
+    - https://securingtomorrow.mcafee.com/other-blogs/mcafee-labs/rdp-stands-for-really-do-patch-understanding-the-wormable-rdp-vulnerability-cve-2019-0708/
+    tags:
+    - car.2013-07-002
+  name: Terminal Service Process Spawn
+

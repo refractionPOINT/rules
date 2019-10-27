@@ -1,0 +1,43 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4656'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4658'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4660'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4663'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/ObjectName
+    value: \wceaux.dll
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Thomas Patzke
+    description: Detects wceaux.dll access while WCE pass-the-hash remote command
+      execution on source host
+    level: critical
+    references:
+    - https://www.jpcert.or.jp/english/pub/sr/ir_research.html
+    - https://jpcertcc.github.io/ToolAnalysisResultSheet
+    tags:
+    - attack.credential_access
+    - attack.t1003
+    - attack.s0005
+  name: WCE wceaux.dll Access
+

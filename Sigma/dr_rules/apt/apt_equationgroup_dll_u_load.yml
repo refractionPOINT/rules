@@ -1,0 +1,41 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \rundll32.exe
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: ',dll_u'
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' -export dll_u '
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a specific tool and export used by EquationGroup
+    level: critical
+    references:
+    - https://github.com/adamcaudill/EquationGroupLeak/search?utf8=%E2%9C%93&q=dll_u&type=
+    - https://securelist.com/apt-slingshot/84312/
+    - https://twitter.com/cyb3rops/status/972186477512839170
+    tags:
+    - attack.execution
+    - attack.g0020
+    - attack.t1059
+    - attack.defense_evasion
+    - attack.t1085
+  name: Equation Group DLL_U Load
+

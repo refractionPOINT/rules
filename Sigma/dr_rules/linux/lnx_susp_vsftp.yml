@@ -1,0 +1,71 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'Connection refused: too many sessions for this address.'
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'Connection refused: tcp_wrappers denial.'
+    - op: is
+      path: event/COMMAND_LINE
+      value: Bad HTTP verb.
+    - op: is
+      path: event/COMMAND_LINE
+      value: port and pasv both active
+    - op: is
+      path: event/COMMAND_LINE
+      value: pasv and port both active
+    - op: is
+      path: event/COMMAND_LINE
+      value: Transfer done (but failed to open directory).
+    - op: is
+      path: event/COMMAND_LINE
+      value: Could not set file modification time.
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'bug: pid active in ptrace_sandbox_free'
+    - op: is
+      path: event/COMMAND_LINE
+      value: PTRACE_SETOPTIONS failure
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'weird status:'
+    - op: is
+      path: event/COMMAND_LINE
+      value: couldn't handle sandbox event
+    - op: matches
+      path: event/COMMAND_LINE
+      value: syscall .* out of bounds
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'syscall not permitted:'
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'syscall validate failed:'
+    - op: is
+      path: event/COMMAND_LINE
+      value: Input line too long.
+    - op: is
+      path: event/COMMAND_LINE
+      value: poor buffer accounting in str_netfd_alloc
+    - op: is
+      path: event/COMMAND_LINE
+      value: vsf_sysutil_read_loop
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious VSFTPD error messages that indicate a fatal or
+      suspicious error that could be caused by exploiting attempts
+    level: medium
+    references:
+    - https://github.com/dagwieers/vsftpd/
+  name: Suspicious VSFTPD Error Messages
+

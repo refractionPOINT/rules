@@ -1,0 +1,26 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: contains
+    path: event/COMMAND_LINE
+    value: netsh firewall add
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Allow Incoming Connections by Port or Application on Windows Firewall
+    level: medium
+    references:
+    - https://attack.mitre.org/software/S0246/ (Lazarus HARDRAIN)
+    - https://www.operationblockbuster.com/wp-content/uploads/2016/02/Operation-Blockbuster-RAT-and-Staging-Report.pdf
+    tags:
+    - attack.lateral_movement
+    - attack.command_and_control
+    - attack.t1090
+  name: Netsh
+

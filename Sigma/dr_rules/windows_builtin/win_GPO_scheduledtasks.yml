@@ -1,0 +1,36 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '5145'
+  - case sensitive: false
+    op: matches
+    path: Event/EventData/ShareName
+    value: \\\.*\\SYSVOL
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/RelativeTargetName
+    value: ScheduledTasks.xml
+  - case sensitive: false
+    op: contains
+    path: Event/EventData/Accesses
+    value: WriteData
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: Detect lateral movement using GPO scheduled task, ususally used to
+      deploy ransomware at scale
+    level: high
+    references:
+    - https://twitter.com/menasec1/status/1106899890377052160
+    tags:
+    - attack.persistence
+    - attack.lateral_movement
+    - attack.t1053
+  name: Persistence and Execution at scale via GPO scheduled task
+

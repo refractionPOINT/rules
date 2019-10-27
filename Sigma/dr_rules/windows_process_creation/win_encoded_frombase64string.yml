@@ -1,0 +1,35 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: OjpGcm9tQmFzZTY0U3RyaW5n
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: o6RnJvbUJhc2U2NFN0cmluZ
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: 6OkZyb21CYXNlNjRTdHJpbm
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a base64 encoded FromBase64String keyword in a process command
+      line
+    level: critical
+    tags:
+    - attack.t1086
+    - attack.t1140
+    - attack.execution
+    - attack.defense_evasion
+  name: Encoded FromBase64String
+

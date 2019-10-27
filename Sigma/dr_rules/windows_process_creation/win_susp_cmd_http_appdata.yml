@@ -1,0 +1,33 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: cmd\.exe /c .*http://.*%AppData%
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: cmd\.exe /c .*https://.*%AppData%
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a suspicious command line execution that includes an URL
+      and AppData string in the command line parameters as used by several droppers
+      (js/vbs > powershell)
+    level: medium
+    references:
+    - https://www.hybrid-analysis.com/sample/3a1f01206684410dbe8f1900bbeaaa543adfcd07368ba646b499fa5274b9edf6?environmentId=100
+    - https://www.hybrid-analysis.com/sample/f16c729aad5c74f19784a24257236a8bbe27f7cdc4a89806031ec7f1bebbd475?environmentId=100
+    tags:
+    - attack.execution
+    - attack.t1059
+  name: Command Line Execution with suspicious URL and AppData Strings
+

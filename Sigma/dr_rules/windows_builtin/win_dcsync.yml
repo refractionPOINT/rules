@@ -1,0 +1,54 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '4662'
+      - op: or
+        rules:
+        - case sensitive: false
+          op: contains
+          path: Event/EventData/Properties
+          value: Replicating Directory Changes All
+        - case sensitive: false
+          op: contains
+          path: Event/EventData/Properties
+          value: 1131f6ad-9c07-11d1-f79f-00c04fc2dcd2
+    - case sensitive: false
+      not: true
+      op: is
+      path: Event/EventData/SubjectDomainName
+      value: Window Manager
+  - not: true
+    op: or
+    rules:
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/SubjectUserName
+      value: NT AUTHORITY
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/SubjectUserName
+      value: $
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Benjamin Delpy, Florian Roth
+    description: Detects Mimikatz DC sync security events
+    level: high
+    references:
+    - https://twitter.com/gentilkiwi/status/1003236624925413376
+    - https://gist.github.com/gentilkiwi/dcc132457408cf11ad2061340dcb53c2
+    tags:
+    - attack.credential_access
+    - attack.s0002
+    - attack.t1003
+  name: Mimikatz DC Sync
+

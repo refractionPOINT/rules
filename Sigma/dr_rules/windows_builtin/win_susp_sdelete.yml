@@ -1,0 +1,46 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4656'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4663'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4658'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: .AAA
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/ObjectName
+      value: .ZZZ
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Thomas Patzke
+    description: Detects renaming of file while deletion with SDelete tool
+    level: medium
+    references:
+    - https://jpcertcc.github.io/ToolAnalysisResultSheet
+    - https://www.jpcert.or.jp/english/pub/sr/ir_research.html
+    - https://technet.microsoft.com/en-us/en-en/sysinternals/sdelete.aspx
+    tags:
+    - attack.defense_evasion
+    - attack.t1107
+    - attack.t1066
+    - attack.s0195
+  name: Secure Deletion with SDelete
+

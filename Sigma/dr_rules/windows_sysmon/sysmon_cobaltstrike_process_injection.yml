@@ -1,0 +1,27 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '8'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/TargetProcessAddress
+    value: 0B80
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Olaf Hartong, Florian Roth
+    description: Detects a possible remote threat creation with certain characteristics
+      which are typical for Cobalt Strike beacons
+    level: high
+    references:
+    - https://medium.com/@olafhartong/cobalt-strike-remote-threads-detection-206372d11d0f
+    tags:
+    - attack.defense_evasion
+    - attack.t1055
+  name: CobaltStrike Process Injection
+

@@ -1,0 +1,36 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '4624'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/LogonType
+    value: '9'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/LogonProcessName
+    value: seclogo
+  - case sensitive: false
+    op: is
+    path: Event/EventData/AuthenticationPackageName
+    value: Negotiate
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Roberto Rodriguez (source), Dominik Schaudel (rule)
+    description: Detects successful logon with logon type 9 (NewCredentials) which
+      matches the Overpass the Hash behavior of e.g Mimikatz's sekurlsa::pth module.
+    level: high
+    references:
+    - https://cyberwardog.blogspot.de/2017/04/chronicles-of-threat-hunter-hunting-for.html
+    tags:
+    - attack.lateral_movement
+    - attack.t1075
+    - attack.s0002
+  name: Successful Overpass the Hash Attempt
+

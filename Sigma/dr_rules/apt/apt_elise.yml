@@ -1,0 +1,37 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: is
+        path: event/FILE_PATH
+        value: C:\Windows\SysWOW64\cmd.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: '\Windows\Caches\NavShExt.dll '
+    - case sensitive: false
+      op: ends with
+      path: event/COMMAND_LINE
+      value: \AppData\Roaming\MICROS~1\Windows\Caches\NavShExt.dll,Setting
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects Elise backdoor acitivty as used by APT32
+    level: critical
+    references:
+    - https://community.rsa.com/community/products/netwitness/blog/2018/01/30/apt32-continues-asean-targeting
+    tags:
+    - attack.g0030
+    - attack.g0050
+    - attack.s0081
+  name: Elise Backdoor
+

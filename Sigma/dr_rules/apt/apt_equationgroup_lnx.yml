@@ -1,0 +1,141 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: matches
+      path: event/COMMAND_LINE
+      value: 'chown root.*chmod 4777 '
+    - op: is
+      path: event/COMMAND_LINE
+      value: cp /bin/sh .;chown
+    - op: is
+      path: event/COMMAND_LINE
+      value: chmod 4777 /tmp/.scsi/dev/bin/gsh
+    - op: is
+      path: event/COMMAND_LINE
+      value: chown root:root /tmp/.scsi/dev/bin/
+    - op: is
+      path: event/COMMAND_LINE
+      value: chown root:root x;
+    - op: is
+      path: event/COMMAND_LINE
+      value: /bin/telnet locip locport < /dev/console | /bin/sh
+    - op: is
+      path: event/COMMAND_LINE
+      value: /tmp/ratload
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'ewok -t '
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'xspy -display '
+    - op: is
+      path: event/COMMAND_LINE
+      value: cat > /dev/tcp/127.0.0.1/80 <<END
+    - op: is
+      path: event/COMMAND_LINE
+      value: rm -f /current/tmp/ftshell.latest
+    - op: matches
+      path: event/COMMAND_LINE
+      value: 'ghost_.* -v '
+    - op: is
+      path: event/COMMAND_LINE
+      value: ' --wipe > /dev/null'
+    - op: matches
+      path: event/COMMAND_LINE
+      value: ping -c 2 .*; grep .* /proc/net/arp >/tmp/gx
+    - op: matches
+      path: event/COMMAND_LINE
+      value: iptables .* OUTPUT -p tcp -d 127\.0\.0\.1 --tcp-flags RST RST -j DROP;
+    - op: is
+      path: event/COMMAND_LINE
+      value: '> /var/log/audit/audit.log; rm -f .'
+    - op: is
+      path: event/COMMAND_LINE
+      value: cp /var/log/audit/audit.log .tmp
+    - op: matches
+      path: event/COMMAND_LINE
+      value: sh >/dev/tcp/.* <&1 2>&1
+    - op: matches
+      path: event/COMMAND_LINE
+      value: ncat -vv -l -p .* <
+    - op: matches
+      path: event/COMMAND_LINE
+      value: nc -vv -l -p .* <
+    - op: is
+      path: event/COMMAND_LINE
+      value: < /dev/console | uudecode && uncompress
+    - op: is
+      path: event/COMMAND_LINE
+      value: sendmail -osendmail;chmod +x sendmail
+    - op: matches
+      path: event/COMMAND_LINE
+      value: /usr/bin/wget -O /tmp/a http.* && chmod 755 /tmp/cron
+    - op: is
+      path: event/COMMAND_LINE
+      value: chmod 666 /var/run/utmp~
+    - op: is
+      path: event/COMMAND_LINE
+      value: chmod 700 nscd crond
+    - op: is
+      path: event/COMMAND_LINE
+      value: cp /etc/shadow /tmp/.
+    - op: is
+      path: event/COMMAND_LINE
+      value: </dev/console |uudecode > /dev/null 2>&1 && uncompress
+    - op: is
+      path: event/COMMAND_LINE
+      value: chmod 700 jp&&netstat -an|grep
+    - op: matches
+      path: event/COMMAND_LINE
+      value: uudecode > /dev/null 2>&1 && uncompress -f .* && chmod 755
+    - op: is
+      path: event/COMMAND_LINE
+      value: chmod 700 crond
+    - op: matches
+      path: event/COMMAND_LINE
+      value: wget http.*; chmod +x /tmp/sendmail
+    - op: is
+      path: event/COMMAND_LINE
+      value: chmod 700 fp sendmail pt
+    - op: is
+      path: event/COMMAND_LINE
+      value: chmod 755 /usr/vmsys/bin/pipe
+    - op: is
+      path: event/COMMAND_LINE
+      value: chmod -R 755 /usr/vmsys
+    - op: matches
+      path: event/COMMAND_LINE
+      value: chmod 755 \$opbin/.*tunnel
+    - op: is
+      path: event/COMMAND_LINE
+      value: chmod 700 sendmail
+    - op: is
+      path: event/COMMAND_LINE
+      value: chmod 0700 sendmail
+    - op: matches
+      path: event/COMMAND_LINE
+      value: /usr/bin/wget http.*sendmail;chmod +x sendmail;
+    - op: matches
+      path: event/COMMAND_LINE
+      value: '&& telnet .* 2>&1 </dev/console'
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious shell commands used in various Equation Group
+      scripts and tools
+    level: high
+    references:
+    - https://medium.com/@shadowbrokerss/dont-forget-your-base-867d304a94b1
+    tags:
+    - attack.execution
+    - attack.g0020
+    - attack.t1059
+  name: Equation Group Indicators
+

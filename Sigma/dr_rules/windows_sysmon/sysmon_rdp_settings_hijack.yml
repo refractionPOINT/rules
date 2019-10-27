@@ -1,0 +1,35 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \services\TermService\Parameters\ServiceDll
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \Control\Terminal Server\fSingleSessionPerUser
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \Control\Terminal Server\fDenyTSConnections
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: Detects changes to RDP terminal service sensitive settings
+    level: high
+    references:
+    - https://blog.menasec.net/2019/02/threat-hunting-rdp-hijacking-via.html
+    tags:
+    - attack.defense_evasion
+  name: RDP Sensitive Settings Changed
+

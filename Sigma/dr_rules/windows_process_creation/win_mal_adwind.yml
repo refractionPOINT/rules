@@ -1,0 +1,95 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\AppData\\Roaming\\Oracle.*\\java.*\.exe .*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*cscript\.exe .*Retrive.*\.vbs .*
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Tom Ueltschi
+    description: Detects javaw.exe in AppData folder as used by Adwind / JRAT
+    level: high
+    references:
+    - https://www.hybrid-analysis.com/sample/ba86fa0d4b6af2db0656a88b1dd29f36fe362473ae8ad04255c4e52f214a541c?environmentId=100
+    - https://www.first.org/resources/papers/conf2017/Advanced-Incident-Detection-and-Threat-Hunting-using-Sysmon-and-Splunk.pdf
+    tags:
+    - attack.execution
+    - attack.t1064
+  name: Adwind RAT / JRAT
+
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '11'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/TargetFilename
+      value: .*\\AppData\\Roaming\\Oracle\\bin\\java.*\.exe
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/TargetFilename
+      value: .*\\Retrive.*\.vbs
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Tom Ueltschi
+    description: Detects javaw.exe in AppData folder as used by Adwind / JRAT
+    level: high
+    references:
+    - https://www.hybrid-analysis.com/sample/ba86fa0d4b6af2db0656a88b1dd29f36fe362473ae8ad04255c4e52f214a541c?environmentId=100
+    - https://www.first.org/resources/papers/conf2017/Advanced-Incident-Detection-and-Threat-Hunting-using-Sysmon-and-Splunk.pdf
+    tags:
+    - attack.execution
+    - attack.t1064
+  name: Adwind RAT / JRAT
+
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - case sensitive: false
+    op: starts with
+    path: Event/EventData/TargetObject
+    value: \REGISTRY\MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+  - case sensitive: false
+    op: starts with
+    path: Event/EventData/Details
+    value: '%AppData%\Roaming\Oracle\bin\\'
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Tom Ueltschi
+    description: Detects javaw.exe in AppData folder as used by Adwind / JRAT
+    level: high
+    references:
+    - https://www.hybrid-analysis.com/sample/ba86fa0d4b6af2db0656a88b1dd29f36fe362473ae8ad04255c4e52f214a541c?environmentId=100
+    - https://www.first.org/resources/papers/conf2017/Advanced-Incident-Detection-and-Threat-Hunting-using-Sysmon-and-Splunk.pdf
+    tags:
+    - attack.execution
+    - attack.t1064
+  name: Adwind RAT / JRAT
+

@@ -1,0 +1,40 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '12'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '13'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \CurrentControlSet\Services\NTDS\DirectoryServiceExtPt
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \CurrentControlSet\Services\NTDS\LsaDbExtPt
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a method to load DLL via LSASS process using an undocumented
+      Registry key
+    level: high
+    references:
+    - https://blog.xpnsec.com/exploring-mimikatz-part-1/
+    - https://twitter.com/SBousseaden/status/1183745981189427200
+    tags:
+    - attack.execution
+    - attack.t1177
+  name: DLL Load via LSASS
+

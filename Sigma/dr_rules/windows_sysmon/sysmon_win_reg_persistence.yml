@@ -1,0 +1,44 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/TargetObject
+      value: .*\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution
+        Options\\\.*\\GlobalFlag
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/TargetObject
+      value: .*\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SilentProcessExit\\\.*\\ReportingMode
+    - case sensitive: false
+      op: matches
+      path: Event/EventData/TargetObject
+      value: .*\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SilentProcessExit\\\.*\\MonitorProcess
+  - case sensitive: false
+    op: is
+    path: Event/EventData/EventType
+    value: SetValue
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Karneades
+    description: Detects persistence registry keys
+    level: critical
+    references:
+    - https://oddvar.moe/2018/04/10/persistence-using-globalflags-in-image-file-execution-options-hidden-from-autoruns-exe/
+    tags:
+    - attack.privilege_escalation
+    - attack.persistence
+    - attack.defense_evasion
+    - attack.t1183
+    - car.2013-01-002
+  name: Registry Persistence Mechanisms
+

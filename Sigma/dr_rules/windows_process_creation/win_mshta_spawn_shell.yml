@@ -1,0 +1,68 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/PARENT/FILE_PATH
+      value: \mshta.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \cmd.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \powershell.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \wscript.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \cscript.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \sh.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \bash.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \reg.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \regsvr32.exe
+      - case sensitive: false
+        op: contains
+        path: event/FILE_PATH
+        value: \BITSADMIN
+respond:
+- action: report
+  metatdata:
+    author: Michael Haag
+    description: Detects a Windows command line executable started from MSHTA.
+    level: high
+    references:
+    - https://www.trustedsec.com/july-2015/malicious-htas/
+    tags:
+    - attack.defense_evasion
+    - attack.execution
+    - attack.t1170
+    - car.2013-02-003
+    - car.2013-03-001
+    - car.2014-04-003
+  name: MSHTA Spawning Windows Shell
+

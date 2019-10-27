@@ -1,0 +1,46 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/TargetObject
+    value: \EulaAccepted
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Detects the usage of Sysinternals Tools due to accepteula key being
+      added to Registry
+    level: low
+    references:
+    - https://twitter.com/Moti_B/status/1008587936735035392
+  name: Usage of Sysinternals Tools
+
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: contains
+    path: event/COMMAND_LINE
+    value: ' -accepteula'
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Detects the usage of Sysinternals Tools due to accepteula key being
+      added to Registry
+    level: low
+    references:
+    - https://twitter.com/Moti_B/status/1008587936735035392
+  name: Usage of Sysinternals Tools
+

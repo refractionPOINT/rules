@@ -1,0 +1,103 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \svchost.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \rundll32.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \services.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \powershell.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \regsvr32.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \spoolsv.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \lsass.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \smss.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \csrss.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \conhost.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \wininit.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \lsm.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \winlogon.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \explorer.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \taskhost.exe
+    - not: true
+      op: or
+      rules:
+      - case sensitive: false
+        op: starts with
+        path: event/FILE_PATH
+        value: C:\Windows\System32\\
+      - case sensitive: false
+        op: starts with
+        path: event/FILE_PATH
+        value: C:\Windows\SysWow64\\
+      - case sensitive: false
+        op: is
+        path: event/FILE_PATH
+        value: C:\Windows\explorer.exe
+      - case sensitive: false
+        op: starts with
+        path: event/FILE_PATH
+        value: C:\Windows\winsxs\\
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth, Patrick Bareiss
+    description: Detects a Windows program executable started in a suspicious folder
+    level: high
+    references:
+    - https://twitter.com/GelosSnake/status/934900723426439170
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+  name: System File Execution Location Anomaly
+

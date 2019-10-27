@@ -1,0 +1,23 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: contains
+    path: event/COMMAND_LINE
+    value: ' -bxor'
+respond:
+- action: report
+  metatdata:
+    author: Sami Ruohonen
+    description: Detects suspicious powershell process which includes bxor command,
+      alternatvide obfuscation method to b64 encoded commands.
+    level: medium
+    tags:
+    - attack.execution
+    - attack.t1086
+  name: Suspicious XOR Encoded PowerShell Command Line
+

@@ -1,0 +1,39 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: reg query "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default"
+    - case sensitive: false
+      op: starts with
+      path: event/COMMAND_LINE
+      value: powershell.exe mshta.exe http
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: cmd.exe /c taskkill /im cmd.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects activity that could be related to Baby Shark malware
+    level: high
+    references:
+    - https://unit42.paloaltonetworks.com/new-babyshark-malware-targets-u-s-national-security-think-tanks/
+    tags:
+    - attack.execution
+    - attack.t1059
+    - attack.t1086
+    - attack.discovery
+    - attack.t1012
+    - attack.defense_evasion
+    - attack.t1170
+  name: Baby Shark Activity
+

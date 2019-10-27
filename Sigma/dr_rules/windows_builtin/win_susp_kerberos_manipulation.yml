@@ -1,0 +1,157 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '675'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4768'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4769'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4771'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x9'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0xA'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0xB'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0xF'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x10'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x11'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x13'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x14'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x1A'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x1F'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x21'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x22'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x23'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x24'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x26'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x27'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x28'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x29'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x2C'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x2D'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x2E'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x2F'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x31'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x32'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x3E'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x3F'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x40'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x41'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x43'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/FailureCode
+      value: '0x44'
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: This method triggers on rare Kerberos Failure Codes caused by manipulations
+      of Kerberos messages
+    level: high
+    tags:
+    - attack.credential_access
+    - attack.t1212
+  name: Kerberos Manipulation
+

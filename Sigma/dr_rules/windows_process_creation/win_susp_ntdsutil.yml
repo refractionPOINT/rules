@@ -1,0 +1,25 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: contains
+    path: event/COMMAND_LINE
+    value: \ntdsutil
+respond:
+- action: report
+  metatdata:
+    author: Thomas Patzke
+    description: Detects execution of ntdsutil.exe, which can be used for various
+      attacks against the NTDS database (NTDS.DIT)
+    level: high
+    references:
+    - https://jpcertcc.github.io/ToolAnalysisResultSheet/details/ntdsutil.htm
+    tags:
+    - attack.credential_access
+    - attack.t1003
+  name: Invocation of Active Directory Diagnostic Tool (ntdsutil.exe)
+

@@ -1,0 +1,25 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: matches
+    path: event/COMMAND_LINE
+    value: .*\\SYSVOL\\\.*\\policies\\\.*
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Detects Access to Domain Group Policies stored in SYSVOL
+    level: medium
+    references:
+    - https://adsecurity.org/?p=2288
+    - https://www.hybrid-analysis.com/sample/f2943f5e45befa52fb12748ca7171d30096e1d4fc3c365561497c618341299d5?environmentId=100
+    tags:
+    - attack.credential_access
+    - attack.t1003
+  name: Suspicious SYSVOL Domain Group Policy Access
+

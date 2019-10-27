@@ -1,0 +1,28 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '13'
+  - case sensitive: false
+    op: matches
+    path: Event/EventData/TargetObject
+    value: HKEY_USERS\\\.*\\Classes\\exefile\\shell\\runas\\command\\isolatedCommand
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Omer Yampel
+    description: Detects changes to HKCU:\Software\Classes\exefile\shell\runas\command\isolatedCommand
+    level: high
+    references:
+    - https://enigma0x3.net/2017/03/17/fileless-uac-bypass-using-sdclt-exe/
+    tags:
+    - attack.defense_evasion
+    - attack.privilege_escalation
+    - attack.t1088
+    - car.2019-04-001
+  name: UAC Bypass via sdclt
+

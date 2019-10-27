@@ -1,0 +1,81 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \regsvr32.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: \Temp\\
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \regsvr32.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \powershell.exe
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \regsvr32.exe
+      - op: or
+        rules:
+        - case sensitive: false
+          op: matches
+          path: event/COMMAND_LINE
+          value: .*/i:http.* scrobj\.dll
+        - case sensitive: false
+          op: matches
+          path: event/COMMAND_LINE
+          value: .*/i:ftp.* scrobj\.dll
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \wscript.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \regsvr32.exe
+    - op: and
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \EXCEL.EXE
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: '..\..\..\Windows\System32\regsvr32.exe '
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects various anomalies in relation to regsvr32.exe
+    level: high
+    references:
+    - https://subt0x10.blogspot.de/2017/04/bypass-application-whitelisting-script.html
+    tags:
+    - attack.t1117
+    - attack.defense_evasion
+    - attack.execution
+    - car.2019-04-002
+    - car.2019-04-003
+  name: Regsvr32 Anomaly
+

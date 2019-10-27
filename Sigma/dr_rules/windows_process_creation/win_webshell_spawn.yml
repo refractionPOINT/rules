@@ -1,0 +1,58 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \w3wp.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \httpd.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \nginx.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \php-cgi.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \cmd.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \sh.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \bash.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \powershell.exe
+respond:
+- action: report
+  metatdata:
+    author: Thomas Patzke
+    description: Web servers that spawn shell processes could be the result of a successfully
+      placed web shell or an other attack
+    level: high
+    tags:
+    - attack.privilege_escalation
+    - attack.persistence
+    - attack.t1100
+  name: Shells Spawned by Web Servers
+

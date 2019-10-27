@@ -1,0 +1,39 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/PARENT/FILE_PATH
+      value: \taskmgr.exe
+    - not: true
+      op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \resmon.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \mmc.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \taskmgr.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the creation of a process from Windows task manager
+    level: low
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+  name: Taskmgr as Parent
+

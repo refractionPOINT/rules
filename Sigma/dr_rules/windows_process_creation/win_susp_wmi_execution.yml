@@ -1,0 +1,47 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \wmic.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        value: .*/NODE:.*process call create .*
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' path AntiVirusProduct get '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' path FirewallProduct get '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: ' shadowcopy delete '
+respond:
+- action: report
+  metatdata:
+    author: Michael Haag, Florian Roth, juju4
+    description: Detects WMI executing suspicious commands
+    level: medium
+    references:
+    - https://digital-forensics.sans.org/blog/2010/06/04/wmic-draft/
+    - https://www.hybrid-analysis.com/sample/4be06ecd234e2110bd615649fe4a6fa95403979acf889d7e45a78985eb50acf9?environmentId=1
+    - https://blog.malwarebytes.com/threat-analysis/2016/04/rokku-ransomware/
+    tags:
+    - attack.execution
+    - attack.t1047
+    - car.2016-03-002
+  name: Suspicious WMI execution
+

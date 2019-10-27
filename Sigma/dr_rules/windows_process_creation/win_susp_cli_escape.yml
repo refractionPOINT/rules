@@ -1,0 +1,34 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: ^h^t^t^p
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: h"t"t"p
+respond:
+- action: report
+  metatdata:
+    author: juju4
+    description: Detects suspicious process that use escape characters
+    level: low
+    references:
+    - https://twitter.com/vysecurity/status/885545634958385153
+    - https://twitter.com/Hexacorn/status/885553465417756673
+    - https://twitter.com/Hexacorn/status/885570278637678592
+    - https://www.fireeye.com/blog/threat-research/2017/06/obfuscation-in-the-wild.html
+    - http://www.windowsinspired.com/understanding-the-command-line-string-and-arguments-received-by-a-windows-program/
+    tags:
+    - attack.defense_evasion
+    - attack.t1140
+  name: Suspicious Commandline Escape
+

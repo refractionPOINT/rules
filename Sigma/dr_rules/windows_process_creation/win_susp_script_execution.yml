@@ -1,0 +1,48 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \wscript.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \cscript.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: .jse
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: .vbe
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: .js
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: .vba
+respond:
+- action: report
+  metatdata:
+    author: Michael Haag
+    description: Detects suspicious file execution by wscript and cscript
+    level: medium
+    tags:
+    - attack.execution
+    - attack.t1064
+  name: WSF/JSE/JS/VBA/VBE File Execution
+

@@ -1,0 +1,59 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' asreproast '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' dump /service:krbtgt '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' kerberoast '
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' createnetonly /program:'
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' ptt /ticket:'
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' /impersonateuser:'
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' renew /ticket:'
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' asktgt /user:'
+    - case sensitive: false
+      op: contains
+      path: event/COMMAND_LINE
+      value: ' harvest /interval:'
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects command line parameters used by Rubeus hack tool
+    level: critical
+    references:
+    - https://www.harmj0y.net/blog/redteaming/from-kekeo-to-rubeus/
+    tags:
+    - attack.credential_access
+    - attack.t1003
+    - attack.s0005
+  name: Rubeus Hack Tool
+

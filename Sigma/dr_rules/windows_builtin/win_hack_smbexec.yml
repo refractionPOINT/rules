@@ -1,0 +1,33 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '7045'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/ServiceName
+    value: BTOBTO
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/ServiceFileName
+    value: \execute.bat
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Omer Faruk Celik
+    description: Detects the use of smbexec.py tool by detecting a specific service
+      installation
+    level: critical
+    references:
+    - https://blog.ropnop.com/using-credentials-to-own-windows-boxes-part-2-psexec-and-services/
+    tags:
+    - attack.lateral_movement
+    - attack.execution
+    - attack.t1077
+    - attack.t1035
+  name: smbexec.py Service Installation
+

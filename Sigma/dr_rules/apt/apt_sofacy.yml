@@ -1,0 +1,36 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: rundll32\.exe %APPDATA%\\\.*\.dat\",.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: rundll32\.exe %APPDATA%\\\.*\.dll\",#1
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects Trojan loader acitivty as used by APT28
+    level: critical
+    references:
+    - https://researchcenter.paloaltonetworks.com/2018/02/unit42-sofacy-attacks-multiple-government-entities/
+    - https://www.reverse.it/sample/e3399d4802f9e6d6d539e3ae57e7ea9a54610a7c4155a6541df8e94d67af086e?environmentId=100
+    - https://twitter.com/ClearskySec/status/960924755355369472
+    tags:
+    - attack.g0007
+    - attack.execution
+    - attack.t1059
+    - attack.defense_evasion
+    - attack.t1085
+    - car.2013-10-002
+  name: Sofacy Trojan Loader Activity
+

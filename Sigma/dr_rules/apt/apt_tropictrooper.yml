@@ -1,0 +1,25 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: contains
+    path: event/COMMAND_LINE
+    value: abCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc
+respond:
+- action: report
+  metatdata:
+    author: '@41thexplorer, Windows Defender ATP'
+    description: Detects TropicTrooper activity, an actor who targeted high-profile
+      organizations in the energy and food and beverage sectors in Asia
+    level: high
+    references:
+    - https://cloudblogs.microsoft.com/microsoftsecure/2018/11/28/windows-defender-atp-device-risk-score-exposes-new-cyberattack-drives-conditional-access-to-protect-networks/
+    tags:
+    - attack.execution
+    - attack.t1085
+  name: TropicTrooper Campaign November 2018
+

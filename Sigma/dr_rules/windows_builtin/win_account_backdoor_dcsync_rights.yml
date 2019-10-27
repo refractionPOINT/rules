@@ -1,0 +1,39 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '5136'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/LDAPDisplayName
+    value: ntSecurityDescriptor
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Value
+      value: 1131f6ad-9c07-11d1-f79f-00c04fc2dcd2
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/Value
+      value: 1131f6aa-9c07-11d1-f79f-00c04fc2dcd2
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: backdooring domain object to grant the rights associated with DCSync
+      to a regular user or machine account using Powerview\Add-DomainObjectAcl DCSync
+      Extended Right cmdlet, will allow to re-obtain the pwd hashes of any user/computer
+    level: critical
+    references:
+    - https://twitter.com/menasec1/status/1111556090137903104
+    - https://www.specterops.io/assets/resources/an_ace_up_the_sleeve.pdf
+    tags:
+    - attack.credential_access
+    - attack.persistence
+  name: Powerview Add-DomainObjectAcl DCSync AD Extend Right
+

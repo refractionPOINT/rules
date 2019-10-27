@@ -1,0 +1,54 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/PARENT/FILE_PATH
+      value: \powershell.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        value: .*schtasks.*/Create.*/SC .*ONLOGON.*/TN .*Updater.*/TR .*powershell.*
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        value: .*schtasks.*/Create.*/SC .*DAILY.*/TN .*Updater.*/TR .*powershell.*
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        value: .*schtasks.*/Create.*/SC .*ONIDLE.*/TN .*Updater.*/TR .*powershell.*
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        value: .*schtasks.*/Create.*/SC .*Updater.*/TN .*Updater.*/TR .*powershell.*
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis, @Karneades
+    description: Detects the creation of a schtask via PowerSploit or Empire Default
+      Configuration.
+    level: high
+    references:
+    - https://github.com/0xdeadbeefJERKY/PowerSploit/blob/8690399ef70d2cad10213575ac67e8fa90ddf7c3/Persistence/Persistence.psm1
+    - https://github.com/EmpireProject/Empire/blob/master/lib/modules/powershell/persistence/userland/schtasks.py
+    - https://github.com/EmpireProject/Empire/blob/master/lib/modules/powershell/persistence/elevated/schtasks.py
+    tags:
+    - attack.execution
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1053
+    - attack.t1086
+    - attack.s0111
+    - attack.g0022
+    - attack.g0060
+    - car.2013-08-001
+  name: Default PowerSploit and Empire Schtasks Persistence
+

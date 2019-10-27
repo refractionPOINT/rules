@@ -1,0 +1,28 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '7045'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/ServiceName
+    value: WerFaultSvc
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: This method detects malicious services mentioned in Turla PNG dropper
+      report by NCC Group in November 2018
+    level: critical
+    references:
+    - https://www.nccgroup.trust/uk/about-us/newsroom-and-events/blogs/2018/november/turla-png-dropper-is-back/
+    tags:
+    - attack.persistence
+    - attack.g0010
+    - attack.t1050
+  name: Turla PNG Dropper Service
+

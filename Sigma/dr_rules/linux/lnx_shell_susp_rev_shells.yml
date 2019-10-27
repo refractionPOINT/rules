@@ -1,0 +1,96 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is linux
+  - op: or
+    rules:
+    - op: is
+      path: event/COMMAND_LINE
+      value: BEGIN {s = "/inet/tcp/0/
+    - op: is
+      path: event/COMMAND_LINE
+      value: bash -i >& /dev/tcp/
+    - op: is
+      path: event/COMMAND_LINE
+      value: bash -i >& /dev/udp/
+    - op: is
+      path: event/COMMAND_LINE
+      value: sh -i >$ /dev/udp/
+    - op: is
+      path: event/COMMAND_LINE
+      value: sh -i >$ /dev/tcp/
+    - op: is
+      path: event/COMMAND_LINE
+      value: '&& while read line 0<&5; do'
+    - op: is
+      path: event/COMMAND_LINE
+      value: /bin/bash -c exec 5<>/dev/tcp/
+    - op: is
+      path: event/COMMAND_LINE
+      value: /bin/bash -c exec 5<>/dev/udp/
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'nc -e /bin/sh '
+    - op: is
+      path: event/COMMAND_LINE
+      value: /bin/sh | nc
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'rm -f backpipe; mknod /tmp/backpipe p && nc '
+    - op: is
+      path: event/COMMAND_LINE
+      value: ;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i))))
+    - op: is
+      path: event/COMMAND_LINE
+      value: ;STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;
+    - op: is
+      path: event/COMMAND_LINE
+      value: /bin/sh -i <&3 >&3 2>&3
+    - op: is
+      path: event/COMMAND_LINE
+      value: uname -a; w; id; /bin/bash -i
+    - op: is
+      path: event/COMMAND_LINE
+      value: $sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2); $stream.Write($sendbyte,0,$sendbyte.Length);
+        $stream.Flush()};
+    - op: is
+      path: event/COMMAND_LINE
+      value: ;os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.putenv('HISTFILE','/dev/null');
+    - op: is
+      path: event/COMMAND_LINE
+      value: .to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)
+    - op: is
+      path: event/COMMAND_LINE
+      value: ;while(cmd=c.gets);IO.popen(cmd,"r"){|io|c.print
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'socat exec:''bash -li'',pty,stderr,setsid,sigint,sane tcp:'
+    - op: is
+      path: event/COMMAND_LINE
+      value: rm -f /tmp/p; mknod /tmp/p p &&
+    - op: is
+      path: event/COMMAND_LINE
+      value: ' | /bin/bash | telnet '
+    - op: is
+      path: event/COMMAND_LINE
+      value: ',echo=0,raw tcp-listen:'
+    - op: is
+      path: event/COMMAND_LINE
+      value: 'nc -lvvp '
+    - op: is
+      path: event/COMMAND_LINE
+      value: xterm -display 1
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious shell commands or program code that may be exected
+      or used in command line to establish a reverse shell
+    level: high
+    references:
+    - https://alamot.github.io/reverse_shells/
+  name: Suspicious Reverse Shell Command Line
+

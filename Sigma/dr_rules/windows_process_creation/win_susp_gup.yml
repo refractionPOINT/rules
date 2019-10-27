@@ -1,0 +1,46 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \GUP.exe
+    - not: true
+      op: or
+      rules:
+      - case sensitive: false
+        op: matches
+        path: event/FILE_PATH
+        value: C:\\Users\\\.*\\AppData\\Local\\Notepad++\\updater\\gup\.exe
+      - case sensitive: false
+        op: matches
+        path: event/FILE_PATH
+        value: C:\\Users\\\.*\\AppData\\Roaming\\Notepad++\\updater\\gup\.exe
+      - case sensitive: false
+        op: is
+        path: event/FILE_PATH
+        value: C:\Program Files\Notepad++\updater\gup.exe
+      - case sensitive: false
+        op: is
+        path: event/FILE_PATH
+        value: C:\Program Files (x86)\Notepad++\updater\gup.exe
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects execution of the Notepad++ updater in a suspicious directory,
+      which is often used in DLL side-loading attacks
+    level: high
+    references:
+    - https://www.fireeye.com/blog/threat-research/2018/09/apt10-targeting-japanese-corporations-using-updated-ttps.html
+    tags:
+    - attack.defense_evasion
+    - attack.t1073
+  name: Suspicious GUP Usage
+

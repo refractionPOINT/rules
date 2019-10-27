@@ -1,0 +1,34 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/PARENT/FILE_PATH
+      value: \userinit.exe
+    - not: true
+      op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: \explorer.exe
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: \\netlogon\\
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth (rule), Samir Bousseaden (idea)
+    description: Detects the creation of a process from Windows task manager
+    level: high
+    references:
+    - https://twitter.com/SBousseaden/status/1139811587760562176
+  name: Suspicious Userinit Child Process
+

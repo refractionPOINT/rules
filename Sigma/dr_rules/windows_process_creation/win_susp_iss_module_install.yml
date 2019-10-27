@@ -1,0 +1,25 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: contains
+    path: event/COMMAND_LINE
+    value: '\APPCMD.EXE install module /name:'
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious IIS native-code module installations via command
+      line
+    level: medium
+    references:
+    - https://researchcenter.paloaltonetworks.com/2018/01/unit42-oilrig-uses-rgdoor-iis-backdoor-targets-middle-east/
+    tags:
+    - attack.persistence
+    - attack.t1100
+  name: IIS Native-Code Module Command Line Installation
+

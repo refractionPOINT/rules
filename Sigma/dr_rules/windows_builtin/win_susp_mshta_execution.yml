@@ -1,0 +1,72 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: mshta vbscript:CreateObject("Wscript.Shell")
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: mshta vbscript:Execute("Execute
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: mshta vbscript:CreateObject("Wscript.Shell").Run("mshta.exe
+    - op: and
+      rules:
+      - case sensitive: false
+        op: is
+        path: event/FILE_PATH
+        value: C:\Windows\system32\mshta.exe
+      - op: or
+        rules:
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: .jpg
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: .png
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: .lnk
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: .xls
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: .doc
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: .zip
+respond:
+- action: report
+  metatdata:
+    author: Diego Perez (@darkquassar)
+    description: Detection for mshta.exe suspicious execution patterns sometimes involving
+      file polyglotism
+    level: high
+    references:
+    - http://blog.sevagas.com/?Hacking-around-HTA-files
+    - https://0x00sec.org/t/clientside-exploitation-in-2018-how-pentesting-has-changed/7356
+    - https://docs.microsoft.com/en-us/dotnet/standard/data/xml/xslt-stylesheet-scripting-using-msxsl-script
+    - https://medium.com/tsscyber/pentesting-and-hta-bypassing-powershell-constrained-language-mode-53a42856c997
+    tags:
+    - attack.defense_evasion
+    - attack.t1140
+  name: MSHTA Suspicious Execution 01
+

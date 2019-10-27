@@ -1,0 +1,35 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \update.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        value: .*--processStart.*\.exe.*
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
+        value: ".*\u2013createShortcut.*\\.exe.*"
+respond:
+- action: report
+  metatdata:
+    author: Karneades / Markus Neis
+    description: Detects Possible Squirrel Packages Manager as Lolbin
+    level: high
+    references:
+    - http://www.hexacorn.com/blog/2019/03/30/sqirrel-packages-manager-as-a-lolbin-a-k-a-many-electron-apps-are-lolbins-by-default/
+    tags:
+    - attack.execution
+  name: Squirrel Lolbin
+

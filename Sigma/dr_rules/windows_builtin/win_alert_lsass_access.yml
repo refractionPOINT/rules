@@ -1,0 +1,26 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '1121'
+  - case sensitive: false
+    op: ends with
+    path: Event/EventData/Path
+    value: \lsass.exe
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Markus Neis
+    description: Detects Access to LSASS Process
+    level: high
+    references:
+    - https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-exploit-guard/attack-surface-reduction-exploit-guard?WT.mc_id=twitter
+    tags:
+    - attack.credential_access
+    - attack.t1003
+  name: LSASS Access Detected via Attack Surface Reduction
+

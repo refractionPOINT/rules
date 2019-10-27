@@ -1,0 +1,58 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \WINWORD.EXE
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \EXCEL.EXE
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \POWERPNT.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \MSPUB.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \VISIO.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \OUTLOOK.EXE
+    - case sensitive: false
+      op: matches
+      path: event/FILE_PATH
+      value: C:\\users\\\.*\.exe
+respond:
+- action: report
+  metatdata:
+    author: Jason Lynch
+    description: Detects an executable in the users directory started from Microsoft
+      Word, Excel, Powerpoint, Publisher or Visio
+    level: high
+    references:
+    - sha256=23160972c6ae07f740800fa28e421a81d7c0ca5d5cab95bc082b4a986fbac57c
+    - https://blog.morphisec.com/fin7-not-finished-morphisec-spots-new-campaign
+    tags:
+    - attack.execution
+    - attack.defense_evasion
+    - attack.t1059
+    - attack.t1202
+    - FIN7
+    - car.2013-05-002
+  name: MS Office Product Spawning Exe in User Dir
+

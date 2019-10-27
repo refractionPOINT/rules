@@ -1,0 +1,37 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '4624'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/LogonType
+    value: '10'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/SourceNetworkAddress
+      value: ::1
+    - case sensitive: false
+      op: is
+      path: Event/EventData/SourceNetworkAddress
+      value: 127.0.0.1
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Thomas Patzke
+    description: RDP login with localhost source address may be a tunnelled login
+    level: high
+    references:
+    - https://www.fireeye.com/blog/threat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html
+    tags:
+    - attack.lateral_movement
+    - attack.t1076
+    - car.2013-07-002
+  name: RDP Login from localhost
+

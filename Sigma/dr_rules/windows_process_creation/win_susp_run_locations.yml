@@ -1,0 +1,63 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: :\RECYCLER\\
+    - case sensitive: false
+      op: contains
+      path: event/FILE_PATH
+      value: :\SystemVolumeInformation\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\\Windows\\Tasks\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\\Windows\\debug\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\\Windows\\fonts\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\\Windows\\help\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\\Windows\\drivers\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\\Windows\\addins\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\\Windows\\cursors\\
+    - case sensitive: false
+      op: starts with
+      path: event/FILE_PATH
+      value: C:\\Windows\\system32\tasks\\
+respond:
+- action: report
+  metatdata:
+    author: juju4
+    description: Detects suspicious process run from unusual locations
+    level: medium
+    references:
+    - https://car.mitre.org/wiki/CAR-2013-05-002
+    tags:
+    - attack.defense_evasion
+    - attack.t1036
+    - car.2013-05-002
+  name: Suspicious Process Start Locations
+

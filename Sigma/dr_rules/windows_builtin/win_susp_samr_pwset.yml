@@ -1,0 +1,26 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '4738'
+  - not: true
+    op: exists
+    path: Event/EventData/PasswordLastSet
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Dimitrios Slamaris
+    description: Detects a possible remote NTLM hash change through SAMR API SamiChangePasswordUser()
+      or SamSetInformationUser(). "Audit User Account Management" in "Advanced Audit
+      Policy Configuration" has to be enabled in your local security policy / GPO
+      to see this events.
+    level: medium
+    tags:
+    - attack.credential_access
+    - attack.t1212
+  name: Possible Remote Password Change Through SAMR
+

@@ -1,0 +1,22 @@
+detect:
+  case sensitive: false
+  log type: wel
+  op: is
+  path: Event/System/EventID
+  target: log
+  value: '7045'
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects rare service installs that only appear a few times per time
+      frame and could reveal password dumpers, backdoor installs or other types of
+      malicious services
+    level: low
+    tags:
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1050
+    - car.2013-09-005
+  name: Rare Service Installs
+

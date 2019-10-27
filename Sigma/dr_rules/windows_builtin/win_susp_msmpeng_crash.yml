@@ -1,0 +1,47 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: or
+    rules:
+    - op: and
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/EventData/Source
+        value: Application Error
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '1000'
+    - op: and
+      rules:
+      - case sensitive: false
+        op: is
+        path: Event/EventData/Source
+        value: Windows Error Reporting
+      - case sensitive: false
+        op: is
+        path: Event/System/EventID
+        value: '1001'
+  - op: and
+    rules:
+    - MsMpEng.exe
+    - mpengine.dll
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: This rule detects a suspicious crash of the Microsoft Malware Protection
+      Engine
+    level: high
+    references:
+    - https://bugs.chromium.org/p/project-zero/issues/detail?id=1252&desc=5
+    - https://technet.microsoft.com/en-us/library/security/4022344
+    tags:
+    - attack.defense_evasion
+    - attack.t1089
+    - attack.t1211
+  name: Microsoft Malware Protection Engine Crash
+

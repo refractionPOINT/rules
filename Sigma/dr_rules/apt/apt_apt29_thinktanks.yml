@@ -1,0 +1,26 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: contains
+    path: event/COMMAND_LINE
+    value: -noni -ep bypass $
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: This method detects a suspicious powershell command line combination
+      as used by APT29 in a campaign against US think tanks
+    level: critical
+    references:
+    - https://cloudblogs.microsoft.com/microsoftsecure/2018/12/03/analysis-of-cyberattack-on-u-s-think-tanks-non-profits-public-sector-by-unidentified-attackers/
+    tags:
+    - attack.execution
+    - attack.g0016
+    - attack.t1086
+  name: APT29
+

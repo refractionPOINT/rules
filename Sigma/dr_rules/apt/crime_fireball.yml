@@ -1,0 +1,27 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: matches
+    path: event/COMMAND_LINE
+    value: .*\\rundll32\.exe .*,InstallArcherSvc
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects Archer malware invocation via rundll32
+    level: high
+    references:
+    - https://www.virustotal.com/en/file/9b4971349ae85aa09c0a69852ed3e626c954954a3927b3d1b6646f139b930022/analysis/
+    - https://www.hybrid-analysis.com/sample/9b4971349ae85aa09c0a69852ed3e626c954954a3927b3d1b6646f139b930022?environmentId=100
+    tags:
+    - attack.execution
+    - attack.t1059
+    - attack.defense_evasion
+    - attack.t1085
+  name: Fireball Archer Install
+

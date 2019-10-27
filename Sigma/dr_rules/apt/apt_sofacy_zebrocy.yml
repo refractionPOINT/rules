@@ -1,0 +1,25 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: ends with
+    path: event/COMMAND_LINE
+    value: cmd.exe /c SYSTEMINFO & TASKLIST
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects Sofacy's Zebrocy malware execution
+    level: critical
+    references:
+    - https://app.any.run/tasks/54acca9a-394e-4384-a0c8-91a96d36c81d
+    tags:
+    - attack.execution
+    - attack.g0020
+    - attack.t1059
+  name: Sofacy Zebrocy
+

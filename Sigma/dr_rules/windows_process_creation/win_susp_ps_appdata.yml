@@ -1,0 +1,32 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .* /c powershell.*\\AppData\\Local\\\.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .* /c powershell.*\\AppData\\Roaming\\\.*
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a suspicious command line execution that invokes PowerShell
+      with reference to an AppData folder
+    level: medium
+    references:
+    - https://twitter.com/JohnLaTwC/status/1082851155481288706
+    - https://app.any.run/tasks/f87f1c4e-47e2-4c46-9cf4-31454c06ce03
+    tags:
+    - attack.execution
+    - attack.t1086
+  name: PowerShell Script Run in AppData
+

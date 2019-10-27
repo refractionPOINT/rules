@@ -1,0 +1,74 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/PARENT/FILE_PATH
+        value: \apache
+      - case sensitive: false
+        op: contains
+        path: event/PARENT/FILE_PATH
+        value: \tomcat
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \w3wp.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \php-cgi.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \nginx.exe
+      - case sensitive: false
+        op: ends with
+        path: event/PARENT/FILE_PATH
+        value: \httpd.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: whoami
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 'net user '
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: 'ping -n '
+      - case sensitive: false
+        op: ends with
+        path: event/COMMAND_LINE
+        value: systeminfo
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: '&cd&echo'
+      - case sensitive: false
+        op: contains
+        path: event/COMMAND_LINE
+        value: cd /d
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects certain command line parameters often used during reconnaissance
+      activity via web shells
+    level: high
+    tags:
+    - attack.privilege_escalation
+    - attack.persistence
+    - attack.t1100
+  name: Webshell Detection With Command Line Keywords
+

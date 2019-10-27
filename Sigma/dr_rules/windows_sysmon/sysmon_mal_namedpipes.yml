@@ -1,0 +1,87 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '17'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '18'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \isapi_http
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \isapi_dg
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \isapi_dg2
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \sdlrpc
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \ahexec
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \winsession
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \lsassw
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \46a676ab7f179e511e30dd2dc41bd388
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \9f81f59bc58452127884ce513865ed20
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \e710f28d59aa529d6792ca6ff0ca1b34
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \rpchlp_3
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \NamePipe_MoreWindows
+    - case sensitive: false
+      op: is
+      path: Event/EventData/PipeName
+      value: \pcheap_reuse
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/PipeName
+      value: \msagent_
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects the creation of a named pipe used by known APT malware
+    level: critical
+    references:
+    - Various sources
+    tags:
+    - attack.defense_evasion
+    - attack.privilege_escalation
+    - attack.t1055
+  name: Malicious Named Pipe
+

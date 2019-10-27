@@ -1,0 +1,30 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '7'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/Image
+    value: C:\Windows\System32\wbem\WmiPrvSE.exe
+  - case sensitive: false
+    op: is
+    path: Event/EventData/ImageLoaded
+    value: wbemcons.dll
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Thomas Patzke
+    description: Detects WMI command line event consumers
+    level: high
+    references:
+    - https://www.eideon.com/2018-03-02-THL03-WMIBackdoors/
+    tags:
+    - attack.t1084
+    - attack.persistence
+  name: WMI Persistence - Command Line Event Consumer
+

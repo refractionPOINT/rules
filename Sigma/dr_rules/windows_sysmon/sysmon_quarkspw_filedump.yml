@@ -1,0 +1,26 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '11'
+  - case sensitive: false
+    op: matches
+    path: Event/EventData/TargetFilename
+    value: .*\\AppData\\Local\\Temp\\SAM-.*\.dmp.*
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a dump file written by QuarksPwDump password dumper
+    level: critical
+    references:
+    - https://jpcertcc.github.io/ToolAnalysisResultSheet/details/QuarksPWDump.htm
+    tags:
+    - attack.credential_access
+    - attack.t1003
+  name: QuarksPwDump Dump File
+

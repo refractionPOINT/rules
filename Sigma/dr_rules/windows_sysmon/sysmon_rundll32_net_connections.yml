@@ -1,0 +1,112 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '3'
+    - case sensitive: false
+      op: ends with
+      path: Event/EventData/Image
+      value: \rundll32.exe
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Initiated
+      value: 'true'
+  - not: true
+    op: or
+    rules:
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: '10.'
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 192.168.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.16.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.17.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.18.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.19.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.20.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.21.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.22.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.23.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.24.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.25.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.26.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.27.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.28.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.29.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.30.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: 172.31.
+    - case sensitive: false
+      op: starts with
+      path: Event/EventData/DestinationIp
+      value: '127.'
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a rundll32 that communicates with public IP addresses
+    level: medium
+    references:
+    - https://www.hybrid-analysis.com/sample/759fb4c0091a78c5ee035715afe3084686a8493f39014aea72dae36869de9ff6?environmentId=100
+    tags:
+    - attack.t1085
+    - attack.defense_evasion
+    - attack.execution
+  name: Rundll32 Internet Connection
+

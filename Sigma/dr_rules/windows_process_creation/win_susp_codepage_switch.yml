@@ -1,0 +1,29 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: chcp.* 936
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: chcp.* 1258
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects a code page switch in command line or batch scripts to a
+      rare language
+    level: medium
+    references:
+    - https://docs.microsoft.com/en-us/windows/win32/intl/code-page-identifiers
+    - https://twitter.com/cglyer/status/1183756892952248325
+  name: Suspicious Code Page Switch
+

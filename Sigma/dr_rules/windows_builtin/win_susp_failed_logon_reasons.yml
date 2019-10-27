@@ -1,0 +1,57 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4625'
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '4776'
+  - op: or
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Status
+      value: '0xC0000072'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Status
+      value: '0xC000006F'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Status
+      value: '0xC0000070'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Status
+      value: '0xC0000413'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Status
+      value: '0xC000018C'
+    - case sensitive: false
+      op: is
+      path: Event/EventData/Status
+      value: '0xC000015B'
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: This method uses uncommon error codes on failed logons to determine
+      suspicious activity and tampering with accounts that have been disabled or somehow
+      restricted.
+    level: high
+    references:
+    - https://twitter.com/SBousseaden/status/1101431884540710913
+    tags:
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1078
+  name: Account Tampering - Suspicious Failed Logon Reasons
+

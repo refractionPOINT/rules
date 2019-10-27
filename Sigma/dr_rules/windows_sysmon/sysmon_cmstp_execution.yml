@@ -1,0 +1,80 @@
+detect:
+  log type: wel
+  op: or
+  rules:
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '12'
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \cmmgr32.exe
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '13'
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/TargetObject
+      value: \cmmgr32.exe
+  - op: and
+    rules:
+    - case sensitive: false
+      op: is
+      path: Event/System/EventID
+      value: '10'
+    - case sensitive: false
+      op: contains
+      path: Event/EventData/CallTrace
+      value: cmlua.dll
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Nik Seetharaman
+    description: Detects various indicators of Microsoft Connection Manager Profile
+      Installer execution
+    level: high
+    references:
+    - http://www.endurant.io/cmstp/detecting-cmstp-enabled-code-execution-and-uac-bypass-with-sysmon/
+    tags:
+    - attack.defense_evasion
+    - attack.execution
+    - attack.t1191
+    - attack.g0069
+    - car.2019-04-001
+  name: CMSTP Execution
+
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - case sensitive: false
+    op: ends with
+    path: event/PARENT/FILE_PATH
+    value: \cmstp.exe
+respond:
+- action: report
+  metatdata:
+    author: Nik Seetharaman
+    description: Detects various indicators of Microsoft Connection Manager Profile
+      Installer execution
+    level: high
+    references:
+    - http://www.endurant.io/cmstp/detecting-cmstp-enabled-code-execution-and-uac-bypass-with-sysmon/
+    tags:
+    - attack.defense_evasion
+    - attack.execution
+    - attack.t1191
+    - attack.g0069
+    - car.2019-04-001
+  name: CMSTP Execution
+

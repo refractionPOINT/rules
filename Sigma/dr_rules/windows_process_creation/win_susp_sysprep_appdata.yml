@@ -1,0 +1,31 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: or
+    rules:
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: .*\\sysprep\.exe .*\\AppData\\\.*
+    - case sensitive: false
+      op: matches
+      path: event/COMMAND_LINE
+      value: sysprep\.exe .*\\AppData\\\.*
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth
+    description: Detects suspicious sysprep process start with AppData folder as target
+      (as used by Trojan Syndicasec in Thrip report by Symantec)
+    level: medium
+    references:
+    - https://www.symantec.com/blogs/threat-intelligence/thrip-hits-satellite-telecoms-defense-targets
+    - https://app.any.run/tasks/61a296bb-81ad-4fee-955f-3b399f4aaf4b
+    tags:
+    - attack.execution
+  name: Sysprep on AppData Folder
+

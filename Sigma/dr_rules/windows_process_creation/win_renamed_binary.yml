@@ -1,0 +1,90 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - not: true
+    op: or
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \cmd.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \powershell.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \powershell_ise.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \psexec.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \psexec64.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \cscript.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \wscript.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \mshta.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \regsvr32.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \wmic.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \certutil.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \rundll32.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \cmstp.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \msiexec.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \7z.exe
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \winrar.exe
+respond:
+- action: report
+  metatdata:
+    author: Matthew Green - @mgreen27
+    description: Detects the execution of a renamed binary often used by attackers
+      or malware leveraging new Sysmon OriginalFileName datapoint.
+    level: medium
+    references:
+    - https://attack.mitre.org/techniques/T1036/
+    - https://mgreen27.github.io/posts/2019/05/12/BinaryRename.html
+    - https://mgreen27.github.io/posts/2019/05/29/BinaryRename2.html
+    tags:
+    - attack.t1036
+    - attack.defense_evasion
+  name: Renamed Binary
+

@@ -1,0 +1,35 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '4624'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/LogonType
+    value: '10'
+  - case sensitive: false
+    op: is
+    path: Event/EventData/AuthenticationPackageName
+    value: Negotiate
+  - case sensitive: false
+    op: starts with
+    path: Event/EventData/AccountName
+    value: Admin-
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: juju4
+    description: Detect remote login by Administrator user depending on internal pattern
+    level: low
+    references:
+    - https://car.mitre.org/wiki/CAR-2016-04-005
+    tags:
+    - attack.lateral_movement
+    - attack.t1078
+    - car.2016-04-005
+  name: Admin User Remote Logon
+

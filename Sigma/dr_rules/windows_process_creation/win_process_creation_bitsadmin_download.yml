@@ -1,0 +1,33 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \bitsadmin.exe
+    - case sensitive: false
+      op: is
+      path: event/COMMAND_LINE
+      value: /transfer
+respond:
+- action: report
+  metatdata:
+    author: Michael Haag
+    description: Detects usage of bitsadmin downloading a file
+    level: medium
+    references:
+    - https://blog.netspi.com/15-ways-to-download-a-file/#bitsadmin
+    - https://isc.sans.edu/diary/22264
+    tags:
+    - attack.defense_evasion
+    - attack.persistence
+    - attack.t1197
+    - attack.s0190
+  name: Bitsadmin Download
+

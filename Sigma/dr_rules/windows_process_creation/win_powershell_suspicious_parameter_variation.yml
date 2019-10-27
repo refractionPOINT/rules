@@ -1,0 +1,188 @@
+detect:
+  events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
+  op: and
+  rules:
+  - op: is windows
+  - op: and
+    rules:
+    - case sensitive: false
+      op: ends with
+      path: event/FILE_PATH
+      value: \Powershell.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -windowstyle h '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -windowstyl h'
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -windowsty h'
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -windowst h'
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -windows h'
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -windo h'
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -wind h'
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -win h'
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -wi h'
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -win h '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -win hi '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -win hid '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -win hidd '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -win hidde '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -NoPr '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -NoPro '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -NoProf '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -NoProfi '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -NoProfil '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -nonin '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -nonint '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -noninte '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -noninter '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -nonintera '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -noninterac '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -noninteract '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -noninteracti '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -noninteractiv '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -ec '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -encodedComman '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -encodedComma '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -encodedComm '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -encodedCom '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -encodedCo '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -encodedC '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -encoded '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -encode '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -encod '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -enco '
+      - case sensitive: false
+        op: is
+        path: event/COMMAND_LINE
+        value: ' -en '
+respond:
+- action: report
+  metatdata:
+    author: Florian Roth (rule), Daniel Bohannon (idea), Roberto Rodriguez (Fix)
+    description: Detects suspicious PowerShell invocation with a parameter substring
+    level: high
+    references:
+    - http://www.danielbohannon.com/blog-1/2017/3/12/powershell-execution-argument-obfuscation-how-it-can-make-detection-easier
+    tags:
+    - attack.execution
+    - attack.t1086
+  name: Suspicious PowerShell Parameter Substring
+

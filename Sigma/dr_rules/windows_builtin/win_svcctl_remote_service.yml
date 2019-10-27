@@ -1,0 +1,35 @@
+detect:
+  log type: wel
+  op: and
+  rules:
+  - case sensitive: false
+    op: is
+    path: Event/System/EventID
+    value: '5145'
+  - case sensitive: false
+    op: matches
+    path: Event/EventData/ShareName
+    value: \\\.*\\IPC\$
+  - case sensitive: false
+    op: is
+    path: Event/EventData/RelativeTargetName
+    value: svcctl
+  - case sensitive: false
+    op: contains
+    path: Event/EventData/Accesses
+    value: WriteData
+  target: log
+respond:
+- action: report
+  metatdata:
+    author: Samir Bousseaden
+    description: Detects remote remote service activity via remote access to the svcctl
+      named pipe
+    level: medium
+    references:
+    - https://blog.menasec.net/2019/03/threat-hunting-26-remote-windows.html
+    tags:
+    - attack.lateral_movement
+    - attack.persistence
+  name: Remote Service Activity Detected via SVCCTL named pipe
+
