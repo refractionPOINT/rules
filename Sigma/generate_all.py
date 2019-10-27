@@ -6,7 +6,12 @@ def main():
                'windows/process_creation',
                'windows/sysmon',
                'windows/other',
-               'windows/malware', ):
+               'windows/malware',
+               'network',
+               'linux',
+               'linux/auditd',
+               'compliance',
+               'apt', ):
         outDir = d.replace( '/', '_' )
         print( "Creating dir: %s" % ( outDir, ) )
         os.system( 'mkdir ./dr_rules/%s' % ( outDir, ) )
