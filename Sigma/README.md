@@ -11,3 +11,7 @@ python3 ./generate_all.py
 
 The rules are not authored by the LimaCharlie team, to find the original
 rule and author see [the originals](https://github.com/Neo23x0/sigma/tree/master/rules).
+
+Many of the rules for Windows are based on Windows Event Logs. These are not collected by
+LimaCharlie by default, but they can be collected automatically using the [External Logs](https://doc.limacharlie.io/en/master/external_logs/)
+service. Most Windows Event Logs are located in: `c:\windows\system32\winevt\logs\`.
