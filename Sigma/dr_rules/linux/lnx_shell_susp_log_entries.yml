@@ -21,7 +21,7 @@ detect:
       value: imuxsock begins to drop messages
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious log entries in Linux log files
     level: medium

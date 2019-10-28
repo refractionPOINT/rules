@@ -11,7 +11,7 @@ detect:
     value: ps.exe -accepteula
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects renamed SysInternals tool execution with a binary named ps.exe
       as used by Dragonfly APT group and documented in TA17-293A report

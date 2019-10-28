@@ -24,7 +24,7 @@ detect:
       value: Shell32.dll
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious Rundll32 execution from control.exe as used by
       Equation Group and Exploit Kits

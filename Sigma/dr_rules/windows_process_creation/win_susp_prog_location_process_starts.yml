@@ -37,7 +37,7 @@ detect:
       value: \Windows\debug\\
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects programs running in suspicious files system locations
     level: high

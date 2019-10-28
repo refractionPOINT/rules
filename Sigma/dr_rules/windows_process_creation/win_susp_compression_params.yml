@@ -40,7 +40,7 @@ detect:
       value: C:\Program
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Samir Bousseaden
     description: Detects suspicious command line arguments of common data compression
       tools

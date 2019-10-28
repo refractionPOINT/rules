@@ -37,7 +37,7 @@ detect:
       value: \mshta.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: juju4
     description: Detects execution of executables that can be used to bypass Applocker
       whitelisting

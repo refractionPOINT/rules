@@ -65,7 +65,7 @@ detect:
         value: '..\..\..\Windows\System32\regsvr32.exe '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects various anomalies in relation to regsvr32.exe
     level: high

@@ -68,7 +68,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Samir Bousseaden
     description: This detection excludes known namped pipes accessible remotely and
       notify on newly observed ones, may help to detect lateral movement and remote

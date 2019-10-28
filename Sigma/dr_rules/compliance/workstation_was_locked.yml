@@ -7,7 +7,7 @@ detect:
   value: '4800'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Alexandr Yampolskyi, SOC Prime
     description: Automatically lock workstation sessions after a standard period of
       inactivity. The case is not applicable for Unix OS. Supported OS - Windows 2008

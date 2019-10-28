@@ -17,7 +17,7 @@ detect:
       value: .*/change.*/TN.*/RU.*/RP.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Olaf Hartong
     description: Detects Task Scheduler .job import arbitrary DACL write\par
     level: high

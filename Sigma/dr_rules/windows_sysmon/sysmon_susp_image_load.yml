@@ -23,7 +23,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects Loading of samlib.dll, WinSCard.dll from untypical process
       e.g. through process hollowing by Mimikatz

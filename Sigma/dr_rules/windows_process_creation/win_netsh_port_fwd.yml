@@ -11,7 +11,7 @@ detect:
     value: 'netsh interface portproxy add v4tov4 '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects netsh commands that configure a port forwarding
     level: medium

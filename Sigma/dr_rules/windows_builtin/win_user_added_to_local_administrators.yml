@@ -26,7 +26,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: This rule triggers on user accounts that are added to the local Administrators
       group, which could be legitimate activity or a sign of privilege escalation

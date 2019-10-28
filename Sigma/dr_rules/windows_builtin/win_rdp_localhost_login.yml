@@ -23,7 +23,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke
     description: RDP login with localhost source address may be a tunnelled login
     level: high

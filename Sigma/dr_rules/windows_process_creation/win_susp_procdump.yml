@@ -23,7 +23,7 @@ detect:
       value: ' -ma ls'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious uses of the SysInternals Procdump utility by using
       a special command line parameter in combination with the lsass.exe process.

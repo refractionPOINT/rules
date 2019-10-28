@@ -31,7 +31,7 @@ detect:
         value: ' set-log '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Ecco
     description: Detects clearing or configuration of eventlogs uwing wevtutil. Might
       be used by ransomwares during the attack (seen by NotPetya and others)

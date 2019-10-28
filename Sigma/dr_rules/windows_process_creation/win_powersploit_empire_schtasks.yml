@@ -31,7 +31,7 @@ detect:
         value: .*schtasks.*/Create.*/SC .*Updater.*/TN .*Updater.*/TR .*powershell.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis, @Karneades
     description: Detects the creation of a schtask via PowerSploit or Empire Default
       Configuration.

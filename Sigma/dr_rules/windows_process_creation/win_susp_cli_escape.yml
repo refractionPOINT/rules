@@ -17,7 +17,7 @@ detect:
       value: h"t"t"p
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: juju4
     description: Detects suspicious process that use escape characters
     level: low

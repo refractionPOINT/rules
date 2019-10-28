@@ -31,7 +31,7 @@ detect:
         value: new-object net.webclient).downloadfile(
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a Powershell process that contains download commands in its
       command line string

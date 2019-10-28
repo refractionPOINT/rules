@@ -11,7 +11,7 @@ detect:
     value: cyzfc.dat, PointFunctionCall
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: '@41thexplorer, Windows Defender ATP'
     description: A sigma rule detecting an unidetefied attacker who used phishing
       emails to target high profile orgs on November 2018. The Actor shares some TTPs
@@ -39,7 +39,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: '@41thexplorer, Windows Defender ATP'
     description: A sigma rule detecting an unidetefied attacker who used phishing
       emails to target high profile orgs on November 2018. The Actor shares some TTPs

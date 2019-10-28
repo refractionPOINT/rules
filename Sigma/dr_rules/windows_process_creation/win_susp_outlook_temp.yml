@@ -11,7 +11,7 @@ detect:
     value: \Temporary Internet Files\Content.Outlook\\
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a suspicious program execution in Outlook temp folder
     level: high

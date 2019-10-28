@@ -11,7 +11,7 @@ detect:
     value: cmd.exe /c SYSTEMINFO & TASKLIST
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects Sofacy's Zebrocy malware execution
     level: critical

@@ -27,7 +27,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke
     description: Detects wceaux.dll access while WCE pass-the-hash remote command
       execution on source host

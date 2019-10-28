@@ -23,7 +23,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious failed logins with different user accounts from
       a single source system

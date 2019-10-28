@@ -27,7 +27,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the suspicious RUN keys created by software located in Download
       or temporary Outlook/Internet Explorer directories

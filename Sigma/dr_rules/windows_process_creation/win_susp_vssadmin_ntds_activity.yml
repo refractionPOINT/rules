@@ -37,7 +37,7 @@ detect:
       value: esentutl\.exe /y /vss .*\\ntds\.dit.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Michael Haag
     description: Detects suspicious commands that could be related to activity that
       uses volume shadow copy to steal and retrieve hashes from the NTDS.dit file

@@ -63,7 +63,7 @@ detect:
       path: event/PARENT/FILE_PATH
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: vburov
     description: Detect suspicious parent processes of well-known Windows processes
     level: low

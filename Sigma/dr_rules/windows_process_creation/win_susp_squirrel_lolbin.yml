@@ -23,7 +23,7 @@ detect:
         value: ".*\u2013createShortcut.*\\.exe.*"
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Karneades / Markus Neis
     description: Detects Possible Squirrel Packages Manager as Lolbin
     level: high

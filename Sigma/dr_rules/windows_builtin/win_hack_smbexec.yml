@@ -17,7 +17,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Omer Faruk Celik
     description: Detects the use of smbexec.py tool by detecting a specific service
       installation

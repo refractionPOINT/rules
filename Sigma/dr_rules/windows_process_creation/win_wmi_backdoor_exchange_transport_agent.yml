@@ -11,7 +11,7 @@ detect:
     value: \EdgeTransport.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a WMi backdoor in Exchange Transport Agents via WMi event
       filters

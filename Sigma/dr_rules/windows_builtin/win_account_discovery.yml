@@ -61,7 +61,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Samir Bousseaden
     description: Detect priv users or groups recon based on 4661 eventid and known
       privileged users or groups SIDs

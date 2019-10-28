@@ -14,7 +14,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, @0xrawsec
     description: Detects the creation of an ADS data stream that contains an executable
       (non-empty imphash)

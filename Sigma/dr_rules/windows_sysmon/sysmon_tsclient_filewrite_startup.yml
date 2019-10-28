@@ -17,7 +17,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Samir Bousseaden
     description: Detects the usage of tsclient share to place a backdoor on the RDP
       source machine's startup folder

@@ -24,7 +24,7 @@ detect:
       value: NT AUTHORITY\SYSTEM
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the creation of scheduled tasks in user session
     level: low

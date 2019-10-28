@@ -28,7 +28,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Karneades
     description: Detects persistence registry keys
     level: critical

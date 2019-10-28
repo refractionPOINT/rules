@@ -27,7 +27,7 @@ detect:
         value: import
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: '@neu5ron'
     description: Detects, possibly, malicious unauthorized usage of bcdedit.exe
     level: medium

@@ -17,7 +17,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Patryk Prauze - ING Tech
     description: Detects usage of mimikatz through WinRM protocol by monitoring access
       to lsass process by wsmprovhost.exe.

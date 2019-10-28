@@ -37,7 +37,7 @@ detect:
       path: event/PARENT/FILE_PATH
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a suspicious svchost process start
     level: high

@@ -233,7 +233,7 @@ detect:
           value: \Microsoft.NET\\
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the execution of an executable that is typically used by
       PlugX for DLL side loading started from an uncommon location

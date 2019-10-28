@@ -42,7 +42,7 @@ detect:
       value: Corrupted MAC on input
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious SSH / SSHD error messages that indicate a fatal
       or suspicious error that could be caused by exploiting attempts

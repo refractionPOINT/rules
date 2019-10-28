@@ -23,7 +23,7 @@ detect:
       value: \AppData\Roaming\MICROS~1\Windows\Caches\NavShExt.dll,Setting
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects Elise backdoor acitivty as used by APT32
     level: critical

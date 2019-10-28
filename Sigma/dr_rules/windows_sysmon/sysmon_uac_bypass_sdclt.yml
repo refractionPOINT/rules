@@ -13,7 +13,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Omer Yampel
     description: Detects changes to HKCU:\Software\Classes\exefile\shell\runas\command\isolatedCommand
     level: high

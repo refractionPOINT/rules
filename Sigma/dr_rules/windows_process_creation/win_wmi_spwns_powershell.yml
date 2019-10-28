@@ -17,7 +17,7 @@ detect:
       value: \powershell.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis / @Karneades
     description: Detects WMI spawning PowerShell
     level: high

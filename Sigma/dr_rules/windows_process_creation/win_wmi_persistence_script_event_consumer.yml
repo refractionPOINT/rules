@@ -17,7 +17,7 @@ detect:
       value: C:\Windows\System32\svchost.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke
     description: Detects WMI script event consumers
     level: high

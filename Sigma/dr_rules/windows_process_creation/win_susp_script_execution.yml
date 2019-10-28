@@ -37,7 +37,7 @@ detect:
         value: .vba
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Michael Haag
     description: Detects suspicious file execution by wscript and cscript
     level: medium

@@ -21,7 +21,7 @@ detect:
       value: 6OkZyb21CYXNlNjRTdHJpbm
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a base64 encoded FromBase64String keyword in a process command
       line

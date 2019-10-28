@@ -77,7 +77,7 @@ detect:
       value: netstat -an
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Markus Neis
     description: Detects a set of commands often used in recon stages by different
       attack groups

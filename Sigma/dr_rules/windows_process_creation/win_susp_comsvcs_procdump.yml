@@ -23,7 +23,7 @@ detect:
         value: .*comsvcs.*MiniDumpW.*full.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Modexp (idea)
     description: Detects process memory dump via comsvcs.dll and rundll32
     level: medium

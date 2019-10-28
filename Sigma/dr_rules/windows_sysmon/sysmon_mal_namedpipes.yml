@@ -73,7 +73,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the creation of a named pipe used by known APT malware
     level: critical

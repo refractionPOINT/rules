@@ -24,7 +24,7 @@ detect:
         value: \\netlogon\\
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth (rule), Samir Bousseaden (idea)
     description: Detects the creation of a process from Windows task manager
     level: high

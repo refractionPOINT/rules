@@ -108,7 +108,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a Powershell process that opens network connections - check
       for suspicious target ports and target systems - adjust to your environment

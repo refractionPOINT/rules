@@ -45,7 +45,7 @@ detect:
       value: \Windows\addins\\
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a suspicious exection from an uncommon folder
     level: high

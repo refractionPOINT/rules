@@ -32,7 +32,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: '@neu5ron'
     description: Detect scenarios where a potentially unauthorized application or
       user is modifying the system time.

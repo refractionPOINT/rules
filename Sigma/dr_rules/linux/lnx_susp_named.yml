@@ -18,7 +18,7 @@ detect:
       value: ' exiting (due to fatal error)'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious DNS error messages that indicate a fatal or suspicious
       error that could be caused by exploiting attempts

@@ -17,7 +17,7 @@ detect:
       value: chcp.* 1258
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a code page switch in command line or batch scripts to a
       rare language

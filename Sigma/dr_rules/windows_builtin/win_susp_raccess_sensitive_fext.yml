@@ -63,7 +63,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Samir Bousseaden
     description: Detects known sensitive file extensions
     level: high

@@ -36,7 +36,7 @@ detect:
       value: shred .*bash_history
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Patrick Bareiss
     description: Clear command history in linux which is used for defense evasion.
     level: high

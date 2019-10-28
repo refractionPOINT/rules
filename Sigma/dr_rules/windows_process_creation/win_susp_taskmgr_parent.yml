@@ -28,7 +28,7 @@ detect:
         value: \taskmgr.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the creation of a process from Windows task manager
     level: low

@@ -32,7 +32,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: iwillkeepwatch
     description: Detects the addition of a SSP to the registry. Upon a reboot or API
       call, SSP DLLs gain access to encrypted and plaintext passwords stored in Windows.

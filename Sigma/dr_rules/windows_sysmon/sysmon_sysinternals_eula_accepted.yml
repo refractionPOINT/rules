@@ -13,7 +13,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects the usage of Sysinternals Tools due to accepteula key being
       added to Registry
@@ -35,7 +35,7 @@ detect:
     value: ' -accepteula'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects the usage of Sysinternals Tools due to accepteula key being
       added to Registry

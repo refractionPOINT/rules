@@ -33,7 +33,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the keyboard preload installation with a suspicious keyboard
       layout, e.g. Chinese, Iranian or Vietnamese layout load in user session on systems

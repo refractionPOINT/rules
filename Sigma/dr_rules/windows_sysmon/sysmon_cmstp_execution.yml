@@ -35,7 +35,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Nik Seetharaman
     description: Detects various indicators of Microsoft Connection Manager Profile
       Installer execution
@@ -63,7 +63,7 @@ detect:
     value: \cmstp.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Nik Seetharaman
     description: Detects various indicators of Microsoft Connection Manager Profile
       Installer execution

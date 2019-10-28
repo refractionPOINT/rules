@@ -73,7 +73,7 @@ detect:
       value: /var/named/
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects program executions in suspicious non-program folders related
       to malware or hacking activity

@@ -19,7 +19,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Markus Neis
     description: Detects Chafer activity attributed to OilRig as reported in Nyotron
       report in March 2018
@@ -56,7 +56,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Markus Neis
     description: Detects Chafer activity attributed to OilRig as reported in Nyotron
       report in March 2018
@@ -109,7 +109,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Markus Neis
     description: Detects Chafer activity attributed to OilRig as reported in Nyotron
       report in March 2018
@@ -168,7 +168,7 @@ detect:
         value: \Autoit
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Markus Neis
     description: Detects Chafer activity attributed to OilRig as reported in Nyotron
       report in March 2018

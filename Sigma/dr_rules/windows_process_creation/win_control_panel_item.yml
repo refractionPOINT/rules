@@ -24,7 +24,7 @@ detect:
         value: '%System%'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Kyaw Min Thein
     description: Detects the use of a control panel item (.cpl) outside of the System32
       folder

@@ -23,7 +23,7 @@ detect:
         value: OiJAAAAYInlM
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects Base64 encoded Shellcode
     level: critical

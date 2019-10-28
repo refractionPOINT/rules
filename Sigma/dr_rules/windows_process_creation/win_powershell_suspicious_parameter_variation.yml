@@ -175,7 +175,7 @@ detect:
         value: ' -en '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth (rule), Daniel Bohannon (idea), Roberto Rodriguez (Fix)
     description: Detects suspicious PowerShell invocation with a parameter substring
     level: high

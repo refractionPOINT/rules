@@ -39,7 +39,7 @@ detect:
       value: C:\\users\\\.*\.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Jason Lynch
     description: Detects an executable in the users directory started from Microsoft
       Word, Excel, Powerpoint, Publisher or Visio

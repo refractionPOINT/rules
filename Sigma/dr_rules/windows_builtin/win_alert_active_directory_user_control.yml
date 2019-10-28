@@ -10,7 +10,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: '@neu5ron'
     description: Detects scenario where if a user is assigned the SeEnableDelegationPrivilege
       right in Active Directory it would allow control of other AD user objects.

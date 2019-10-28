@@ -11,7 +11,7 @@ detect:
     value: .*\\SYSVOL\\\.*\\policies\\\.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects Access to Domain Group Policies stored in SYSVOL
     level: medium

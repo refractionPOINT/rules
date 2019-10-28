@@ -69,7 +69,7 @@ detect:
       value: C:\Windows\system32\config\systemprofile\\
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects process starts of binaries from a suspicious folder
     level: high

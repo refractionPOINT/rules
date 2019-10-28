@@ -98,7 +98,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a rundll32 that communicates with public IP addresses
     level: medium

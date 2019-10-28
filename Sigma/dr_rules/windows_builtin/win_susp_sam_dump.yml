@@ -10,7 +10,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious SAM dump activity as cause by QuarksPwDump and
       other password dumpers

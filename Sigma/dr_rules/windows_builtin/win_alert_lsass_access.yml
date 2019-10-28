@@ -13,7 +13,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects Access to LSASS Process
     level: high

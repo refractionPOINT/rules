@@ -21,7 +21,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     description: Detects process handle on LSASS process with certain access mask
       and object type SAM_DOMAIN
     level: high

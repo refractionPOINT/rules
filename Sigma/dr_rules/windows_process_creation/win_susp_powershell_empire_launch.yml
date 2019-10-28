@@ -21,7 +21,7 @@ detect:
       value: ' -NoP -NonI -W Hidden -enc '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious powershell command line parameters used in Empire
     level: critical

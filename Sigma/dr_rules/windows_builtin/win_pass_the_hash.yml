@@ -38,7 +38,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Ilias el Matani (rule), The Information Assurance Directorate at the NSA
       (method)
     description: Detects the attack technique pass the hash which is used to move

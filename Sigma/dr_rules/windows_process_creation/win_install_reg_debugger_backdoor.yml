@@ -33,7 +33,7 @@ detect:
       value: \CurrentVersion\Image File Execution Options\displayswitch.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the registration of a debugger for a program that is available
       in the logon screen (sticky key backdoor).

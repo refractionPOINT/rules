@@ -53,7 +53,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Tom Ueltschi (@c_APT_ure)
     description: Detects creation or execution of UserInitMprLogonScript persistence
       method

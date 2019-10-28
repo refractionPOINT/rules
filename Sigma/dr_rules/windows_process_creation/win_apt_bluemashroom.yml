@@ -17,7 +17,7 @@ detect:
       value: .*\\AppData\\Local\\\.*,DllEntry.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a suspicious DLL loading from AppData Local path as described
       in BlueMashroom report

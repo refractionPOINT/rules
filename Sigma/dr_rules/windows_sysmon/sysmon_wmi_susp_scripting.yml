@@ -51,7 +51,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious scripting in WMI Event Consumers
     level: high

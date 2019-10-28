@@ -132,7 +132,7 @@ detect:
       value: find / -perm -2000
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Patrick Bareiss
     description: Detects suspicious shell commands indicating the information gathering
       phase as preparation for the Privilege Escalation.

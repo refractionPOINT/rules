@@ -41,7 +41,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: This method uses uncommon error codes on failed logons to determine
       suspicious activity and tampering with accounts that have been disabled or somehow

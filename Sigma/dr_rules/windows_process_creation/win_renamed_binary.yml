@@ -74,7 +74,7 @@ detect:
       value: \winrar.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Matthew Green - @mgreen27
     description: Detects the execution of a renamed binary often used by attackers
       or malware leveraging new Sysmon OriginalFileName datapoint.

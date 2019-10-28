@@ -13,7 +13,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke
     description: Detects file writes of WMI script event consumer
     level: high

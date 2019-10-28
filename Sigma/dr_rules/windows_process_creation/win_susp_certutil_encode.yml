@@ -25,7 +25,7 @@ detect:
       value: 'certutil.exe -encode -f '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious a certutil command that used to encode files,
       which is sometimes used for data exfiltration

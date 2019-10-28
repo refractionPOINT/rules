@@ -17,7 +17,7 @@ detect:
       value: wmic SHADOWCOPY DELETE
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects commands that delete all local volume shadow copies as used
       by different Ransomware families

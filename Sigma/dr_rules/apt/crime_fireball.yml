@@ -11,7 +11,7 @@ detect:
     value: .*\\rundll32\.exe .*,InstallArcherSvc
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects Archer malware invocation via rundll32
     level: high

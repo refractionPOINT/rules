@@ -51,7 +51,7 @@ detect:
         value: \BITSADMIN
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Karneades, Swisscom CSIRT
     description: Detects a Windows command line executable started from MMC.
     level: high

@@ -18,7 +18,7 @@ detect:
       value: \rdpclip.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a process spawned by the terminal service server process
       (this could be an indicator for an exploitation of CVE-2019-0708)

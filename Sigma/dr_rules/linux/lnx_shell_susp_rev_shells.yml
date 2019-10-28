@@ -85,7 +85,7 @@ detect:
       value: xterm -display 1
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious shell commands or program code that may be exected
       or used in command line to establish a reverse shell

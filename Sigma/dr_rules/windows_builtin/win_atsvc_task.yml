@@ -21,7 +21,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Samir Bousseaden
     description: Detects remote task creation via at.exe or API interacting with ATSVC
       namedpipe

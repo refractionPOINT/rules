@@ -11,7 +11,7 @@ detect:
     value: .*\\rundll32\.exe .*,#.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious calls of DLLs in rundll32.dll exports by ordinal
     level: high

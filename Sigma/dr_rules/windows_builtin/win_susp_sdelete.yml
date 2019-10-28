@@ -29,7 +29,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke
     description: Detects renaming of file while deletion with SDelete tool
     level: medium

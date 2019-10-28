@@ -17,7 +17,7 @@ detect:
       value: rundll32\.exe %APPDATA%\\\.*\.dll\",#1
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects Trojan loader acitivty as used by APT28
     level: critical

@@ -17,7 +17,7 @@ detect:
       value: .*cscript\.exe .*Retrive.*\.vbs .*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Tom Ueltschi
     description: Detects javaw.exe in AppData folder as used by Adwind / JRAT
     level: high
@@ -50,7 +50,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Tom Ueltschi
     description: Detects javaw.exe in AppData folder as used by Adwind / JRAT
     level: high
@@ -81,7 +81,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Tom Ueltschi
     description: Detects javaw.exe in AppData folder as used by Adwind / JRAT
     level: high

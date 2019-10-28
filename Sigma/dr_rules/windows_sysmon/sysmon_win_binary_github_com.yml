@@ -27,7 +27,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Michael Haag (idea), Florian Roth (rule)
     description: Detects an executable in the Windows folder accessing github.com
     level: high

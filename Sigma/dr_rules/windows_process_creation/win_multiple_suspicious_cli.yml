@@ -161,7 +161,7 @@ detect:
       value: diskpart.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: juju4
     description: Detects multiple suspicious process in a limited timeframe
     level: low

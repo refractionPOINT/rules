@@ -23,7 +23,7 @@ detect:
       value: ' -export dll_u '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a specific tool and export used by EquationGroup
     level: critical

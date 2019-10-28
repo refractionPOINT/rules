@@ -23,7 +23,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects post exploitation using NetNTLM downgrade attacks
     level: critical
@@ -63,7 +63,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects post exploitation using NetNTLM downgrade attacks
     level: critical

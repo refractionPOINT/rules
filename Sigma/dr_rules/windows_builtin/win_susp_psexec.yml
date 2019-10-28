@@ -44,7 +44,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Samir Bousseaden
     description: detects execution of psexec or paexec with renamed service name,
       this rule helps to filter out the noise if psexec is used for legit purposes

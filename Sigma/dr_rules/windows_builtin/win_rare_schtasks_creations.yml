@@ -7,7 +7,7 @@ detect:
   value: '4698'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects rare scheduled tasks creations that only appear a few times
       per time frame and could reveal password dumpers, backdoor installs or other

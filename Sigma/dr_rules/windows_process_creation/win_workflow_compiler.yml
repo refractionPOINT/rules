@@ -11,7 +11,7 @@ detect:
     value: \Microsoft.Workflow.Compiler.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Nik Seetharaman
     description: Detects invocation of Microsoft Workflow Compiler, which may permit
       the execution of arbitrary unsigned code.

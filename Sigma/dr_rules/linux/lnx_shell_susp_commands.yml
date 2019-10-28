@@ -105,7 +105,7 @@ detect:
       value: ;chmod +x /tmp/
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious shell commands used in various exploit codes (see
       references)

@@ -7,7 +7,7 @@ detect:
   value: '4720'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Patrick Bareiss
     description: Detects local user creation on windows servers, which shouldn't happen
       in an Active Directory environment. Apply this Sigma Use Case on your windows

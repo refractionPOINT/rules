@@ -27,7 +27,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Samir Bousseaden
     description: Detects process LSASS memory dump using procdump or taskmgr based
       on the CallTrace pointing to dbghelp.dll or dbgcore.dll for win10

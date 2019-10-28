@@ -88,7 +88,7 @@ detect:
       value: ' -ExecutionPolicy remotesigned '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Markus Neis
     description: Detects suspicious powershell process starts with base64 encoded
       commands

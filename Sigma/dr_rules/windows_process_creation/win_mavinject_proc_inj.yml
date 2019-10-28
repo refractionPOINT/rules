@@ -11,7 +11,7 @@ detect:
     value: ' /INJECTRUNNING '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects process injection using the signed Windows tool Mavinject32.exe
     level: critical

@@ -17,7 +17,7 @@ detect:
       value: .* /c powershell.*\\AppData\\Roaming\\\.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a suspicious command line execution that invokes PowerShell
       with reference to an AppData folder

@@ -50,7 +50,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects interactive console logons to
     level: medium

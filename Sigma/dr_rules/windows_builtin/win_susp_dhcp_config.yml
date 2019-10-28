@@ -7,7 +7,7 @@ detect:
   value: '1033'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Dimitrios Slamaris
     description: This rule detects a DHCP server in which a specified Callout DLL
       (in registry) was loaded

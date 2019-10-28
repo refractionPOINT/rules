@@ -17,7 +17,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke
     description: Detects WMI command line event consumers
     level: high

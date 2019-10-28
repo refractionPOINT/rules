@@ -61,7 +61,7 @@ detect:
         value: cd /d
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects certain command line parameters often used during reconnaissance
       activity via web shells

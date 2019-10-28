@@ -126,7 +126,7 @@ detect:
       value: '&& telnet .* 2>&1 </dev/console'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious shell commands used in various Equation Group
       scripts and tools

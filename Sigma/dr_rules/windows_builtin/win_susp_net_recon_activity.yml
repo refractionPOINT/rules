@@ -35,7 +35,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth (rule), Jack Croock (method)
     description: Detects activity as "net user administrator /domain" and "net group
       domain admins /domain"

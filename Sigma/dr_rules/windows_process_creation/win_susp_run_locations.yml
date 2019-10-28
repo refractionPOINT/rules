@@ -49,7 +49,7 @@ detect:
       value: C:\\Windows\\system32\tasks\\
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: juju4
     description: Detects suspicious process run from unusual locations
     level: medium

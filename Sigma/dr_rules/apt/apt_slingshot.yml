@@ -11,7 +11,7 @@ detect:
     value: .*schtasks.* /delete .*Defrag\\ScheduledDefrag.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the deactivation of the Scheduled defragmentation task as
       seen by Slingshot APT group
@@ -39,7 +39,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the deactivation of the Scheduled defragmentation task as
       seen by Slingshot APT group

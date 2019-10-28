@@ -51,7 +51,7 @@ detect:
         value: \BITSADMIN
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Michael Haag
     description: Detects a Windows command line executable started from MSHTA.
     level: high

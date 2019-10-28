@@ -23,7 +23,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects Pandemic Windows Implant
     level: critical
@@ -48,7 +48,7 @@ detect:
     value: 'loaddll -a '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects Pandemic Windows Implant
     level: critical

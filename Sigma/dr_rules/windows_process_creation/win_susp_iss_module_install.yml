@@ -11,7 +11,7 @@ detect:
     value: '\APPCMD.EXE install module /name:'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious IIS native-code module installations via command
       line

@@ -24,7 +24,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     description: Detects service ticket requests using RC4 encryption type
     level: medium
     references:

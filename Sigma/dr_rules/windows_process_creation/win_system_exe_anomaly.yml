@@ -90,7 +90,7 @@ detect:
         value: C:\Windows\winsxs\\
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Patrick Bareiss
     description: Detects a Windows program executable started in a suspicious folder
     level: high

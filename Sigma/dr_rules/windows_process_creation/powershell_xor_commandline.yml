@@ -11,7 +11,7 @@ detect:
     value: ' -bxor'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Sami Ruohonen
     description: Detects suspicious powershell process which includes bxor command,
       alternatvide obfuscation method to b64 encoded commands.

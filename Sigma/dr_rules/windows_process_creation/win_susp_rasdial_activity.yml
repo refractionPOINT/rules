@@ -11,7 +11,7 @@ detect:
     value: rasdial
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: juju4
     description: Detects suspicious process related to rasdial.exe
     level: medium

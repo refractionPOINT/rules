@@ -55,7 +55,7 @@ detect:
           value: .zip
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Diego Perez (@darkquassar)
     description: Detection for mshta.exe suspicious execution patterns sometimes involving
       file polyglotism

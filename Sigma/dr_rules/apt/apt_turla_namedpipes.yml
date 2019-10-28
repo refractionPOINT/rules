@@ -37,7 +37,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects a named pipe used by Turla group samples
     level: critical

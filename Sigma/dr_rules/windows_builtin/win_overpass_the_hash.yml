@@ -21,7 +21,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Roberto Rodriguez (source), Dominik Schaudel (rule)
     description: Detects successful logon with logon type 9 (NewCredentials) which
       matches the Overpass the Hash behavior of e.g Mimikatz's sekurlsa::pth module.

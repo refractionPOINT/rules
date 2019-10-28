@@ -21,7 +21,7 @@ detect:
       value: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 respond:
 - action: report
-  metatdata:
+  metadata:
     description: Detects buffer overflow attempts in Unix system log files
     level: high
     references:

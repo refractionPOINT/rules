@@ -13,7 +13,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Olaf Hartong, Florian Roth
     description: Detects a possible remote threat creation with certain characteristics
       which are typical for Cobalt Strike beacons

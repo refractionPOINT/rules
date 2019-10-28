@@ -44,7 +44,7 @@ detect:
         value: \services.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a suspicious program execution in a web service root folder
       (filter out false positives)

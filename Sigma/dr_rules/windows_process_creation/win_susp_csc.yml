@@ -27,7 +27,7 @@ detect:
         value: \mshta.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a suspicious parent of csc.exe, which could by a sign of
       payload delivery

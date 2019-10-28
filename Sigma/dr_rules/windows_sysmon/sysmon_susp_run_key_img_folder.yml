@@ -65,7 +65,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, Markus Neis
     description: Detects suspicious new RUN key element pointing to an executable
       in a suspicious folder

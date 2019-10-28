@@ -39,7 +39,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: megan201296
     description: Detects registry keys created in OceanLotus (also known as APT32)
       attacks

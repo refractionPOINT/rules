@@ -17,7 +17,7 @@ detect:
       value: \mshta.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects MSHTA.EXE spwaned by SVCHOST described in report
     level: high

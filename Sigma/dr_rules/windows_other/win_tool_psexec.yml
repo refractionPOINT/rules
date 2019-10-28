@@ -25,7 +25,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke
     description: Detects PsExec service installation and execution events (service
       and Sysmon)
@@ -58,7 +58,7 @@ detect:
       value: NT AUTHORITY\SYSTEM
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke
     description: Detects PsExec service installation and execution events (service
       and Sysmon)

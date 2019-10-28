@@ -13,7 +13,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the installation of a plugin DLL via ServerLevelPluginDll
       parameter in Registry, which can be used to execute code in context of the DNS
@@ -39,7 +39,7 @@ detect:
     value: 'dnscmd.exe /config /serverlevelplugindll '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects the installation of a plugin DLL via ServerLevelPluginDll
       parameter in Registry, which can be used to execute code in context of the DNS

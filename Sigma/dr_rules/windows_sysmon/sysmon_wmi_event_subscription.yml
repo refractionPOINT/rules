@@ -17,7 +17,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Tom Ueltschi (@c_APT_ure)
     description: Detects creation of WMI event subscription persistence method
     level: high

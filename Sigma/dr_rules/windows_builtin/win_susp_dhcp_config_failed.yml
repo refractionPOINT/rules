@@ -23,7 +23,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Dimitrios Slamaris, @atc_project (fix)
     description: This rule detects a DHCP server error in which a specified Callout
       DLL (in registry) could not be loaded

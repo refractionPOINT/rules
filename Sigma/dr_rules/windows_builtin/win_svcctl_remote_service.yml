@@ -21,7 +21,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Samir Bousseaden
     description: Detects remote remote service activity via remote access to the svcctl
       named pipe

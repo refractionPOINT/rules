@@ -23,7 +23,7 @@ detect:
         value: \\\\\\\.*\\\.*\.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects EnableUnsafeClientMailRules used for Script Execution from
       Outlook

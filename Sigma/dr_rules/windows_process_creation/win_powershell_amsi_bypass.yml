@@ -17,7 +17,7 @@ detect:
       value: amsiInitFailed
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects Request to amsiInitFailed that can be used to disable AMSI
       Scanning

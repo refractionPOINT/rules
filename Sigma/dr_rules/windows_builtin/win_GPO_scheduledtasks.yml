@@ -21,7 +21,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Samir Bousseaden
     description: Detect lateral movement using GPO scheduled task, ususally used to
       deploy ransomware at scale

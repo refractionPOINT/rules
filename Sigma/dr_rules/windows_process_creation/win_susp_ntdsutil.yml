@@ -11,7 +11,7 @@ detect:
     value: \ntdsutil
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke
     description: Detects execution of ntdsutil.exe, which can be used for various
       attacks against the NTDS database (NTDS.DIT)

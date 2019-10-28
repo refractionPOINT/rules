@@ -45,7 +45,7 @@ detect:
         value: \powershell.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke
     description: Web servers that spawn shell processes could be the result of a successfully
       placed web shell or an other attack

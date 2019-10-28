@@ -17,7 +17,7 @@ detect:
       value: .sdb
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects installation of a new shim using sdbinst.exe. A shim can
       be used to load malicious DLLs into applications.

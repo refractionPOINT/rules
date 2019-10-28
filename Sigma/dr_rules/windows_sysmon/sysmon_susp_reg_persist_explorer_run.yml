@@ -43,7 +43,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a possible persistence mechanism using RUN key for Windows
       Explorer and poiting to a suspicious folder

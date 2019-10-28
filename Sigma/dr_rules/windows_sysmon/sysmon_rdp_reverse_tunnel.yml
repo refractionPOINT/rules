@@ -31,7 +31,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Samir Bousseaden
     description: Detects svchost hosting RDP termsvcs communicating with the loopback
       address and on TCP port 3389

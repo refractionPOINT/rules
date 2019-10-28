@@ -40,7 +40,7 @@ detect:
           value: C:\\WINDOWS\\system32\\\.*\.bat
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Sami Ruohonen
     description: Detects usage of attrib.exe to hide files from users.
     level: low

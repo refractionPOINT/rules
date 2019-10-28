@@ -32,7 +32,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Thomas Patzke, @atc_project (improvements)
     description: An attacker can use the SID history attribute to gain additional
       privileges.

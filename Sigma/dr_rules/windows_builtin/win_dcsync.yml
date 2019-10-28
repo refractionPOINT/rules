@@ -39,7 +39,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Benjamin Delpy, Florian Roth
     description: Detects Mimikatz DC sync security events
     level: high

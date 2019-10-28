@@ -53,7 +53,7 @@ detect:
       value: ______.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth (rule), @blu3_team (idea)
     description: Detects suspicious use of an .exe extension after a non-executable
       file extension like .pdf.exe, a set of spaces or underlines to cloak the executable

@@ -47,7 +47,7 @@ detect:
       value: C:\Users\Public\7za.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects Judgement Panda activity as described in Global Threat Report
       2019 by Crowdstrike

@@ -45,7 +45,7 @@ detect:
       value: ' harvest /interval:'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects command line parameters used by Rubeus hack tool
     level: critical

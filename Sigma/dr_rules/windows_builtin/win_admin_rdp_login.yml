@@ -21,7 +21,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: juju4
     description: Detect remote login by Administrator user depending on internal pattern
     level: low

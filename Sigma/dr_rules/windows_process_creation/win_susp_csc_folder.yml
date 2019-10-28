@@ -23,7 +23,7 @@ detect:
         value: \Windows\Temp\\
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a suspicious execution of csc.exe, which uses a source in
       a suspicious folder (e.g. AppData)

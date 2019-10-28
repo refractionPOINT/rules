@@ -60,7 +60,7 @@ detect:
       value: vsf_sysutil_read_loop
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious VSFTPD error messages that indicate a fatal or
       suspicious error that could be caused by exploiting attempts

@@ -55,7 +55,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects known malicious service installs that only appear in cases
       of lateral movement, credential dumping and other suspicious activity

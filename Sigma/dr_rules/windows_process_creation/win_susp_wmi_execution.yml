@@ -31,7 +31,7 @@ detect:
         value: ' shadowcopy delete '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Michael Haag, Florian Roth, juju4
     description: Detects WMI executing suspicious commands
     level: medium

@@ -11,7 +11,7 @@ detect:
     value: C:\Windows\PSEXESVC.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a PsExec service start
     level: low

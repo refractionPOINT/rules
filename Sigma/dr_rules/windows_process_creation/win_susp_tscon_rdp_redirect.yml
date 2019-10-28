@@ -11,7 +11,7 @@ detect:
     value: ' /dest:rdp-tcp:'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a suspicious RDP session redirect using tscon.exe
     level: high

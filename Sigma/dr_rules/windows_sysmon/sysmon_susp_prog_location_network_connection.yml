@@ -55,7 +55,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects programs with network connections running in suspicious files
       system locations

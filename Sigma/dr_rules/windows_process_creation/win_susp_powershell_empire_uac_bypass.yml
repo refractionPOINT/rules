@@ -18,7 +18,7 @@ detect:
       value: ' -NoP -NonI -c $x=$((gp HKCU:Software\\Microsoft\\Windows Update).Update);'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Ecco
     description: Detects some Empire PowerShell UAC bypass methods
     level: critical

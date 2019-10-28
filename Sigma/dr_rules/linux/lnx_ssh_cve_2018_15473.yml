@@ -8,7 +8,7 @@ detect:
   - 'error: buffer_get_ret: trying to get more bytes 1907 than in buffer 308 [preauth]'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects exploitation attempt using public exploit code for CVE-2018-15473
     level: medium

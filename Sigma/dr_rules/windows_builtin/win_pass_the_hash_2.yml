@@ -46,7 +46,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Dave Kennedy, Jeff Warren (method) / David Vassallo (rule)
     description: Detects the attack technique pass the hash which is used to move
       laterally inside the network

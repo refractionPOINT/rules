@@ -59,7 +59,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: '@neu5ron'
     description: Detects scenarios where one can control another users or computers
       account without having to use their credentials.

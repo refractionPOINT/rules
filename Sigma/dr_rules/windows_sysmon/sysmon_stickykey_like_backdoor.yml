@@ -39,7 +39,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, @twjackomo
     description: Detects the usage and installation of a backdoor that uses an option
       to register a malicious debugger for built-in tools that are accessible in the
@@ -96,7 +96,7 @@ detect:
         value: 'cmd.exe DisplaySwitch.exe '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth, @twjackomo
     description: Detects the usage and installation of a backdoor that uses an option
       to register a malicious debugger for built-in tools that are accessible in the

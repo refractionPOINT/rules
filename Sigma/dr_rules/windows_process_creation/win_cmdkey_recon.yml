@@ -17,7 +17,7 @@ detect:
       value: ' /list '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: jmallette
     description: Detects usage of cmdkey to look for cached credentials
     level: low

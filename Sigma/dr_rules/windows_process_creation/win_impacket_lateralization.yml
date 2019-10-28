@@ -49,7 +49,7 @@ detect:
         value: cmd\.exe /C .*Windows\\\\Temp\\\.*&1
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Ecco
     description: Detects wmiexec/dcomexec/atexec/smbexec from Impacket framework
     level: critical

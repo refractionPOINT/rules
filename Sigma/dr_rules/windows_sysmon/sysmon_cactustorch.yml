@@ -38,7 +38,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: '@SBousseaden (detection), Thomas Patzke (rule)'
     description: Detects remote thread creation from CACTUSTORCH as described in references.
     level: high

@@ -57,7 +57,7 @@ detect:
       value: JRVggKE5ld
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a base64 encoded IEX command string in a process command
       line

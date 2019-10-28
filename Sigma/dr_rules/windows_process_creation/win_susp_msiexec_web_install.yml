@@ -11,7 +11,7 @@ detect:
     value: .* msiexec.*:\\/\\/.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious msiexec process starts with web addreses as parameter
     level: medium

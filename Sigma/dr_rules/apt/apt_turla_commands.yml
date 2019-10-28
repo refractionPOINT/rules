@@ -21,7 +21,7 @@ detect:
       value: dir %TEMP%\\\.*\.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects automated lateral movement by Turla group
     level: critical
@@ -51,7 +51,7 @@ detect:
     value: net view /DOMAIN
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Markus Neis
     description: Detects automated lateral movement by Turla group
     level: medium

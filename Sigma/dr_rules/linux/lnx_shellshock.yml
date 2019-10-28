@@ -8,7 +8,7 @@ detect:
   - /\(\)\s*\t*\{.*;\s*\}\s*;/
 respond:
 - action: report
-  metatdata:
+  metadata:
     description: Detects shellshock expressions in log files
     level: high
     references:

@@ -20,7 +20,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects access to $ADMIN share
     level: low

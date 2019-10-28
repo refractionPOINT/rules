@@ -29,7 +29,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Alexandr Yampolskyi, SOC Prime
     description: "Configure systems to issue a log entry and alert when an account\
       \ is added to or removed from any group assigned administrative privileges.\

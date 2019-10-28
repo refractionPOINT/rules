@@ -53,7 +53,7 @@ detect:
         value: ' stop '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Michael Haag, Mark Woan (improvements)
     description: Detects execution of Net.exe, whether suspicious or benign.
     level: low

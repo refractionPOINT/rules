@@ -197,7 +197,7 @@ detect:
       value: ' /sxml '
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects suspicious process starts on Windows systems based on keywords
     level: medium

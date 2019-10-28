@@ -61,7 +61,7 @@ detect:
       value: .RegisterXLL
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: juju4
     description: Detects suspicious process related to rundll32 based on arguments
     level: medium

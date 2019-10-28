@@ -25,7 +25,7 @@ detect:
       value: .* set-log.* /e:false.*
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: '@neu5ron, Florian Roth'
     description: Detects a command that clears or disables any ETW trace log which
       could indicate a logging evasion.

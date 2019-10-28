@@ -32,7 +32,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects UAC bypass method using Windows event viewer
     level: critical

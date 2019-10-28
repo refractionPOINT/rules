@@ -29,7 +29,7 @@ detect:
         value: ' -snapshot "" c:\users\\'
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects Russian group activity as described in Global Threat Report
       2019 by Crowdstrike

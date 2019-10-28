@@ -23,7 +23,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     description: This method detects a service install of malicious services mentioned
       in Carbon Paper - Turla report by ESET
     level: high

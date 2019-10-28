@@ -12,7 +12,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Dimitrios Slamaris
     description: Detects a possible remote NTLM hash change through SAMR API SamiChangePasswordUser()
       or SamSetInformationUser(). "Audit User Account Management" in "Advanced Audit

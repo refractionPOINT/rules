@@ -21,7 +21,7 @@ detect:
       value: cmd.exe /c taskkill /im cmd.exe
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects activity that could be related to Baby Shark malware
     level: high

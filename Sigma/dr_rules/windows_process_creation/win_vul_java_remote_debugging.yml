@@ -24,7 +24,7 @@ detect:
         value: address=localhost
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Florian Roth
     description: Detects a JAVA process running with remote debugging allowing more
       than just localhost to connect

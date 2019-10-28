@@ -17,7 +17,7 @@ detect:
       value: /transfer
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: Michael Haag
     description: Detects usage of bitsadmin downloading a file
     level: medium

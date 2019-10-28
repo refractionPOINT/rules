@@ -13,7 +13,7 @@ detect:
   target: log
 respond:
 - action: report
-  metatdata:
+  metadata:
     author: '@neu5ron'
     description: 'Detects scenarios where system auditing (ie: windows event log auditing)
       is disabled. This may be used in a scenario where an entity would want to bypass
