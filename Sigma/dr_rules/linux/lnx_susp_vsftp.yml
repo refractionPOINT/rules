@@ -42,7 +42,7 @@ detect:
       value: couldn't handle sandbox event
     - op: matches
       path: event/COMMAND_LINE
-      value: syscall .* out of bounds
+      re: syscall .* out of bounds
     - op: is
       path: event/COMMAND_LINE
       value: 'syscall not permitted:'

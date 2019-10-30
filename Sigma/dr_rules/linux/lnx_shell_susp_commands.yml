@@ -9,13 +9,13 @@ detect:
     rules:
     - op: matches
       path: event/COMMAND_LINE
-      value: wget .* - http.* | perl
+      re: wget .* - http.* | perl
     - op: matches
       path: event/COMMAND_LINE
-      value: wget .* - http.* | sh
+      re: wget .* - http.* | sh
     - op: matches
       path: event/COMMAND_LINE
-      value: wget .* - http.* | bash
+      re: wget .* - http.* | bash
     - op: is
       path: event/COMMAND_LINE
       value: python -m SimpleHTTPServer
@@ -39,10 +39,10 @@ detect:
       value: echo binary >>
     - op: matches
       path: event/COMMAND_LINE
-      value: .*wget .*; chmod +x.*
+      re: .*wget .*; chmod +x.*
     - op: matches
       path: event/COMMAND_LINE
-      value: .*wget .*; chmod 777 .*
+      re: .*wget .*; chmod 777 .*
     - op: contains
       path: event/COMMAND_LINE
       value: cd /tmp || cd /var/run || cd /mnt
@@ -90,7 +90,7 @@ detect:
       value: 'cp /bin/sh '
     - op: matches
       path: event/COMMAND_LINE
-      value: .* /tmp/.*\.b64 .*
+      re: .* /tmp/.*\.b64 .*
     - op: contains
       path: event/COMMAND_LINE
       value: /tmp/ysocereal.jar

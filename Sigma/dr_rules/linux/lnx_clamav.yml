@@ -9,19 +9,19 @@ detect:
     rules:
     - op: matches
       path: event/COMMAND_LINE
-      value: Trojan.*FOUND
+      re: Trojan.*FOUND
     - op: matches
       path: event/COMMAND_LINE
-      value: VirTool.*FOUND
+      re: VirTool.*FOUND
     - op: matches
       path: event/COMMAND_LINE
-      value: Webshell.*FOUND
+      re: Webshell.*FOUND
     - op: matches
       path: event/COMMAND_LINE
-      value: Rootkit.*FOUND
+      re: Rootkit.*FOUND
     - op: matches
       path: event/COMMAND_LINE
-      value: Htran.*FOUND
+      re: Htran.*FOUND
 respond:
 - action: report
   metadata:

@@ -9,19 +9,19 @@ detect:
     rules:
     - op: matches
       path: event/COMMAND_LINE
-      value: rm .*bash_history
+      re: rm .*bash_history
     - op: matches
       path: event/COMMAND_LINE
-      value: echo \"\" > .*bash_history
+      re: echo \"\" > .*bash_history
     - op: matches
       path: event/COMMAND_LINE
-      value: cat /dev/null > .*bash_history
+      re: cat /dev/null > .*bash_history
     - op: matches
       path: event/COMMAND_LINE
-      value: ln -sf /dev/null .*bash_history
+      re: ln -sf /dev/null .*bash_history
     - op: matches
       path: event/COMMAND_LINE
-      value: truncate -s0 .*bash_history
+      re: truncate -s0 .*bash_history
     - op: is
       path: event/COMMAND_LINE
       value: export HISTFILESIZE=0
@@ -33,7 +33,7 @@ detect:
       value: history -w
     - op: matches
       path: event/COMMAND_LINE
-      value: shred .*bash_history
+      re: shred .*bash_history
 respond:
 - action: report
   metadata:

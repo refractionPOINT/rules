@@ -12,7 +12,7 @@ detect:
       value: attempt to execute code on stack by
     - op: matches
       path: event/COMMAND_LINE
-      value: FTP LOGIN FROM \..* 0bin0sh
+      re: FTP LOGIN FROM \..* 0bin0sh
     - op: is
       path: event/COMMAND_LINE
       value: 'rpc.statd[\d+]: gethostbyname error for'

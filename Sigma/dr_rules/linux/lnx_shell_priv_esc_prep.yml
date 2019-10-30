@@ -12,7 +12,7 @@ detect:
       value: cat /etc/issue
     - op: matches
       path: event/COMMAND_LINE
-      value: cat /etc/.*-release
+      re: cat /etc/.*-release
     - op: is
       path: event/COMMAND_LINE
       value: cat /proc/version
