@@ -53,11 +53,11 @@ detect:
         - case sensitive: false
           op: contains
           path: event/PARENT/FILE_PATH
-          value: \System32\\
+          value: \System32\
         - case sensitive: false
           op: contains
           path: event/PARENT/FILE_PATH
-          value: \SysWOW64\\
+          value: \SysWOW64\
     - not: true
       op: exists
       path: event/PARENT/FILE_PATH

@@ -16,11 +16,11 @@ detect:
       - case sensitive: false
         op: contains
         path: event/COMMAND_LINE
-        value: \AppData\\
+        value: \AppData\
       - case sensitive: false
         op: contains
         path: event/COMMAND_LINE
-        value: \Windows\Temp\\
+        value: \Windows\Temp\
 respond:
 - action: report
   metadata:

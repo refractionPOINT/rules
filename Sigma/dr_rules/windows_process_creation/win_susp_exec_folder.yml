@@ -10,63 +10,63 @@ detect:
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\PerfLogs\\
+      value: C:\PerfLogs\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\$Recycle.bin\\
+      value: C:\$Recycle.bin\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Intel\Logs\\
+      value: C:\Intel\Logs\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Users\Default\\
+      value: C:\Users\Default\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Users\Public\\
+      value: C:\Users\Public\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Users\NetworkService\\
+      value: C:\Users\NetworkService\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Windows\Fonts\\
+      value: C:\Windows\Fonts\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Windows\Debug\\
+      value: C:\Windows\Debug\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Windows\Media\\
+      value: C:\Windows\Media\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Windows\Help\\
+      value: C:\Windows\Help\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Windows\addins\\
+      value: C:\Windows\addins\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Windows\repair\\
+      value: C:\Windows\repair\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Windows\security\\
+      value: C:\Windows\security\
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
-      value: \RSA\MachineKeys\\
+      value: \RSA\MachineKeys\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Windows\system32\config\systemprofile\\
+      value: C:\Windows\system32\config\systemprofile\
 respond:
 - action: report
   metadata:

@@ -8,7 +8,7 @@ detect:
   - case sensitive: false
     op: contains
     path: event/FILE_PATH
-    value: \Temporary Internet Files\Content.Outlook\\
+    value: \Temporary Internet Files\Content.Outlook\
 respond:
 - action: report
   metadata:

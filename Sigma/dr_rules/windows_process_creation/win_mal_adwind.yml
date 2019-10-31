@@ -77,7 +77,7 @@ detect:
   - case sensitive: false
     op: starts with
     path: Event/EventData/Details
-    value: '%AppData%\Roaming\Oracle\bin\\'
+    value: '%AppData%\Roaming\Oracle\bin\'
   target: log
 respond:
 - action: report

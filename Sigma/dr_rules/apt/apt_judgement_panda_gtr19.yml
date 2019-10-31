@@ -36,11 +36,11 @@ detect:
       - case sensitive: false
         op: contains
         path: event/COMMAND_LINE
-        value: copy .\1.7z \\
+        value: copy .\1.7z \
       - case sensitive: false
         op: contains
         path: event/COMMAND_LINE
-        value: copy \\client\c$\aaaa\\
+        value: copy \\client\c$\aaaa\
     - case sensitive: false
       op: is
       path: event/FILE_PATH

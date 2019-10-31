@@ -9,7 +9,7 @@ detect:
   - case sensitive: false
     op: contains
     path: Event/EventData/ImageLoaded
-    value: \Temp\\
+    value: \Temp\
   target: log
 respond:
 - action: report

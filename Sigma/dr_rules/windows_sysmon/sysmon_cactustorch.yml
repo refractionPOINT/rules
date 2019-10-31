@@ -31,7 +31,7 @@ detect:
   - case sensitive: false
     op: contains
     path: Event/EventData/TargetImage
-    value: \SysWOW64\\
+    value: \SysWOW64\
   - not: true
     op: exists
     path: Event/EventData/StartModule

@@ -13,7 +13,7 @@ detect:
   - case sensitive: false
     op: contains
     path: Event/EventData/TargetFileName
-    value: \Microsoft\Windows\Start Menu\Programs\Startup\\
+    value: \Microsoft\Windows\Start Menu\Programs\Startup\
   target: log
 respond:
 - action: report

@@ -17,7 +17,7 @@ detect:
       - case sensitive: false
         op: contains
         path: event/COMMAND_LINE
-        value: \System32\\
+        value: \System32\
       - case sensitive: false
         op: contains
         path: event/COMMAND_LINE

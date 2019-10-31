@@ -15,43 +15,43 @@ detect:
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Users\All Users\\
+      value: \Users\All Users\
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Users\Default\\
+      value: \Users\Default\
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Users\Public\\
+      value: \Users\Public\
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Users\Contacts\\
+      value: \Users\Contacts\
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Users\Searches\\
+      value: \Users\Searches\
     - case sensitive: false
       op: starts with
       path: Event/EventData/Image
-      value: C:\Perflogs\\
+      value: C:\Perflogs\
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \config\systemprofile\\
+      value: \config\systemprofile\
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Windows\Fonts\\
+      value: \Windows\Fonts\
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Windows\IME\\
+      value: \Windows\IME\
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Windows\addins\\
+      value: \Windows\addins\
   target: log
 respond:
 - action: report

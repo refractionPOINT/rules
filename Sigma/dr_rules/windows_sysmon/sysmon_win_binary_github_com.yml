@@ -23,7 +23,7 @@ detect:
   - case sensitive: false
     op: starts with
     path: Event/EventData/Image
-    value: C:\Windows\\
+    value: C:\Windows\
   target: log
 respond:
 - action: report

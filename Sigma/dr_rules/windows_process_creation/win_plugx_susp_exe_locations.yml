@@ -37,7 +37,7 @@ detect:
                             not: true
                             op: contains
                             path: event/FILE_PATH
-                            value: \Lenovo\Communication Utility\\
+                            value: \Lenovo\Communication Utility\
                         - op: and
                           rules:
                           - case sensitive: false
@@ -48,7 +48,7 @@ detect:
                             not: true
                             op: contains
                             path: event/FILE_PATH
-                            value: \Google\Chrome\application\\
+                            value: \Google\Chrome\application\
                       - op: and
                         rules:
                         - case sensitive: false
@@ -59,7 +59,7 @@ detect:
                           not: true
                           op: contains
                           path: event/FILE_PATH
-                          value: \Microsoft Device Emulator\\
+                          value: \Microsoft Device Emulator\
                     - op: and
                       rules:
                       - case sensitive: false
@@ -70,7 +70,7 @@ detect:
                         not: true
                         op: contains
                         path: event/FILE_PATH
-                        value: \Windows Media Player\\
+                        value: \Windows Media Player\
                   - op: and
                     rules:
                     - case sensitive: false
@@ -81,7 +81,7 @@ detect:
                       not: true
                       op: contains
                       path: event/FILE_PATH
-                      value: \HTML Help Workshop\\
+                      value: \HTML Help Workshop\
                 - op: and
                   rules:
                   - case sensitive: false
@@ -94,15 +94,15 @@ detect:
                     - case sensitive: false
                       op: contains
                       path: event/FILE_PATH
-                      value: \System32\\
+                      value: \System32\
                     - case sensitive: false
                       op: contains
                       path: event/FILE_PATH
-                      value: \SysNative\\
+                      value: \SysNative\
                     - case sensitive: false
                       op: contains
                       path: event/FILE_PATH
-                      value: \SysWowo64\\
+                      value: \SysWowo64\
               - op: and
                 rules:
                 - case sensitive: false
@@ -136,15 +136,15 @@ detect:
                 - case sensitive: false
                   op: contains
                   path: event/FILE_PATH
-                  value: \Microsoft Security Client\\
+                  value: \Microsoft Security Client\
                 - case sensitive: false
                   op: contains
                   path: event/FILE_PATH
-                  value: \Windows Defender\\
+                  value: \Windows Defender\
                 - case sensitive: false
                   op: contains
                   path: event/FILE_PATH
-                  value: \AntiMalware\\
+                  value: \AntiMalware\
           - op: and
             rules:
             - case sensitive: false
@@ -157,15 +157,15 @@ detect:
               - case sensitive: false
                 op: contains
                 path: event/FILE_PATH
-                value: \Microsoft Security Center\\
+                value: \Microsoft Security Center\
               - case sensitive: false
                 op: contains
                 path: event/FILE_PATH
-                value: \Microsoft Security Client\\
+                value: \Microsoft Security Client\
               - case sensitive: false
                 op: contains
                 path: event/FILE_PATH
-                value: \Microsoft Security Essentials\\
+                value: \Microsoft Security Essentials\
         - op: and
           rules:
           - case sensitive: false
@@ -176,7 +176,7 @@ detect:
             not: true
             op: contains
             path: event/FILE_PATH
-            value: \Common Files\Microsoft Shared\\
+            value: \Common Files\Microsoft Shared\
       - op: and
         rules:
         - case sensitive: false
@@ -201,7 +201,7 @@ detect:
           - case sensitive: false
             op: contains
             path: event/FILE_PATH
-            value: \Windows Resource Kit\\
+            value: \Windows Resource Kit\
     - op: and
       rules:
       - case sensitive: false
@@ -226,11 +226,11 @@ detect:
         - case sensitive: false
           op: contains
           path: event/FILE_PATH
-          value: \Windows Resource Kit\\
+          value: \Windows Resource Kit\
         - case sensitive: false
           op: contains
           path: event/FILE_PATH
-          value: \Microsoft.NET\\
+          value: \Microsoft.NET\
 respond:
 - action: report
   metadata:

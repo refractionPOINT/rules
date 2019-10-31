@@ -11,49 +11,49 @@ detect:
     - case sensitive: false
       op: contains
       path: Event/EventData/TargetObject
-      value: \SOFTWARE\Microsoft\Windows\CurrentVersion\Run\\
+      value: \SOFTWARE\Microsoft\Windows\CurrentVersion\Run\
     - case sensitive: false
       op: contains
       path: Event/EventData/TargetObject
-      value: \SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\\
+      value: \SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\
   - op: or
     rules:
     - case sensitive: false
       op: contains
       path: Event/EventData/Details
-      value: C:\Windows\Temp\\
+      value: C:\Windows\Temp\
     - case sensitive: false
       op: contains
       path: Event/EventData/Details
-      value: \AppData\\
+      value: \AppData\
     - case sensitive: false
       op: starts with
       path: Event/EventData/Details
-      value: '%AppData%\\'
+      value: '%AppData%\'
     - case sensitive: false
       op: contains
       path: Event/EventData/Details
-      value: C:\$Recycle.bin\\
+      value: C:\$Recycle.bin\
     - case sensitive: false
       op: contains
       path: Event/EventData/Details
-      value: C:\Temp\\
+      value: C:\Temp\
     - case sensitive: false
       op: contains
       path: Event/EventData/Details
-      value: C:\Users\Public\\
+      value: C:\Users\Public\
     - case sensitive: false
       op: starts with
       path: Event/EventData/Details
-      value: '%Public%\\'
+      value: '%Public%\'
     - case sensitive: false
       op: contains
       path: Event/EventData/Details
-      value: C:\Users\Default\\
+      value: C:\Users\Default\
     - case sensitive: false
       op: contains
       path: Event/EventData/Details
-      value: C:\Users\Desktop\\
+      value: C:\Users\Desktop\
     - case sensitive: false
       op: starts with
       path: Event/EventData/Details

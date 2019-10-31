@@ -16,7 +16,7 @@ detect:
       - case sensitive: false
         op: contains
         path: event/COMMAND_LINE
-        value: ' /S /E /C /Q /H \\'
+        value: ' /S /E /C /Q /H \'
     - op: and
       rules:
       - case sensitive: false
@@ -26,7 +26,7 @@ detect:
       - case sensitive: false
         op: contains
         path: event/COMMAND_LINE
-        value: ' -snapshot "" c:\users\\'
+        value: ' -snapshot "" c:\users\'
 respond:
 - action: report
   metadata:

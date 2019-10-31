@@ -12,15 +12,15 @@ detect:
       - case sensitive: false
         op: contains
         path: event/FILE_PATH
-        value: \wwwroot\\
+        value: \wwwroot\
       - case sensitive: false
         op: contains
         path: event/FILE_PATH
-        value: \wmpub\\
+        value: \wmpub\
       - case sensitive: false
         op: contains
         path: event/FILE_PATH
-        value: \htdocs\\
+        value: \htdocs\
     - not: true
       op: and
       rules:
@@ -29,15 +29,15 @@ detect:
         - case sensitive: false
           op: contains
           path: event/FILE_PATH
-          value: bin\\
+          value: bin\
         - case sensitive: false
           op: contains
           path: event/FILE_PATH
-          value: \Tools\\
+          value: \Tools\
         - case sensitive: false
           op: contains
           path: event/FILE_PATH
-          value: \SMSComponent\\
+          value: \SMSComponent\
       - case sensitive: false
         op: ends with
         path: event/PARENT/FILE_PATH

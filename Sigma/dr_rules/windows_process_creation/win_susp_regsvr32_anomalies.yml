@@ -16,7 +16,7 @@ detect:
       - case sensitive: false
         op: contains
         path: event/COMMAND_LINE
-        value: \Temp\\
+        value: \Temp\
     - op: and
       rules:
       - case sensitive: false

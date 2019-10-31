@@ -10,43 +10,43 @@ detect:
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
-      value: :\RECYCLER\\
+      value: :\RECYCLER\
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
-      value: :\SystemVolumeInformation\\
+      value: :\SystemVolumeInformation\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\\Windows\\Tasks\\
+      value: C:\\Windows\\Tasks\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\\Windows\\debug\\
+      value: C:\\Windows\\debug\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\\Windows\\fonts\\
+      value: C:\\Windows\\fonts\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\\Windows\\help\\
+      value: C:\\Windows\\help\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\\Windows\\drivers\\
+      value: C:\\Windows\\drivers\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\\Windows\\addins\\
+      value: C:\\Windows\\addins\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\\Windows\\cursors\\
+      value: C:\\Windows\\cursors\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\\Windows\\system32\tasks\\
+      value: C:\\Windows\\system32\tasks\
 respond:
 - action: report
   metadata:

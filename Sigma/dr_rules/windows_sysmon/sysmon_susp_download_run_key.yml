@@ -11,19 +11,19 @@ detect:
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Downloads\\
+      value: \Downloads\
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Temporary Internet Files\Content.Outlook\\
+      value: \Temporary Internet Files\Content.Outlook\
     - case sensitive: false
       op: contains
       path: Event/EventData/Image
-      value: \Local Settings\Temporary Internet Files\\
+      value: \Local Settings\Temporary Internet Files\
   - case sensitive: false
     op: contains
     path: Event/EventData/TargetObject
-    value: \SOFTWARE\Microsoft\Windows\CurrentVersion\Run\\
+    value: \SOFTWARE\Microsoft\Windows\CurrentVersion\Run\
   target: log
 respond:
 - action: report

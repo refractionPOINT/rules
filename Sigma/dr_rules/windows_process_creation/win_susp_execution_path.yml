@@ -14,35 +14,35 @@ detect:
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
-      value: \Users\All Users\\
+      value: \Users\All Users\
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
-      value: \Users\Default\\
+      value: \Users\Default\
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
-      value: \Users\Public\\
+      value: \Users\Public\
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH
-      value: C:\Perflogs\\
+      value: C:\Perflogs\
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
-      value: \config\systemprofile\\
+      value: \config\systemprofile\
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
-      value: \Windows\Fonts\\
+      value: \Windows\Fonts\
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
-      value: \Windows\IME\\
+      value: \Windows\IME\
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
-      value: \Windows\addins\\
+      value: \Windows\addins\
 respond:
 - action: report
   metadata:

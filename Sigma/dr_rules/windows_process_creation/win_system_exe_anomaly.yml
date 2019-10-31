@@ -75,11 +75,11 @@ detect:
       - case sensitive: false
         op: starts with
         path: event/FILE_PATH
-        value: C:\Windows\System32\\
+        value: C:\Windows\System32\
       - case sensitive: false
         op: starts with
         path: event/FILE_PATH
-        value: C:\Windows\SysWow64\\
+        value: C:\Windows\SysWow64\
       - case sensitive: false
         op: is
         path: event/FILE_PATH
@@ -87,7 +87,7 @@ detect:
       - case sensitive: false
         op: starts with
         path: event/FILE_PATH
-        value: C:\Windows\winsxs\\
+        value: C:\Windows\winsxs\
 respond:
 - action: report
   metadata:
