@@ -7,32 +7,48 @@ detect:
   - op: is windows
   - op: and
     rules:
-    - op: or
+    - op: and
       rules:
-      - case sensitive: false
-        op: contains
-        path: event/COMMAND_LINE
-        value: ' -p'
-      - case sensitive: false
-        op: contains
-        path: event/COMMAND_LINE
-        value: ' -ta'
-      - case sensitive: false
-        op: contains
-        path: event/COMMAND_LINE
-        value: ' -tb'
-      - case sensitive: false
-        op: contains
-        path: event/COMMAND_LINE
-        value: ' -sdel'
-      - case sensitive: false
-        op: contains
-        path: event/COMMAND_LINE
-        value: ' -dw'
-      - case sensitive: false
-        op: contains
-        path: event/COMMAND_LINE
-        value: ' -hp'
+      - op: or
+        rules:
+        - case sensitive: false
+          op: matches
+          path: event/FILE_PATH
+          re: .*7z.*\.exe
+        - case sensitive: false
+          op: matches
+          path: event/FILE_PATH
+          re: .*.*rar\.exe
+        - case sensitive: false
+          op: matches
+          path: event/FILE_PATH
+          re: .*.*Command.*Line.*RAR.*
+      - op: or
+        rules:
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: ' -p'
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: ' -ta'
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: ' -tb'
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: ' -sdel'
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: ' -dw'
+        - case sensitive: false
+          op: contains
+          path: event/COMMAND_LINE
+          value: ' -hp'
     - case sensitive: false
       not: true
       op: starts with

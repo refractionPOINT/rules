@@ -7,10 +7,16 @@ detect:
   - op: is windows
   - op: and
     rules:
-    - case sensitive: false
-      op: ends with
-      path: event/FILE_PATH
-      value: \fsutil.exe
+    - op: or
+      rules:
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: \fsutil.exe
+      - case sensitive: false
+        op: ends with
+        path: event/FILE_PATH
+        value: fsutil.exe
     - op: or
       rules:
       - case sensitive: false

@@ -7,8 +7,12 @@ detect:
   - op: is linux
   - op: and
     rules:
-    - bash -c /bin/bash
-    - '&/dev/tcp/'
+    - op: is
+      path: event/COMMAND_LINE
+      value: bash -c /bin/bash
+    - op: is
+      path: event/COMMAND_LINE
+      value: '&/dev/tcp/'
 respond:
 - action: report
   metadata:
