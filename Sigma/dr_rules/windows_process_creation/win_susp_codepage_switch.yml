@@ -10,11 +10,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: chcp.* 936
+      re: chcp.*\ 936
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: chcp.* 1258
+      re: chcp.*\ 1258
 respond:
 - action: report
   metadata:

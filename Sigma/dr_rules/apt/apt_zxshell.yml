@@ -10,11 +10,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: rundll32\.exe .*,zxFunction.*
+      re: rundll32\.exe\ .*,zxFunction.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: rundll32\.exe .*,RemoteDiskXXXXX
+      re: rundll32\.exe\ .*,RemoteDiskXXXXX
 respond:
 - action: report
   metadata:

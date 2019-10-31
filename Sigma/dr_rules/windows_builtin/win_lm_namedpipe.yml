@@ -11,7 +11,7 @@ detect:
     - case sensitive: false
       op: matches
       path: Event/EventData/ShareName
-      value: \\\.*\\IPC\$
+      re: \\.*\\IPC\$
   - not: true
     op: and
     rules:
@@ -22,7 +22,7 @@ detect:
     - case sensitive: false
       op: matches
       path: Event/EventData/ShareName
-      value: \\\.*\\IPC\$
+      re: \\.*\\IPC\$
     - op: or
       rules:
       - case sensitive: false

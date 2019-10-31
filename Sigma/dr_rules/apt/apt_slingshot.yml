@@ -8,7 +8,7 @@ detect:
   - case sensitive: false
     op: matches
     path: event/COMMAND_LINE
-    value: .*schtasks.* /delete .*Defrag\\ScheduledDefrag.*
+    re: .*schtasks.*\ /delete\ .*Defrag\\ScheduledDefrag.*
 respond:
 - action: report
   metadata:

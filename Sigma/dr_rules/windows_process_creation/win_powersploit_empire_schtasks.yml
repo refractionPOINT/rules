@@ -16,19 +16,19 @@ detect:
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: .*schtasks.*/Create.*/SC .*ONLOGON.*/TN .*Updater.*/TR .*powershell.*
+        re: .*schtasks.*/Create.*/SC\ .*ONLOGON.*/TN\ .*Updater.*/TR\ .*powershell.*
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: .*schtasks.*/Create.*/SC .*DAILY.*/TN .*Updater.*/TR .*powershell.*
+        re: .*schtasks.*/Create.*/SC\ .*DAILY.*/TN\ .*Updater.*/TR\ .*powershell.*
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: .*schtasks.*/Create.*/SC .*ONIDLE.*/TN .*Updater.*/TR .*powershell.*
+        re: .*schtasks.*/Create.*/SC\ .*ONIDLE.*/TN\ .*Updater.*/TR\ .*powershell.*
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: .*schtasks.*/Create.*/SC .*Updater.*/TN .*Updater.*/TR .*powershell.*
+        re: .*schtasks.*/Create.*/SC\ .*Updater.*/TN\ .*Updater.*/TR\ .*powershell.*
 respond:
 - action: report
   metadata:

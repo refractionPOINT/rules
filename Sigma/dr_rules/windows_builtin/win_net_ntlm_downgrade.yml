@@ -11,15 +11,15 @@ detect:
     - case sensitive: false
       op: matches
       path: Event/EventData/TargetObject
-      value: .*SYSTEM\\\.*ControlSet.*\\Control\\Lsa\\lmcompatibilitylevel
+      re: .*SYSTEM\\.*ControlSet.*\\Control\\Lsa\\lmcompatibilitylevel
     - case sensitive: false
       op: matches
       path: Event/EventData/TargetObject
-      value: .*SYSTEM\\\.*ControlSet.*\\Control\\Lsa\\NtlmMinClientSec
+      re: .*SYSTEM\\.*ControlSet.*\\Control\\Lsa\\NtlmMinClientSec
     - case sensitive: false
       op: matches
       path: Event/EventData/TargetObject
-      value: .*SYSTEM\\\.*ControlSet.*\\Control\\Lsa\\RestrictSendingNTLMTraffic
+      re: .*SYSTEM\\.*ControlSet.*\\Control\\Lsa\\RestrictSendingNTLMTraffic
   target: log
 respond:
 - action: report
@@ -45,7 +45,7 @@ detect:
   - case sensitive: false
     op: matches
     path: Event/EventData/ObjectName
-    value: \\REGISTRY\\MACHINE\\SYSTEM\\\.*ControlSet.*\\Control\\Lsa
+    re: \\REGISTRY\\MACHINE\\SYSTEM\\.*ControlSet.*\\Control\\Lsa
   - op: or
     rules:
     - case sensitive: false

@@ -36,7 +36,7 @@ detect:
     - case sensitive: false
       op: matches
       path: event/FILE_PATH
-      value: C:\\users\\\.*\.exe
+      re: C:\\users\\.*\.exe
 respond:
 - action: report
   metadata:

@@ -10,11 +10,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\regsvr32.*\\AppData\\Local\\\.*
+      re: .*\\regsvr32.*\\AppData\\Local\\.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\AppData\\Local\\\.*,DllEntry.*
+      re: .*\\AppData\\Local\\.*,DllEntry.*
 respond:
 - action: report
   metadata:

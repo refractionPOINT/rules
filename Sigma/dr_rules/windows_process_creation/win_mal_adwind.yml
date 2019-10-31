@@ -10,11 +10,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\AppData\\Roaming\\Oracle.*\\java.*\.exe .*
+      re: .*\\AppData\\Roaming\\Oracle.*\\java.*\.exe\ .*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*cscript\.exe .*Retrive.*\.vbs .*
+      re: .*cscript\.exe\ .*Retrive.*\.vbs\ .*
 respond:
 - action: report
   metadata:
@@ -42,11 +42,11 @@ detect:
     - case sensitive: false
       op: matches
       path: Event/EventData/TargetFilename
-      value: .*\\AppData\\Roaming\\Oracle\\bin\\java.*\.exe
+      re: .*\\AppData\\Roaming\\Oracle\\bin\\java.*\.exe
     - case sensitive: false
       op: matches
       path: Event/EventData/TargetFilename
-      value: .*\\Retrive.*\.vbs
+      re: .*\\Retrive.*\.vbs
   target: log
 respond:
 - action: report

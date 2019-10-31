@@ -38,11 +38,11 @@ detect:
         - case sensitive: false
           op: matches
           path: event/COMMAND_LINE
-          value: .*/i:http.* scrobj\.dll
+          re: .*/i:http.*\ scrobj\.dll
         - case sensitive: false
           op: matches
           path: event/COMMAND_LINE
-          value: .*/i:ftp.* scrobj\.dll
+          re: .*/i:ftp.*\ scrobj\.dll
     - op: and
       rules:
       - case sensitive: false

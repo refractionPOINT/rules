@@ -8,7 +8,7 @@ detect:
   - case sensitive: false
     op: matches
     path: event/COMMAND_LINE
-    value: netsh i.* p.*=3389 c.*
+    re: netsh\ i.*\ p.*=3389\ c.*
 respond:
 - action: report
   metadata:

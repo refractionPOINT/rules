@@ -17,11 +17,11 @@ detect:
       - case sensitive: false
         op: matches
         path: event/FILE_PATH
-        value: C:\\Users\\\.*\\AppData\\Local\\Notepad++\\updater\\gup\.exe
+        re: C:\\Users\\.*\\AppData\\Local\\Notepad\+\+\\updater\\gup\.exe
       - case sensitive: false
         op: matches
         path: event/FILE_PATH
-        value: C:\\Users\\\.*\\AppData\\Roaming\\Notepad++\\updater\\gup\.exe
+        re: C:\\Users\\.*\\AppData\\Roaming\\Notepad\+\+\\updater\\gup\.exe
       - case sensitive: false
         op: is
         path: event/FILE_PATH

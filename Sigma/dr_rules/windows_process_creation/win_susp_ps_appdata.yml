@@ -10,11 +10,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .* /c powershell.*\\AppData\\Local\\\.*
+      re: .*\ /c\ powershell.*\\AppData\\Local\\.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .* /c powershell.*\\AppData\\Roaming\\\.*
+      re: .*\ /c\ powershell.*\\AppData\\Roaming\\.*
 respond:
 - action: report
   metadata:

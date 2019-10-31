@@ -3,23 +3,23 @@ detect:
   op: and
   rules:
   - case sensitive: false
-    op: is
+    op: matches
     path: Event/EventData/Description
-    value: \?
+    re: \?
   - op: or
     rules:
     - case sensitive: false
-      op: is
+      op: matches
       path: Event/EventData/FileVersion
-      value: \?
+      re: \?
     - case sensitive: false
-      op: is
+      op: matches
       path: Event/EventData/Product
-      value: \?
+      re: \?
     - case sensitive: false
-      op: is
+      op: matches
       path: Event/EventData/Company
-      value: \?
+      re: \?
   target: log
 respond:
 - action: report

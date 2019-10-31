@@ -8,7 +8,7 @@ detect:
   - case sensitive: false
     op: matches
     path: event/COMMAND_LINE
-    value: .*\\rundll32\.exe .*,InstallArcherSvc
+    re: .*\\rundll32\.exe\ .*,InstallArcherSvc
 respond:
 - action: report
   metadata:

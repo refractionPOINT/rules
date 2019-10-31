@@ -16,11 +16,11 @@ detect:
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: .*comsvcs.*MiniDump.*full.*
+        re: .*comsvcs.*MiniDump.*full.*
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: .*comsvcs.*MiniDumpW.*full.*
+        re: .*comsvcs.*MiniDumpW.*full.*
 respond:
 - action: report
   metadata:

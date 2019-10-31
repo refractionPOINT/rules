@@ -8,7 +8,7 @@ detect:
   - case sensitive: false
     op: matches
     path: event/COMMAND_LINE
-    value: .* msiexec.*:\\/\\/.*
+    re: .*\ msiexec.*:\\/\\/.*
 respond:
 - action: report
   metadata:

@@ -14,11 +14,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: dir c:\\\.*\.doc.* /s
+      re: dir\ c:\\.*\.doc.*\ /s
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: dir %TEMP%\\\.*\.exe
+      re: dir\ %TEMP%\\.*\.exe
 respond:
 - action: report
   metadata:

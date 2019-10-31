@@ -9,7 +9,7 @@ detect:
     rules:
     - op: matches
       path: event/COMMAND_LINE
-      re: 'chown root.*chmod 4777 '
+      re: 'chown\ root.*chmod\ 4777\ '
     - op: is
       path: event/COMMAND_LINE
       value: cp /bin/sh .;chown
@@ -42,16 +42,17 @@ detect:
       value: rm -f /current/tmp/ftshell.latest
     - op: matches
       path: event/COMMAND_LINE
-      re: 'ghost_.* -v '
+      re: 'ghost_.*\ \-v\ '
     - op: is
       path: event/COMMAND_LINE
       value: ' --wipe > /dev/null'
     - op: matches
       path: event/COMMAND_LINE
-      re: ping -c 2 .*; grep .* /proc/net/arp >/tmp/gx
+      re: ping\ \-c\ 2\ .*;\ grep\ .*\ /proc/net/arp\ >/tmp/gx
     - op: matches
       path: event/COMMAND_LINE
-      re: iptables .* OUTPUT -p tcp -d 127\.0\.0\.1 --tcp-flags RST RST -j DROP;
+      re: iptables\ .*\ OUTPUT\ \-p\ tcp\ \-d\ 127\.0\.0\.1\ \-\-tcp\-flags\ RST\
+        RST\ \-j\ DROP;
     - op: is
       path: event/COMMAND_LINE
       value: '> /var/log/audit/audit.log; rm -f .'
@@ -60,13 +61,13 @@ detect:
       value: cp /var/log/audit/audit.log .tmp
     - op: matches
       path: event/COMMAND_LINE
-      re: sh >/dev/tcp/.* <&1 2>&1
+      re: sh\ >/dev/tcp/.*\ <\&1\ 2>\&1
     - op: matches
       path: event/COMMAND_LINE
-      re: ncat -vv -l -p .* <
+      re: ncat\ \-vv\ \-l\ \-p\ .*\ <
     - op: matches
       path: event/COMMAND_LINE
-      re: nc -vv -l -p .* <
+      re: nc\ \-vv\ \-l\ \-p\ .*\ <
     - op: is
       path: event/COMMAND_LINE
       value: < /dev/console | uudecode && uncompress
@@ -75,7 +76,7 @@ detect:
       value: sendmail -osendmail;chmod +x sendmail
     - op: matches
       path: event/COMMAND_LINE
-      re: /usr/bin/wget -O /tmp/a http.* && chmod 755 /tmp/cron
+      re: /usr/bin/wget\ \-O\ /tmp/a\ http.*\ \&\&\ chmod\ 755\ /tmp/cron
     - op: is
       path: event/COMMAND_LINE
       value: chmod 666 /var/run/utmp~
@@ -93,13 +94,13 @@ detect:
       value: chmod 700 jp&&netstat -an|grep
     - op: matches
       path: event/COMMAND_LINE
-      re: uudecode > /dev/null 2>&1 && uncompress -f .* && chmod 755
+      re: uudecode\ >\ /dev/null\ 2>\&1\ \&\&\ uncompress\ \-f\ .*\ \&\&\ chmod\ 755
     - op: is
       path: event/COMMAND_LINE
       value: chmod 700 crond
     - op: matches
       path: event/COMMAND_LINE
-      re: wget http.*; chmod +x /tmp/sendmail
+      re: wget\ http.*;\ chmod\ \+x\ /tmp/sendmail
     - op: is
       path: event/COMMAND_LINE
       value: chmod 700 fp sendmail pt
@@ -111,7 +112,7 @@ detect:
       value: chmod -R 755 /usr/vmsys
     - op: matches
       path: event/COMMAND_LINE
-      re: chmod 755 \$opbin/.*tunnel
+      re: chmod\ 755\ \$opbin/.*tunnel
     - op: is
       path: event/COMMAND_LINE
       value: chmod 700 sendmail
@@ -120,10 +121,10 @@ detect:
       value: chmod 0700 sendmail
     - op: matches
       path: event/COMMAND_LINE
-      re: /usr/bin/wget http.*sendmail;chmod +x sendmail;
+      re: /usr/bin/wget\ http.*sendmail;chmod\ \+x\ sendmail;
     - op: matches
       path: event/COMMAND_LINE
-      re: '&& telnet .* 2>&1 </dev/console'
+      re: \&\&\ telnet\ .*\ 2>\&1\ </dev/console
 respond:
 - action: report
   metadata:

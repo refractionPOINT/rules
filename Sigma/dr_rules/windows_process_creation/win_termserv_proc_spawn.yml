@@ -10,7 +10,7 @@ detect:
     - case sensitive: false
       op: matches
       path: event/PARENT/COMMAND_LINE
-      value: .*\\svchost\.exe.*termsvcs
+      re: .*\\svchost\.exe.*termsvcs
     - case sensitive: false
       not: true
       op: ends with

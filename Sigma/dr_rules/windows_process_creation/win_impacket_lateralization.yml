@@ -30,7 +30,7 @@ detect:
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: .*cmd\.exe.* /Q /c .* \\\\\\\\127\.0\.0\.1\\\.*&1.*
+        re: .*cmd\.exe.*\ /Q\ /c\ .*\ \\\\\\\\127\.0\.0\.1\\.*\&1.*
     - op: and
       rules:
       - op: or
@@ -46,7 +46,7 @@ detect:
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: cmd\.exe /C .*Windows\\\\Temp\\\.*&1
+        re: cmd\.exe\ /C\ .*Windows\\\\Temp\\.*\&1
 respond:
 - action: report
   metadata:

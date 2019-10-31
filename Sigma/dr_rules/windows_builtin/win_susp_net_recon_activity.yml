@@ -21,7 +21,7 @@ detect:
       - case sensitive: false
         op: matches
         path: Event/EventData/ObjectName
-        value: S-1-5-21-.*-500
+        re: S\-1\-5\-21\-.*\-500
     - op: and
       rules:
       - case sensitive: false
@@ -31,7 +31,7 @@ detect:
       - case sensitive: false
         op: matches
         path: Event/EventData/ObjectName
-        value: S-1-5-21-.*-512
+        re: S\-1\-5\-21\-.*\-512
   target: log
 respond:
 - action: report

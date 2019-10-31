@@ -9,7 +9,7 @@ detect:
   - case sensitive: false
     op: matches
     path: Event/EventData/TargetFilename
-    value: .*\\AppData\\Local\\Temp\\SAM-.*\.dmp.*
+    re: .*\\AppData\\Local\\Temp\\SAM\-.*\.dmp.*
   target: log
 respond:
 - action: report

@@ -7,7 +7,7 @@ detect:
     path: Event/System/EventID
     value: '8002'
   - case sensitive: false
-    op: contains
+    op: ends with
     path: Event/EventData/CallingProcessName
     value: ''
   target: log

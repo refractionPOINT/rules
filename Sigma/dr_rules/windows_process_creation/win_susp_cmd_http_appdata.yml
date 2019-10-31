@@ -10,11 +10,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: cmd\.exe /c .*http://.*%AppData%
+      re: cmd\.exe\ /c\ .*http://.*%AppData%
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: cmd\.exe /c .*https://.*%AppData%
+      re: cmd\.exe\ /c\ .*https://.*%AppData%
 respond:
 - action: report
   metadata:

@@ -10,11 +10,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: rundll32\.exe %APPDATA%\\\.*\.dat\",.*
+      re: rundll32\.exe\ %APPDATA%\\.*\.dat",.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: rundll32\.exe %APPDATA%\\\.*\.dll\",#1
+      re: rundll32\.exe\ %APPDATA%\\.*\.dll",\#1
 respond:
 - action: report
   metadata:

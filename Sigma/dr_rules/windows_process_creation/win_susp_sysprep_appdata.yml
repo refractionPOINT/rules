@@ -10,11 +10,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\sysprep\.exe .*\\AppData\\\.*
+      re: .*\\sysprep\.exe\ .*\\AppData\\.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: sysprep\.exe .*\\AppData\\\.*
+      re: sysprep\.exe\ .*\\AppData\\.*
 respond:
 - action: report
   metadata:

@@ -18,7 +18,7 @@ detect:
     - case sensitive: false
       op: matches
       path: event/FILE_PATH
-      value: /home/.*/public_html/.*
+      re: /home/.*/public_html/.*
     - case sensitive: false
       op: starts with
       path: event/FILE_PATH

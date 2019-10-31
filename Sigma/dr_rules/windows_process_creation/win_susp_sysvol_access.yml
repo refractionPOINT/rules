@@ -8,7 +8,7 @@ detect:
   - case sensitive: false
     op: matches
     path: event/COMMAND_LINE
-    value: .*\\SYSVOL\\\.*\\policies\\\.*
+    re: .*\\SYSVOL\\.*\\policies\\.*
 respond:
 - action: report
   metadata:

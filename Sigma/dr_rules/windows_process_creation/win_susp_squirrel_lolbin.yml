@@ -16,11 +16,11 @@ detect:
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: .*--processStart.*\.exe.*
+        re: .*\-\-processStart.*\.exe.*
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: ".*\u2013createShortcut.*\\.exe.*"
+        re: ".*\u2013createShortcut.*\\.exe.*"
 respond:
 - action: report
   metadata:

@@ -14,7 +14,7 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*/change.*/TN.*/RU.*/RP.*
+      re: .*/change.*/TN.*/RU.*/RP.*
 respond:
 - action: report
   metadata:

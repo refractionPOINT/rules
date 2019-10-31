@@ -13,11 +13,11 @@ detect:
       path: Event/System/EventID
       value: '4625'
   - case sensitive: false
-    op: contains
+    op: ends with
     path: Event/EventData/UserName
     value: ''
   - case sensitive: false
-    op: contains
+    op: ends with
     path: Event/EventData/WorkstationName
     value: ''
   target: log

@@ -11,16 +11,16 @@ detect:
     - case sensitive: false
       op: matches
       path: Event/EventData/TargetObject
-      value: .*\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution
-        Options\\\.*\\GlobalFlag
+      re: .*\\SOFTWARE\\Microsoft\\Windows\ NT\\CurrentVersion\\Image\ File\ Execution\
+        Options\\.*\\GlobalFlag
     - case sensitive: false
       op: matches
       path: Event/EventData/TargetObject
-      value: .*\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SilentProcessExit\\\.*\\ReportingMode
+      re: .*\\SOFTWARE\\Microsoft\\Windows\ NT\\CurrentVersion\\SilentProcessExit\\.*\\ReportingMode
     - case sensitive: false
       op: matches
       path: Event/EventData/TargetObject
-      value: .*\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SilentProcessExit\\\.*\\MonitorProcess
+      re: .*\\SOFTWARE\\Microsoft\\Windows\ NT\\CurrentVersion\\SilentProcessExit\\.*\\MonitorProcess
   - case sensitive: false
     op: is
     path: Event/EventData/EventType

@@ -11,7 +11,7 @@ detect:
     - case sensitive: false
       op: matches
       path: Event/EventData/TargetObject
-      value: HKEY_USERS\\\.*\\mscfile\\shell\\open\\command
+      re: HKEY_USERS\\.*\\mscfile\\shell\\open\\command
   - op: and
     rules:
     - op: and

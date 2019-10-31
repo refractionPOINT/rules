@@ -16,7 +16,7 @@ detect:
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
-        value: .*/NODE:.*process call create .*
+        re: .*/NODE:.*process\ call\ create\ .*
       - case sensitive: false
         op: contains
         path: event/COMMAND_LINE

@@ -50,19 +50,19 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*certutil.* -URL.*
+      re: .*certutil.*\ \-URL.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*certutil.* /URL.*
+      re: .*certutil.*\ /URL.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*certutil.* -ping.*
+      re: .*certutil.*\ \-ping.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*certutil.* /ping.*
+      re: .*certutil.*\ /ping.*
 respond:
 - action: report
   metadata:

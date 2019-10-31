@@ -22,11 +22,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: copy \\\.\\GLOBALROOT\\Device\\\.*\\windows\\ntds\\ntds\.dit.*
+      re: copy\ \\.\\GLOBALROOT\\Device\\.*\\windows\\ntds\\ntds\.dit.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: copy \\\.\\GLOBALROOT\\Device\\\.*\\config\\SAM.*
+      re: copy\ \\.\\GLOBALROOT\\Device\\.*\\config\\SAM.*
     - case sensitive: false
       op: starts with
       path: event/COMMAND_LINE
@@ -42,55 +42,55 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: net localgroup administrators .* /add
+      re: net\ localgroup\ administrators\ .*\ /add
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: net group \"Domain Admins\" .* /ADD /DOMAIN
+      re: net\ group\ "Domain\ Admins"\ .*\ /ADD\ /DOMAIN
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: certutil\.exe .*-urlcache.* http.*
+      re: certutil\.exe\ .*\-urlcache.*\ http.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: certutil\.exe .*-urlcache.* ftp.*
+      re: certutil\.exe\ .*\-urlcache.*\ ftp.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: netsh advfirewall firewall .*\\AppData\\\.*
+      re: netsh\ advfirewall\ firewall\ .*\\AppData\\.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: attrib +S +H +R .*\\AppData\\\.*
+      re: attrib\ \+S\ \+H\ \+R\ .*\\AppData\\.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: schtasks.* /create .*\\AppData\\\.*
+      re: schtasks.*\ /create\ .*\\AppData\\.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: schtasks.* /sc minute.*
+      re: schtasks.*\ /sc\ minute.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\Regasm\.exe .*\\AppData\\\.*
+      re: .*\\Regasm\.exe\ .*\\AppData\\.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\Regasm .*\\AppData\\\.*
+      re: .*\\Regasm\ .*\\AppData\\.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\bitsadmin.* /transfer.*
+      re: .*\\bitsadmin.*\ /transfer.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\certutil\.exe .* -decode .*
+      re: .*\\certutil\.exe\ .*\ \-decode\ .*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\certutil\.exe .* -decodehex .*
+      re: .*\\certutil\.exe\ .*\ \-decodehex\ .*
     - case sensitive: false
       op: contains
       path: event/COMMAND_LINE
@@ -98,7 +98,7 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: icacls .* /grant Everyone:F /T /C /Q
+      re: icacls\ .*\ /grant\ Everyone:F\ /T\ /C\ /Q
     - case sensitive: false
       op: contains
       path: event/COMMAND_LINE
@@ -110,35 +110,35 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\wscript\.exe .*\.jse
+      re: .*\\wscript\.exe\ .*\.jse
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\wscript\.exe .*\.js
+      re: .*\\wscript\.exe\ .*\.js
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\wscript\.exe .*\.vba
+      re: .*\\wscript\.exe\ .*\.vba
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\wscript\.exe .*\.vbe
+      re: .*\\wscript\.exe\ .*\.vbe
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\cscript\.exe .*\.jse
+      re: .*\\cscript\.exe\ .*\.jse
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\cscript\.exe .*\.js
+      re: .*\\cscript\.exe\ .*\.js
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\cscript\.exe .*\.vba
+      re: .*\\cscript\.exe\ .*\.vba
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*\\cscript\.exe .*\.vbe
+      re: .*\\cscript\.exe\ .*\.vbe
     - case sensitive: false
       op: ends with
       path: event/COMMAND_LINE
@@ -146,23 +146,23 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*waitfor.*/s.*
+      re: .*waitfor.*/s.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*waitfor.*/si persist.*
+      re: .*waitfor.*/si\ persist.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*remote.*/s.*
+      re: .*remote.*/s.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*remote.*/c.*
+      re: .*remote.*/c.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .*remote.*/q.*
+      re: .*remote.*/q.*
     - case sensitive: false
       op: contains
       path: event/COMMAND_LINE

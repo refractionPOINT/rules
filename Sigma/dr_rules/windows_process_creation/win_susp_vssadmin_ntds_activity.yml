@@ -18,11 +18,11 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: copy \\\.\\GLOBALROOT\\Device\\\.*\\windows\\ntds\\ntds\.dit
+      re: copy\ \\.\\GLOBALROOT\\Device\\.*\\windows\\ntds\\ntds\.dit
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: copy \\\.\\GLOBALROOT\\Device\\\.*\\config\\SAM
+      re: copy\ \\.\\GLOBALROOT\\Device\\.*\\config\\SAM
     - case sensitive: false
       op: is
       path: event/COMMAND_LINE
@@ -34,7 +34,7 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: esentutl\.exe /y /vss .*\\ntds\.dit.*
+      re: esentutl\.exe\ /y\ /vss\ .*\\ntds\.dit.*
 respond:
 - action: report
   metadata:

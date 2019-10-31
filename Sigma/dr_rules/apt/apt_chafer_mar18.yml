@@ -155,7 +155,7 @@ detect:
     - case sensitive: false
       op: matches
       path: event/FILE_PATH
-      value: .*\\Windows\\Temp\\DB\\\.*\.exe
+      re: .*\\Windows\\Temp\\DB\\.*\.exe
     - op: and
       rules:
       - case sensitive: false

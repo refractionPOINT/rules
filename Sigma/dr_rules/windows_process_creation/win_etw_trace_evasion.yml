@@ -10,19 +10,19 @@ detect:
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .* cl .*/Trace.*
+      re: .*\ cl\ .*/Trace.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .* clear-log .*/Trace.*
+      re: .*\ clear\-log\ .*/Trace.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .* sl.* /e:false.*
+      re: .*\ sl.*\ /e:false.*
     - case sensitive: false
       op: matches
       path: event/COMMAND_LINE
-      value: .* set-log.* /e:false.*
+      re: .*\ set\-log.*\ /e:false.*
 respond:
 - action: report
   metadata:
