@@ -32,7 +32,7 @@ detect:
           op: ends with
           path: event/PARENT/FILE_PATH
           value: \rpcnet.exe
-    - not: true
+    - not: false
       op: exists
       path: event/PARENT/FILE_PATH
 respond:

@@ -73,21 +73,21 @@ detect:
       op: or
       rules:
       - case sensitive: false
-        op: starts with
+        op: matches
         path: event/FILE_PATH
-        value: C:\Windows\System32\
+        re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\System32\\
       - case sensitive: false
-        op: starts with
+        op: matches
         path: event/FILE_PATH
-        value: C:\Windows\SysWow64\
+        re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\SysWow64\\
       - case sensitive: false
         op: is
         path: event/FILE_PATH
         value: C:\Windows\explorer.exe
       - case sensitive: false
-        op: starts with
+        op: matches
         path: event/FILE_PATH
-        value: C:\Windows\winsxs\
+        re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\winsxs\\
 respond:
 - action: report
   metadata:

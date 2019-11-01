@@ -16,37 +16,37 @@ detect:
       path: event/FILE_PATH
       value: :\SystemVolumeInformation\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\\Windows\\Tasks\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\\\Windows\\\\Tasks\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\\Windows\\debug\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\\\Windows\\\\debug\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\\Windows\\fonts\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\\\Windows\\\\fonts\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\\Windows\\help\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\\\Windows\\\\help\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\\Windows\\drivers\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\\\Windows\\\\drivers\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\\Windows\\addins\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\\\Windows\\\\addins\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\\Windows\\cursors\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\\\Windows\\\\cursors\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\\Windows\\system32\tasks\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\\\Windows\\\\system32\\tasks\\
 respond:
 - action: report
   metadata:

@@ -6,7 +6,7 @@ detect:
     op: is
     path: Event/System/EventID
     value: '4738'
-  - not: true
+  - not: false
     op: exists
     path: Event/EventData/PasswordLastSet
   target: log

@@ -8,65 +8,65 @@ detect:
   - op: or
     rules:
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\PerfLogs\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\PerfLogs\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\$Recycle.bin\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\\$Recycle\.bin\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Intel\Logs\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Intel\\Logs\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Users\Default\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Users\\Default\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Users\Public\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Users\\Public\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Users\NetworkService\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Users\\NetworkService\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Windows\Fonts\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\Fonts\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Windows\Debug\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\Debug\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Windows\Media\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\Media\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Windows\Help\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\Help\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Windows\addins\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\addins\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Windows\repair\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\repair\\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Windows\security\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\security\\
     - case sensitive: false
       op: contains
       path: event/FILE_PATH
       value: \RSA\MachineKeys\
     - case sensitive: false
-      op: starts with
+      op: matches
       path: event/FILE_PATH
-      value: C:\Windows\system32\config\systemprofile\
+      re: ^(?:(?:.:)|(?:\\Device\\HarddiskVolume.))\\Windows\\system32\\config\\systemprofile\\
 respond:
 - action: report
   metadata:

@@ -58,7 +58,7 @@ detect:
           op: contains
           path: event/PARENT/FILE_PATH
           value: \SysWOW64\
-    - not: true
+    - not: false
       op: exists
       path: event/PARENT/FILE_PATH
 respond:
