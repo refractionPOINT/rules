@@ -20,6 +20,10 @@ detect:
       - case sensitive: false
         op: matches
         path: event/COMMAND_LINE
+        re: .*\-\-processStartAndWait.*\.exe.*
+      - case sensitive: false
+        op: matches
+        path: event/COMMAND_LINE
         re: ".*\u2013createShortcut.*\\.exe.*"
 respond:
 - action: report
@@ -29,6 +33,7 @@ respond:
     level: high
     references:
     - http://www.hexacorn.com/blog/2019/03/30/sqirrel-packages-manager-as-a-lolbin-a-k-a-many-electron-apps-are-lolbins-by-default/
+    - http://www.hexacorn.com/blog/2018/08/16/squirrel-as-a-lolbin/
     tags:
     - attack.execution
   name: Squirrel Lolbin
