@@ -1,7 +1,7 @@
 {
+    "event": "NEW_PROCESS",
     "rules": [
-        {
-            "event": "NEW_PROCESS", 
+        { 
             "op": "is windows"
         }, 
         {

@@ -1,9 +1,9 @@
 # https://attack.mitre.org/wiki/Technique/T1182
 # Detect changes to the registry key.
 op: and
+event: REGISTRY_WRITE
 rules:
   - op: is windows
-    event: REGISTRY_WRITE
   - op: contains
     path: event/REGISTRY_KEY
     value: System\CurrentControlSet\Control\Session Manager

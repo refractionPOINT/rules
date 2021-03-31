@@ -1,9 +1,9 @@
 # https://attack.mitre.org/wiki/Technique/T1158
 # Detects making a file hidden from the command line.
 op: and
+event: NEW_PROCESS
 rules:
   - op: is windows
-    event: NEW_PROCESS
   - op: ends with
     path: event/FILE_PATH
     value: attrib.exe

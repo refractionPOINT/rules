@@ -3,12 +3,13 @@
 # or that drops an executable file or script.
 
 op: and
+events:
+  - NEW_PROCESS
+  - EXISTING_PROCESS
 rules:
   - op: is windows
   - op: matches
-    events:
-      - NEW_PROCESS
-      - EXISTING_PROCESS
+
     path: event/FILE_PATH
     re: .*(winword|outlook|excel|powerpnt|iexplore|firefox|chrome|acrord32)\.exe$
     case sensitive: false

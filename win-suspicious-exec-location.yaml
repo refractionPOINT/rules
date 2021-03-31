@@ -1,8 +1,8 @@
 op: and
-rules:
-- events:
+events:
   - NEW_PROCESS
   - CODE_IDENTITY
+rules: 
   op: is windows
 - case sensitive: false
   op: matches

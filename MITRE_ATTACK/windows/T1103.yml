@@ -1,9 +1,9 @@
 # https://attack.mitre.org/wiki/Technique/T1103
 # Detect changes to the registry key.
 op: and
+event: REGISTRY_WRITE
 rules:
   - op: is windows
-    event: REGISTRY_WRITE
   - op: matches
     path: event/REGISTRY_KEY
     re: .*Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\AppInit_DLLs.*

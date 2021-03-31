@@ -2,9 +2,9 @@
 # This is not a complete detection, it is a pointer on how to
 # detect new scheduled tasks for further analysis.
 op: and
+event: NEW_DOCUMENT
 rules:
   - op: is windows
-    event: NEW_DOCUMENT
   - op: or
     rules:
     - op: contains

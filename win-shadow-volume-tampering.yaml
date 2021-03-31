@@ -1,6 +1,6 @@
 op: and
+event: NEW_PROCESS
 rules:
-- event: NEW_PROCESS
   op: is windows
 - op: or
   rules:

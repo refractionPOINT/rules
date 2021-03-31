@@ -2,9 +2,9 @@
 # Detects modifications to COM object handlers.
 # This is not necessarily malicious.
 op: and
+event: REGISTRY_WRITE
 rules:
   - op: is windows
-    event: REGISTRY_WRITE
   - op: contains
     path: event/REGISTRY_KEY
     value: \SOFTWARE\Classes\CLSID\

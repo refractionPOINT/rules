@@ -2,9 +2,9 @@
 # Detects execution of Mavinject.exe, this is not always malicious
 # so this should be used as a pointer for further analysis.
 op: and
+event: NEW_PROCESS
 rules:
   - op: is windows
-    event: NEW_PROCESS
   - op: ends with
     path: event/FILE_PATH
     value: Mavinject.exe

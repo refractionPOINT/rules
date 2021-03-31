@@ -2,9 +2,9 @@
 # Detects modifications to the extension handlers.
 # This is not necessarily malicious.
 op: and
+event: REGISTRY_WRITE
 rules:
   - op: is windows
-    event: REGISTRY_WRITE
   - op: or
     rules:
       - op: starts with
