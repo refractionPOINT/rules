@@ -1,9 +1,9 @@
 # https://attack.mitre.org/wiki/Technique/T1197
 # Detects instantiations of the BITSAdmin tool. 
 op: and
+event: NEW_PROCESS
 rules:
   - op: is windows
-    event: NEW_PROCESS
   - op: ends with
     path: event/FILE_PATH
     value: bitsadmin.exe

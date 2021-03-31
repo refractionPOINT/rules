@@ -1,10 +1,10 @@
 {
+    "events": [
+        "NEW_PROCESS", 
+        "CODE_IDENTITY"
+    ], 
     "rules": [
         {
-            "events": [
-                "NEW_PROCESS", 
-                "CODE_IDENTITY"
-            ], 
             "op": "is windows"
         }, 
         {

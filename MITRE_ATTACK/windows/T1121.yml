@@ -2,9 +2,9 @@
 # Detects the execution of Regsvcs/Regasm. This assumes there are no
 # legitimate uses of it in your environment.
 op: and
+event: NEW_PROCESS
 rules:
   - op: is windows
-    event: NEW_PROCESS
   - op: or
     rules:
     - op: ends with

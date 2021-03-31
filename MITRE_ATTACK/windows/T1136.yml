@@ -1,9 +1,9 @@
 # https://attack.mitre.org/wiki/Technique/T1136
 # Detects the creation of users from the command line.
 op: and
+event: NEW_PROCESS
 rules:
   - op: is windows
-    event: NEW_PROCESS
   - op: ends with
     path: event/FILE_PATH
     value: net.exe

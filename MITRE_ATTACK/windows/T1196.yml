@@ -1,9 +1,9 @@
 # https://attack.mitre.org/wiki/Technique/T1196
 # Detects the execution of a CPL outside the c:\windows directory.
 op: and
+event: CODE_IDENTITY
 rules:
   - op: is windows
-    event: CODE_IDENTITY
   - op: ends with
     path: event/FILE_PATH
     value: .cpl

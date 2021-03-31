@@ -15,8 +15,8 @@
 # being created".
 # ===============================================
 # DETECTION
+event: NEW_PROCESS
 rules:
-  - event: NEW_PROCESS
     op: is windows
   - path: event/COMMAND_LINE
     case sensitive: false
@@ -37,9 +37,9 @@ op: and
 # with the relevant names. If we see it we report.
 # ===============================================
 # DETECTION
+event: FILE_CREATE
 rules:
   - tag: possible_winrm
-    event: FILE_CREATE
     op: is tagged
   - path: event/FILE_PATH
     case sensitive: false
