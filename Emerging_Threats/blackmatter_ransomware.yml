@@ -116,7 +116,7 @@ exfil:
         platforms:
         - windows
     blackmatter-darkside-file-new-2021-11-25:
-      event: FILE_CREATED
+      event: FILE_CREATE
       value: 1susrKysy
       path:
       - FILE_PATH
