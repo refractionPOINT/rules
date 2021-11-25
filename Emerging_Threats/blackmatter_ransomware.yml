@@ -3,7 +3,6 @@ resources:
   replicant:
   - exfil
 rules:
-rules:
   'BlackMatter/DarkSide Ransomware #001':
     namespace: general
     detect:
