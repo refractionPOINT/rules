@@ -1,45 +1,50 @@
 version: 3
 resources:
-  api:
-  - insight
   replicant:
   - exfil
-  - infrastructure-service
-  - integrity
-  - logging
 rules:
 rules:
   'BlackMatter/DarkSide Ransomware #001':
     namespace: general
     detect:
       event: FILE_CREATED
-      op: is
+      op: ends with
       path: event/FILE_PATH
-      value: C:\Users\1susrKysy.README.txt
+      value: \Users\1susrKysy.README.txt
     respond:
     - action: report
-      name: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
+      name: blackmatter-darkside-2021-11-25
   'BlackMatter/DarkSide Ransomware #002':
     namespace: general
     detect:
       event: FILE_MODIFIED
-      op: is
+      op: ends with
       path: event/FILE_PATH
-      value: C:\Users\1susrKysy.README.txt
+      value: \Users\1susrKysy.README.txt
     respond:
     - action: report
-      name: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
+      name: blackmatter-darkside-2021-11-25
   'BlackMatter/DarkSide Ransomware #003':
     namespace: general
     detect:
-      event: ONGOING_IDENTITY
-      op: is
-      path: event/HASH
-      value: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
+      event: NEW_DOCUMENT
+      op: ends with
+      path: event/FILE_PATH
+      value: \Users\1susrKysy.README.txt
     respond:
     - action: report
       name: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
   'BlackMatter/DarkSide Ransomware #004':
+    namespace: general
+    detect:
+      event: ONGOING_IDENTITY
+      op: ends with
+      path: event/HASH
+      value: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
+    respond:
+    - action: report
+      name: blackmatter-darkside-2021-11-25
+  'BlackMatter/DarkSide Ransomware #005':
     namespace: general
     detect:
       event: NETWORK_CONNECTIONS
@@ -48,8 +53,8 @@ rules:
       value: 99.83.154.118
     respond:
     - action: report
-      name: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
-  'BlackMatter/DarkSide Ransomware #005':
+      name: blackmatter-darkside-2021-11-25
+  'BlackMatter/DarkSide Ransomware #006':
     namespace: general
     detect:
       event: REGISTRY_WRITE
@@ -58,369 +63,76 @@ rules:
       value: '\\DosDevices\\Z:'
     respond:
     - action: report
-      name: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
-  'BlackMatter/DarkSide Ransomware #006':
-    namespace: general
-    detect:
-      event: REGISTRY_CREATE
-      op: is
-      path: event/REGISTRY_KEY
-      value: '\\REGISTRY\\MACHINE\\SOFTWARE\\1susrKysy:'
-    respond:
-    - action: report
-      name: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
+      name: blackmatter-darkside-2021-11-25
   'BlackMatter/DarkSide Ransomware #007':
     namespace: general
     detect:
-      event: REGISTRY_DELETE
-      op: is
+      event: REGISTRY_CREATE
+      op: starts with
       path: event/REGISTRY_KEY
       value: '\\REGISTRY\\MACHINE\\SOFTWARE\\1susrKysy:'
     respond:
     - action: report
-      name: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
+      name: blackmatter-darkside-2021-11-25
+  'BlackMatter/DarkSide Ransomware #008':
+    namespace: general
+    detect:
+      event: REGISTRY_DELETE
+      op: starts with
+      path: event/REGISTRY_KEY
+      value: '\\REGISTRY\\MACHINE\\SOFTWARE\\1susrKysy:'
+    respond:
+    - action: report
+      name: blackmatter-darkside-2021-11-25
 exfil:
-  list:
-    default-chrome:
-      events:
-      - ACK_MESSAGES
-      - AUTORUN_CHANGE
-      - BACKOFF
-      - BROWSER_REQUEST_CONTEXT
-      - CODE_IDENTITY
-      - CONNECTED
-      - DATA_DROPPED
-      - DEBUG_DATA_REP
-      - DIR_FINDHASH_REP
-      - DIR_LIST_REP
-      - DNS_REQUEST
-      - DRIVER_CHANGE
-      - EXEC_OOB
-      - EXISTING_PROCESS
-      - FILE_DELETE
-      - FILE_DEL_REP
-      - FILE_GET_REP
-      - FILE_HASH_REP
-      - FILE_INFO_REP
-      - FILE_MODIFIED
-      - FILE_MOV_REP
-      - FILE_TYPE_ACCESSED
-      - FIM_ADD
-      - FIM_HIT
-      - FIM_LIST_REP
-      - FIM_REMOVE
-      - GET_DOCUMENT_REP
-      - GET_EXFIL_EVENT_REP
-      - HIDDEN_MODULE_DETECTED
-      - HISTORY_DUMP_REP
-      - HTTP_REQUEST
-      - HTTP_REQUEST_HEADERS
-      - HTTP_RESPONSE_HEADERS
-      - LATE_MODULE_LOAD
-      - LOG_ADD
-      - LOG_GET_REP
-      - LOG_LIST_REP
-      - LOG_REMOVE
-      - MEM_FIND_HANDLE_REP
-      - MEM_FIND_STRING_REP
-      - MEM_HANDLES_REP
-      - MEM_MAP_REP
-      - MEM_READ_REP
-      - MEM_STRINGS_REP
-      - MODULE_MEM_DISK_MISMATCH
-      - NETSTAT_REP
-      - NETWORK_CONNECTIONS
-      - NETWORK_SUMMARY
-      - NEW_DOCUMENT
-      - NEW_NAMED_PIPE
-      - NEW_PROCESS
-      - NEW_RELATION
-      - NEW_REMOTE_THREAD
-      - ONGOING_IDENTITY
-      - OPEN_NAMED_PIPE
-      - OS_AUTORUNS_REP
-      - OS_DRIVERS_REP
-      - OS_KILL_PROCESS_REP
-      - OS_PACKAGES_REP
-      - OS_PROCESSES_REP
-      - OS_RESUME_REP
-      - OS_SERVICES_REP
-      - OS_SUSPEND_REP
-      - OS_VERSION_REP
-      - PCAP_LIST_INTERFACES_REP
-      - POSSIBLE_DOC_EXPLOIT
-      - PROCESS_ENVIRONMENT
-      - RECEIPT
-      - RECON_BURST
-      - REGISTRY_CREATE
-      - REGISTRY_DELETE
-      - REGISTRY_LIST_REP
-      - REGISTRY_WRITE
-      - REJOIN_NETWORK
-      - RUN
-      - SEGREGATE_NETWORK
-      - SELF_TEST
-      - SELF_TEST_RESULT
-      - SENSITIVE_PROCESS_ACCESS
-      - SERVICE_CHANGE
-      - SET_PERFORMANCE_MODE
-      - SHUTTING_DOWN
-      - STARTING_UP
-      - SYNC
-      - TERMINATE_PROCESS
-      - TERMINATE_TCP4_CONNECTION
-      - TERMINATE_TCP6_CONNECTION
-      - TERMINATE_UDP4_CONNECTION
-      - TERMINATE_UDP6_CONNECTION
-      - THREAD_INJECTION
-      - UNLOAD_KERNEL
-      - UPDATE
-      - USER_OBSERVED
-      - VOLUME_MOUNT
-      - VOLUME_UNMOUNT
-      - WEL
-      - YARA_DETECTION
-      - YARA_RULES_UPDATE
-      - YARA_SCAN
+  watch:
+    blackmatter-darkside-reg-write-2021-11-25:
+      event: REGISTRY_WRITE
+      value: 1susrKysy
+      path:
+      - REGISTRY_KEY
+      operator: contains
       filters:
         tags: []
-        platforms:
-        - chrome
-        - windows
-    default-linux:
-      events:
-      - NEW_PROCESS
-      - TERMINATE_PROCESS
-      - CODE_IDENTITY
-      - DNS_REQUEST
-      - HIDDEN_MODULE_DETECTED
-      - NETWORK_CONNECTIONS
-      - FILE_GET_REP
-      - FILE_DEL_REP
-      - FILE_MOV_REP
-      - FILE_HASH_REP
-      - FILE_INFO_REP
-      - DIR_LIST_REP
-      - MEM_MAP_REP
-      - MEM_READ_REP
-      - MEM_HANDLES_REP
-      - MEM_FIND_HANDLE_REP
-      - MEM_STRINGS_REP
-      - MEM_FIND_STRING_REP
-      - OS_SERVICES_REP
-      - OS_DRIVERS_REP
-      - OS_KILL_PROCESS_REP
-      - OS_SUSPEND_REP
-      - OS_RESUME_REP
-      - OS_PROCESSES_REP
-      - OS_AUTORUNS_REP
-      - EXEC_OOB
-      - GET_EXFIL_EVENT_REP
-      - MODULE_MEM_DISK_MISMATCH
-      - YARA_DETECTION
-      - SERVICE_CHANGE
-      - DRIVER_CHANGE
-      - AUTORUN_CHANGE
-      - NEW_DOCUMENT
-      - GET_DOCUMENT_REP
-      - VOLUME_MOUNT
-      - VOLUME_UNMOUNT
-      - RECON_BURST
-      - POSSIBLE_DOC_EXPLOIT
-      - HISTORY_DUMP_REP
-      - USER_OBSERVED
-      - FILE_TYPE_ACCESSED
-      - EXISTING_PROCESS
-      - SELF_TEST_RESULT
-      - RECEIPT
-      - OS_VERSION_REP
-      - CONNECTED
-      - OS_PACKAGES_REP
-      - DIR_FINDHASH_REP
-      - FIM_HIT
-      - FIM_LIST_REP
-      - NETSTAT_REP
-      - THREAD_INJECTION
-      - SENSITIVE_PROCESS_ACCESS
-      - LOG_GET_REP
-      - LOG_LIST_REP
-      - PCAP_LIST_INTERFACES_REP
-      filters:
-        tags: []
-        platforms:
-        - linux
-    default-macos:
-      events:
-      - NEW_PROCESS
-      - TERMINATE_PROCESS
-      - CODE_IDENTITY
-      - DNS_REQUEST
-      - HIDDEN_MODULE_DETECTED
-      - NETWORK_CONNECTIONS
-      - FILE_GET_REP
-      - FILE_DEL_REP
-      - FILE_MOV_REP
-      - FILE_HASH_REP
-      - FILE_INFO_REP
-      - DIR_LIST_REP
-      - MEM_MAP_REP
-      - MEM_READ_REP
-      - MEM_HANDLES_REP
-      - MEM_FIND_HANDLE_REP
-      - MEM_STRINGS_REP
-      - MEM_FIND_STRING_REP
-      - OS_SERVICES_REP
-      - OS_DRIVERS_REP
-      - OS_KILL_PROCESS_REP
-      - OS_SUSPEND_REP
-      - OS_RESUME_REP
-      - OS_PROCESSES_REP
-      - OS_AUTORUNS_REP
-      - EXEC_OOB
-      - GET_EXFIL_EVENT_REP
-      - MODULE_MEM_DISK_MISMATCH
-      - YARA_DETECTION
-      - SERVICE_CHANGE
-      - DRIVER_CHANGE
-      - AUTORUN_CHANGE
-      - NEW_DOCUMENT
-      - GET_DOCUMENT_REP
-      - VOLUME_MOUNT
-      - VOLUME_UNMOUNT
-      - RECON_BURST
-      - POSSIBLE_DOC_EXPLOIT
-      - HISTORY_DUMP_REP
-      - USER_OBSERVED
-      - FILE_TYPE_ACCESSED
-      - EXISTING_PROCESS
-      - SELF_TEST_RESULT
-      - RECEIPT
-      - OS_VERSION_REP
-      - CONNECTED
-      - OS_PACKAGES_REP
-      - DIR_FINDHASH_REP
-      - FIM_HIT
-      - FIM_LIST_REP
-      - NETSTAT_REP
-      - THREAD_INJECTION
-      - SENSITIVE_PROCESS_ACCESS
-      - LOG_GET_REP
-      - LOG_LIST_REP
-      filters:
-        tags: []
-        platforms:
-        - mac
-    default-windows:
-      events:
-      - ACK_MESSAGES
-      - AUTORUN_CHANGE
-      - BACKOFF
-      - BROWSER_REQUEST_CONTEXT
-      - CODE_IDENTITY
-      - CONNECTED
-      - DATA_DROPPED
-      - DEBUG_DATA_REP
-      - DIR_FINDHASH_REP
-      - DIR_LIST_REP
-      - DNS_REQUEST
-      - DRIVER_CHANGE
-      - EXEC_OOB
-      - EXISTING_PROCESS
-      - FILE_DELETE
-      - FILE_DEL_REP
-      - FILE_GET_REP
-      - FILE_HASH_REP
-      - FILE_INFO_REP
-      - FILE_MODIFIED
-      - FILE_MOV_REP
-      - FILE_TYPE_ACCESSED
-      - FIM_ADD
-      - FIM_HIT
-      - FIM_LIST_REP
-      - FIM_REMOVE
-      - GET_DOCUMENT_REP
-      - GET_EXFIL_EVENT_REP
-      - HIDDEN_MODULE_DETECTED
-      - HISTORY_DUMP_REP
-      - HTTP_REQUEST
-      - HTTP_REQUEST_HEADERS
-      - HTTP_RESPONSE_HEADERS
-      - LATE_MODULE_LOAD
-      - LOG_ADD
-      - LOG_GET_REP
-      - LOG_LIST_REP
-      - LOG_REMOVE
-      - MEM_FIND_HANDLE_REP
-      - MEM_FIND_STRING_REP
-      - MEM_HANDLES_REP
-      - MEM_MAP_REP
-      - MEM_READ_REP
-      - MEM_STRINGS_REP
-      - MODULE_MEM_DISK_MISMATCH
-      - NETSTAT_REP
-      - NETWORK_CONNECTIONS
-      - NETWORK_SUMMARY
-      - NEW_DOCUMENT
-      - NEW_NAMED_PIPE
-      - NEW_PROCESS
-      - NEW_RELATION
-      - NEW_REMOTE_THREAD
-      - ONGOING_IDENTITY
-      - OPEN_NAMED_PIPE
-      - OS_AUTORUNS_REP
-      - OS_DRIVERS_REP
-      - OS_KILL_PROCESS_REP
-      - OS_PACKAGES_REP
-      - OS_PROCESSES_REP
-      - OS_RESUME_REP
-      - OS_SERVICES_REP
-      - OS_SUSPEND_REP
-      - OS_VERSION_REP
-      - PCAP_LIST_INTERFACES_REP
-      - POSSIBLE_DOC_EXPLOIT
-      - PROCESS_ENVIRONMENT
-      - RECEIPT
-      - RECON_BURST
-      - REGISTRY_CREATE
-      - REGISTRY_DELETE
-      - REGISTRY_LIST_REP
-      - REGISTRY_WRITE
-      - REJOIN_NETWORK
-      - RUN
-      - SEGREGATE_NETWORK
-      - SELF_TEST
-      - SELF_TEST_RESULT
-      - SENSITIVE_PROCESS_ACCESS
-      - SERVICE_CHANGE
-      - SET_PERFORMANCE_MODE
-      - SHUTTING_DOWN
-      - STARTING_UP
-      - SYNC
-      - TERMINATE_PROCESS
-      - TERMINATE_TCP4_CONNECTION
-      - TERMINATE_TCP6_CONNECTION
-      - TERMINATE_UDP4_CONNECTION
-      - TERMINATE_UDP6_CONNECTION
-      - THREAD_INJECTION
-      - UNLOAD_KERNEL
-      - UPDATE
-      - USER_OBSERVED
-      - VOLUME_MOUNT
-      - VOLUME_UNMOUNT
-      - WEL
-      - YARA_DETECTION
-      - YARA_RULES_UPDATE
-      - YARA_SCAN
-      filters:
-        tags:
-        - lab-01
         platforms:
         - windows
-        - chrome
-org-value:
-  domain: ""
-  otx: ""
-  pagerduty: ""
-  shodan: ""
-  twilio: ""
-  vt: ""
+    blackmatter-darkside-reg-create-2021-11-25:
+      event: REGISTRY_CREATE
+      value: 1susrKysy
+      path:
+      - REGISTRY_KEY
+      operator: contains
+      filters:
+        tags: []
+        platforms:
+        - windows
+    blackmatter-darkside-reg-del-2021-11-25:
+      event: REGISTRY_DELETE
+      value: 1susrKysy
+      path:
+      - REGISTRY_KEY
+      operator: contains
+      filters:
+        tags: []
+        platforms:
+        - windows
+    blackmatter-darkside-file-new-2021-11-25:
+      event: FILE_CREATED
+      value: 1susrKysy
+      path:
+      - FILE_PATH
+      operator: contains
+      filters:
+        tags: []
+        platforms:
+        - windows
+    blackmatter-darkside-file-mod-2021-11-25:
+      event: FILE_MODIFIED
+      value: 1susrKysy
+      path:
+      - FILE_PATH
+      operator: contains
+      filters:
+        tags: []
+        platforms:
+        - windows
