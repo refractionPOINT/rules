@@ -6,7 +6,7 @@ rules:
   'BlackMatter/DarkSide Ransomware #001':
     namespace: general
     detect:
-      event: FILE_CREATED
+      event: FILE_CREATE
       op: ends with
       path: event/FILE_PATH
       value: \Users\1susrKysy.README.txt
