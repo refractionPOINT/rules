@@ -36,8 +36,8 @@ rules:
   'BlackMatter/DarkSide Ransomware #004':
     namespace: general
     detect:
-      event: ONGOING_IDENTITY
-      op: ends with
+      event: CODE_IDENTITY
+      op: is
       path: event/HASH
       value: 706f3eec328e91ff7f66c8f0a2fb9b556325c153a329a2062dc85879c540839d
     respond:
