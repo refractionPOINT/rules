@@ -1,0 +1,156 @@
+version: 3
+resources:
+  replicant:
+    - exfil
+Rules:
+  'GuLoader #001':
+    namespace: general
+    detect:
+      event: DNS_REQUEST
+      op: is
+      path: event/DOMAIN_NAME
+      value: ip130.ip-5-39-3.eu
+    respond:
+      - action: report
+        name: guloader-2021-12-02
+  'GuLoader #002':
+    namespace: general
+    detect:
+      event: DNS_REQUEST
+      op: is
+      path: event/DOMAIN_NAME
+      value: nowautomation.com
+      sub domain: '-2:'
+    respond:
+      - action: report
+        name: guloader-2021-12-02
+  'GuLoader #003':
+    namespace: general
+    detect:
+      event: NETWORK_CONNECTIONS
+      op: is
+      path: event/NETWORK_ACTIVITY/?/DESTINATION/IP_ADDRESS
+      value: 99.83.154.118
+    respond:
+      - action: report
+        name: guloader-2021-12-02
+'GuLoader #004':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: c00b66ef61df2012b269bca3e60b301478641292948f1cac579096603ad67f98
+  respond:
+    - action: report
+      name: 'signed-guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #005':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: 4366a0e113d168f2809a4a1983c2198ec874b89af0bdfe465e753d409c85c51c
+  respond:
+    - action: report
+      name: 'loki-guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #006':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: b5784dc5717d0733bcdd150fda07cc94bcc2e2529e0f03e3bb9ec9b623302496
+  respond:
+    - action: report
+      name: 'guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #007':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: 08c01681e8ff89e3bf3f3d3dda76c0a026607f7f4cc3ec8dfbe77ec4c9a45ee3
+  respond:
+    - action: report
+      name: 'guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #008':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: c6f93eb69924750adbe61115b2d6a200d534e783c6bd4ca0e2c0cd2969e9469e
+  respond:
+    - action: report
+      name: 'guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #009':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: eab40778e702a859cc33abcd92e796755e95e8fdb0eeb7c5243b7c1866751bb0
+  respond:
+    - action: report
+      name: 'signed-guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #010':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: dd7883497ba8fc4a8fac606d4f3cec70b6d42c0017e320f9becb071d899c6c30
+  respond:
+    - action: report
+      name: 'signed-guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #011':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: 60ab75a94e04aa5dfab1a68da060a817e9f5ccb79f8a93d0c3dbfe47cb526b7d
+  respond:
+    - action: report
+      name: 'signed-guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #012':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: 363d7304454fc6f29f8eff497d56470beb41b1d7a013ec3ab5b4191847278bd3
+  respond:
+    - action: report
+      name: 'guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #013':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: ab41887e471ac822f1240bf554098fa042910f1c7ac2f9e390081829515bc2fa
+  respond:
+    - action: report
+      name: 'guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #014':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: 0b0e56f5c28128ce9a3eb1a0ce162a39707aff4a3cd691edaf7a7a9f3e5d2a5a
+  respond:
+    - action: report
+      name: 'loki-zip-guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
+'GuLoader #015':
+  namespace: general
+  detect:
+    event: CODE_IDENTITY
+    op: is
+    path: event/HASH
+    value: 7768da29cc4ef93cb4790f664e139d1d8c2972e22fe8840b6b86c50e15dba347
+  respond:
+    - action: report
+      name: 'guloader-2021-12-02 (https://attack.mitre.org/software/S0561/)'
