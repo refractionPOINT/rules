@@ -1095,6 +1095,7 @@ rules:
     detect:
       events:
       - ONGOING_IDENTITY
+      - CODE_IDENTITY
       op: or
       rules:
       - op: is
