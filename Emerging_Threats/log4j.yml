@@ -11,7 +11,7 @@ rules:
       op: or
       rules:
       - op: is
-        path: event/NETWORK_ACTIVITY/?/DESTINATION/IP_ADDRESS
+        path: event/NETWORK_ACTIVITY/?/IP_ADDRESS
         value: 172.105.241.146
       - op: is
         path: event/NETWORK_ACTIVITY/?/DESTINATION/IP_ADDRESS
